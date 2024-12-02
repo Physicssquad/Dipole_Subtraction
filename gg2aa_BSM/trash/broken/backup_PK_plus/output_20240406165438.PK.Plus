@@ -1,0 +1,41 @@
+ File  already exist  ../summary/run_new_01/PK_Plus1.dat                                                                  
+ All previous data for this run will be lost. Overwrite ?     [y/n]
+ Overwriting data in../summary/run_new_01/PK_Plus1.dat                                                                  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating [+] distribution
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   5.E+07
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =          100 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=   48020000.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  35
+   1      0.4264546     0.5208      0.4264546     0.5208      0.000    
+   2      0.1233894     0.1124      0.2317758     0.2293     0.4014    
+   3     -0.4749904E-01 0.6140E-01  0.1641989     0.1639     0.5639    
+   4      0.8518059E-01 0.4124E-01  0.1141749     0.8754E-01 0.5467    
+   5     -0.3152462E-01 0.3309E-01  0.9688675E-01 0.7368E-01 0.6123    
+   6      0.4886188E-01 0.3035E-01  0.8473279E-01 0.5846E-01 0.6067    
+   7      0.4231072E-01 0.2935E-01  0.7757565E-01 0.4956E-01 0.6020    
+   8      0.1137818E-01 0.2883E-01  0.7674901E-01 0.4608E-01 0.5929    
+   9      0.7990439E-01 0.2856E-01  0.7796579E-01 0.3456E-01 0.5669    
+  10      0.5022099E-01 0.2877E-01  0.7434493E-01 0.3075E-01 0.5637    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=  457773282.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  41

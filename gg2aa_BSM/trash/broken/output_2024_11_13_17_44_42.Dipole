@@ -1,0 +1,320 @@
+  
+ Writing data in the file  ../summary/run_00_test0/real7.dat                                                                   
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014lo68cl/MMHT2014lo68cl_0000.dat
+MMHT2014lo68cl PDF set, member #0, version 3; LHAPDF ID = 25000
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   2.E+08
+         iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                         
+ ~~~~~~~~~~~~~[Technical Cuts Used]~~~~~~~~~~~
+  Cut for Energy e5 :                   1.E-11
+  Collinear cut sij :                   1.E-11
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =         2200 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1      0.2356888E-03 0.3355E-04  0.2356888E-03 0.3355E-04  0.000    
+   2      0.2725930E-03 0.2066E-04  0.2644414E-03 0.1705E-04 0.8063    
+   3      0.4090609E-03 0.6124E-04  0.2885171E-03 0.1923E-04  4.190    
+   4      0.4130003E-03 0.4410E-04  0.3192098E-03 0.1813E-04  5.285    
+   5      0.4905762E-03 0.4256E-04  0.3658203E-03 0.1703E-04  8.284    
+   6      0.4697293E-03 0.2130E-04  0.4176610E-03 0.1260E-04  9.463    
+   7      0.4930491E-03 0.1561E-04  0.4557908E-03 0.9213E-05  10.08    
+   8      0.6636804E-03 0.8940E-04  0.4614410E-03 0.9970E-05  8.821    
+   9      0.9785920E-03 0.4068E-03  0.4629124E-03 0.1185E-04  6.123    
+  10      0.6494825E-03 0.6434E-04  0.4718143E-03 0.1184E-04  6.449    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1      0.1675680E-02 0.5945E-03  0.1675680E-02 0.5945E-03  0.000    
+   2      0.6593256E-03 0.1071E-04  0.6614532E-03 0.2067E-04  5.052    
+   3      0.7912793E-03 0.5793E-04  0.6675367E-03 0.1800E-04  4.338    
+   4      0.8066633E-03 0.9538E-04  0.6699918E-03 0.1669E-04  3.702    
+   5      0.7127452E-03 0.2786E-04  0.6759365E-03 0.1461E-04  3.376    
+   6      0.7118650E-03 0.2145E-04  0.6827487E-03 0.1260E-04  3.194    
+   7      0.7108978E-03 0.1905E-04  0.6881899E-03 0.1095E-04  3.017    
+   8      0.7692803E-03 0.4179E-04  0.6918331E-03 0.1048E-04  3.059    
+   9      0.7051863E-03 0.1843E-04  0.6940036E-03 0.9379E-05  2.835    
+  10      0.7691388E-03 0.3004E-04  0.6991014E-03 0.8940E-05  3.082    
+  11      0.1508841E-02 0.6263E-03  0.6995876E-03 0.9696E-05  2.775    
+  12      0.7397350E-03 0.3168E-04  0.7017313E-03 0.9276E-05  2.695    
+  13      0.9056492E-03 0.2134E-03  0.7020904E-03 0.9244E-05  2.555    
+  14      0.8375638E-03 0.1077E-03  0.7028866E-03 0.9152E-05  2.490    
+  15      0.7780146E-03 0.7435E-04  0.7036776E-03 0.9013E-05  2.411    
+  16      0.1091687E-02 0.2939E-03  0.7041917E-03 0.9122E-05  2.354    
+  17      0.7316780E-03 0.2869E-04  0.7058080E-03 0.8750E-05  2.291    
+  18      0.7015736E-03 0.2125E-04  0.7054282E-03 0.8250E-05  2.209    
+  19      0.9882350E-03 0.1360E-03  0.7066523E-03 0.8271E-05  2.347    
+  20      0.7485716E-03 0.2649E-04  0.7092266E-03 0.7947E-05  2.345    
+   
+   
+ [1;32mIntegral [real-dipole]:   7.0922656480396030E-004 [0m+-   7.9471979930611640E-006
+ with chisq    =   2.3448258923616394     
+  
+  
+  
+ [1;32mFor xq =         2500 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1      0.6334437E-03 0.7851E-04  0.6334437E-03 0.7851E-04  0.000    
+   2      0.8691415E-03 0.7603E-04  0.7907802E-03 0.5435E-04  4.174    
+   3      0.1085353E-02 0.8176E-04  0.9303210E-03 0.4574E-04  6.721    
+   4      0.1185431E-02 0.7642E-04  0.1030513E-02 0.3907E-04  7.120    
+   5      0.1663401E-02 0.3383E-03  0.1054536E-02 0.4521E-04  5.626    
+   6      0.1526321E-02 0.2101E-03  0.1090637E-02 0.4622E-04  5.450    
+   7      0.1539096E-02 0.8706E-04  0.1230505E-02 0.3997E-04  8.681    
+   8      0.1588608E-02 0.7931E-04  0.1332897E-02 0.3497E-04  10.00    
+   9      0.2013977E-02 0.2644E-03  0.1359938E-02 0.3677E-04  9.233    
+  10      0.2307465E-02 0.3738E-03  0.1384023E-02 0.3926E-04  8.622    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1      0.2525071E-02 0.2342E-03  0.2525071E-02 0.2342E-03  0.000    
+   2      0.2258830E-02 0.1670E-03  0.2362254E-02 0.1385E-03 0.8783    
+   3      0.2127388E-02 0.8025E-04  0.2197543E-02 0.7296E-04  1.558    
+   4      0.2352586E-02 0.1752E-03  0.2221184E-02 0.6748E-04  1.256    
+   5      0.2020854E-02 0.4968E-04  0.2104339E-02 0.4250E-04  2.340    
+   6      0.2484330E-02 0.3739E-03  0.2110162E-02 0.4288E-04  2.047    
+   7      0.2145185E-02 0.7804E-04  0.2117438E-02 0.3781E-04  1.762    
+   8      0.3268168E-02 0.1112E-02  0.2120166E-02 0.4018E-04  1.612    
+   9      0.3374404E-02 0.1069E-02  0.2123586E-02 0.4215E-04  1.579    
+  10      0.2101539E-02 0.7634E-04  0.2119801E-02 0.3775E-04  1.455    
+  11      0.2490717E-02 0.2445E-03  0.2128324E-02 0.3729E-04  1.533    
+  12      0.2146506E-02 0.9688E-04  0.2130106E-02 0.3502E-04  1.428    
+  13      0.2531443E-02 0.4067E-03  0.2133187E-02 0.3494E-04  1.388    
+  14      0.2167706E-02 0.8516E-04  0.2137114E-02 0.3261E-04  1.312    
+  15      0.3688796E-02 0.1515E-02  0.2138727E-02 0.3392E-04  1.280    
+  16      0.5078833E-02 0.2793E-02  0.2140432E-02 0.3689E-04  1.255    
+  17      0.2438071E-02 0.2074E-03  0.2147470E-02 0.3620E-04  1.291    
+  18      0.2190386E-02 0.7243E-04  0.2153278E-02 0.3331E-04  1.252    
+  19      0.1982216E-02 0.3727E-04  0.2102792E-02 0.2761E-04  1.656    
+  20      0.2257876E-02 0.2632E-03  0.2103973E-02 0.2730E-04  1.606    
+   
+   
+ [1;32mIntegral [real-dipole]:   2.1039727327880251E-003 [0m+-   2.7298488568441731E-005
+ with chisq    =   1.6060582710015978     
+  
+  
+  
+ [1;32mFor xq =         2800 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ [1;32mIntegral [real-dipole]:                       NaN [0m+-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ [1;32mFor xq =         3100 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ [1;32mIntegral [real-dipole]:                       NaN [0m+-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ [1;32mFor xq =         3400 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ [1;32mIntegral [real-dipole]:                       NaN [0m+-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ [1;32mFor xq =         3700 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN

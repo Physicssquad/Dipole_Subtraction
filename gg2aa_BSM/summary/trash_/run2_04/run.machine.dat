@@ -1,0 +1,12 @@
+1				! machine id Tevatron:0 LHC:1	
+13000.0				! ecm
+MMHT2014nlo68cl			! lhapdf set name common for all
+8				! max # of distribution increment step_size from xq
+100				! value of xq to begin with
+300				! step size in GeV inv_mass distribution
+run2_04				! name of dir to save data for analysis use 1 or 0 below 
+1				! '1' to write data in file else use '0' just to run
+0.5d0				! eps value of bin used in integrand.f
+1d-11				! Technical_cut on Energy used in cuts.nlo3.f
+1d-11				! Technical_cut on Theta used in cuts.nlo3.f
+First test of total sig_NLO gg2aa with Ref/Slicing

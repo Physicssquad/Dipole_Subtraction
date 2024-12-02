@@ -1,0 +1,30 @@
+ Directory not found ../summary/run_02                                                                                   
+ Making new directory..
+/home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DrellYan/summary/run_02
+ Directory constructed successfully🤩
+  
+ Writing your data in ../summary/run_02/PK_Plus.dat
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating [+] distribution
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   15
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =          100 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  4  NCALL=  192119202.
+                              IT=    0  ITMX=   15
+                              MDS= -1   ND=  33
+   1      0.3679389E-02 0.2867E-01  0.3679389E-02 0.2867E-01  0.000    
+   2      0.8609460E-02 0.7111E-02  0.8554672E-02 0.5438E-02 0.9034E-02

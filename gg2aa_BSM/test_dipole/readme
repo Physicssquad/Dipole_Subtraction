@@ -1,0 +1,7 @@
+
+phasespace corresponding to the dipole working for the old qQ case sis not work here i need the rapidity and all for that case I had to copy the kin.var.f file from slicing small modifications will work 
+just fine.
+
+I will keep phasespace.f commented in the same file.
+
+* Has been updated again phasespace.f

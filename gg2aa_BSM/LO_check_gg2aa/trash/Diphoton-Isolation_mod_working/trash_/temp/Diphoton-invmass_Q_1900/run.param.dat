@@ -1,0 +1,6 @@
+5			! nf *use integer*
+'MMHT2014lo68cl',0      ! LHAPDF pdfset name, member
+54			! LO pdf set  9:MRST 2001 LO 51:CTEQ6L 54:CTEQ6L1 
+0.165d0			! LO L_QCD5
+52			! NLO pdf set 5:MRST 2001 NLO 52:CTEQ6M 55:CTEQ6.6M
+0.226d0			! NLO L_QCD5

@@ -1,0 +1,6 @@
+100000   		! vegas points     LO 2 body
+6			! vegas iterations LO 2 body
+1000000            	! vegas points     NLO 2 body
+10			! vegas iterations NLO 2 body
+10000000     		! vegas points     NLO 3 body
+10		 	! vegas iterations NLO 3 body

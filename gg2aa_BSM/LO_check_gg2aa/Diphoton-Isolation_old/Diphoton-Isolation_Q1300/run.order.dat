@@ -1,0 +1,15 @@
+1                       ! 0:LO,1:NLO
+1			! model 0:SM 1:ADD 2:RS 3:Unparticle
+1			! Switch for SM B/G Q variation for model 1 or 2 or 3
+0			! id; (0:deltas, 1:deltac, 2:ratio) fixed
+1			! imin; min. of \deltas/c 
+1			! imax; max. of \deltas/c
+0			! icorr (0:none 1:tilde 2:dilog)
+100.0			! a = deltas/deltac (ratio)
+1			! mqmin; min. of differential distribution
+1			! mqmax; max. of differential distribution
+1300d0			! aqstep; step width of diff. distribution
+2			! mfmin; 1,2,3: \mu_F = (0.5, 1.0, 1.5)*Q 
+2			! mfmax; 1,2,3: \mu_F = (0.5, 1.0, 1.5)*Q 
+2			! \mu_R index 1,2,3 for (0.5, 1, 1.5)*Q
+1.0d0			! xeps; width of window for the distribution

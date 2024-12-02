@@ -1,0 +1,740 @@
+   500.00000000000000       4.7481595906347075E-002   8.2542012207080355E-004
+   1000.0000000000000       0.11216084300451329        2.1599753442623324E-003
+   1500.0000000000000       0.15707010479187700        3.3338086264080120E-003
+   2000.0000000000000       0.16903397016474056        3.5609533938973587E-003
+   2500.0000000000000       0.61124166127357038        1.4720821650451632E-002
+   3000.0000000000000                            NaN                       NaN
+   3500.0000000000000                            NaN                       NaN
+   4000.0000000000000                            NaN                       NaN
+   4500.0000000000000                            NaN                       NaN
+   5000.0000000000000                            NaN                       NaN
+  
+ Writing data in the file  ../summary/run1_05/real_500.dat                                                                     
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =          500 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1      0.7444201E-02 0.4158E-02  0.7444201E-02 0.4158E-02  0.000    
+   2      0.1041088E-01 0.1880E-02  0.1013007E-01 0.1555E-02 0.3118    
+   3      0.1152502E-01 0.1459E-02  0.1103444E-01 0.1013E-02 0.3452    
+   4      0.1732681E-01 0.1964E-02  0.1384768E-01 0.9257E-03  3.960    
+   5      0.2658940E-01 0.8747E-02  0.1448969E-01 0.1192E-02  3.065    
+   6      0.5708878E-01 0.2623E-01  0.1556244E-01 0.2011E-02  3.045    
+   7      0.2244036E-01 0.2297E-02  0.1787727E-01 0.1598E-02  3.356    
+   8      0.2752013E-01 0.2552E-02  0.2068201E-01 0.1349E-02  4.365    
+   9      0.3602791E-01 0.4121E-02  0.2314446E-01 0.1289E-02  5.900    
+  10      0.3119577E-01 0.1318E-02  0.2749627E-01 0.8837E-03  7.417    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1      0.5385631E-01 0.4266E-02  0.5385631E-01 0.4266E-02  0.000    
+   2      0.6487177E-01 0.1521E-01  0.5498517E-01 0.4474E-02 0.5576    
+   3      0.4730233E-01 0.3158E-02  0.5069619E-01 0.2784E-02  1.257    
+   4      0.5840139E-01 0.6083E-02  0.5213353E-01 0.2540E-02  1.284    
+   5      0.5041102E-01 0.4290E-02  0.5175729E-01 0.2200E-02  1.030    
+   6      0.8726678E-01 0.3088E-01  0.5220013E-01 0.2442E-02  1.181    
+   7      0.4828200E-01 0.2612E-02  0.5083674E-01 0.1916E-02  1.200    
+   8      0.5547143E-01 0.5771E-02  0.5123534E-01 0.1815E-02  1.121    
+   9      0.9460568E-01 0.4996E-01  0.5137962E-01 0.1960E-02  1.041    
+  10      0.5442013E-01 0.9147E-02  0.5147630E-01 0.1901E-02 0.9616    
+  11      0.4933119E-01 0.2738E-02  0.5099204E-01 0.1642E-02 0.9275    
+  12      0.5304201E-01 0.4741E-02  0.5115620E-01 0.1557E-02 0.8746    
+  13      0.4321525E-01 0.1435E-02  0.4823980E-01 0.1214E-02  1.662    
+  14      0.4909820E-01 0.2676E-02  0.4834272E-01 0.1125E-02  1.577    
+  15      0.4777266E-01 0.2327E-02  0.4826828E-01 0.1037E-02  1.503    
+  16      0.4550318E-01 0.1815E-02  0.4781775E-01 0.9364E-03  1.518    
+  17      0.6863301E-01 0.1631E-01  0.4791287E-01 0.9450E-03  1.529    
+  18      0.4766833E-01 0.2124E-02  0.4788474E-01 0.8805E-03  1.468    
+  19      0.6611025E-01 0.1557E-01  0.4795949E-01 0.8853E-03  1.462    
+  20      0.4364794E-01 0.1865E-02  0.4748160E-01 0.8254E-03  1.558    
+   
+   
+ Integral [real-dipole]:   4.7481595906347075E-002 +-   8.2542012207080355E-004
+ with chisq    =   1.5578520309543724     
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+    500      0.474815959063471E-01      0.825420122070804E-03
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ Writing data in the file  ../summary/run1_05/real_1000.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =         1000 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1      0.2274053E-01 0.8652E-02  0.2274053E-01 0.8652E-02  0.000    
+   2      0.2616517E-01 0.5565E-02  0.2534980E-01 0.4551E-02 0.1027    
+   3      0.3705436E-01 0.4988E-02  0.3302084E-01 0.3193E-02  1.554    
+   4      0.4015641E-01 0.6242E-02  0.3537241E-01 0.2887E-02  1.299    
+   5      0.3954125E-01 0.2857E-02  0.3789042E-01 0.1904E-02  1.173    
+   6      0.6809840E-01 0.1629E-01  0.3946772E-01 0.2275E-02  2.369    
+   7      0.6616346E-01 0.7452E-02  0.4455778E-01 0.2259E-02  5.213    
+   8      0.1092968     0.2345E-01  0.4778971E-01 0.2770E-02  6.524    
+   9      0.6764404E-01 0.3670E-02  0.5649456E-01 0.2118E-02  8.188    
+  10      0.1604209     0.5839E-01  0.5749690E-01 0.2699E-02  6.010    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1      0.1188561     0.9606E-02  0.1188561     0.9606E-02  0.000    
+   2      0.1837858     0.5198E-01  0.1237582     0.1203E-01  2.034    
+   3      0.1331553     0.1685E-01  0.1263308     0.9795E-02  1.205    
+   4      0.1059353     0.3678E-02  0.1103320     0.4262E-02  2.206    
+   5      0.1312856     0.1026E-01  0.1131411     0.3925E-02  2.516    
+   6      0.1360283     0.1711E-01  0.1142666     0.3822E-02  2.354    
+   7      0.1122338     0.7176E-02  0.1139414     0.3420E-02  2.066    
+   8      0.1442207     0.1950E-01  0.1149870     0.3394E-02  2.115    
+   9      0.3579973     0.2008      0.1154738     0.4381E-02  1.877    
+  10      0.1181170     0.7882E-02  0.1158015     0.3988E-02  1.770    
+  11      0.1244073     0.1257E-01  0.1162428     0.3802E-02  1.688    
+  12      0.1063131     0.4077E-02  0.1136355     0.3183E-02  1.785    
+  13      0.1173980     0.8566E-02  0.1138899     0.3017E-02  1.706    
+  14      0.1408503     0.2680E-01  0.1141555     0.2979E-02  1.661    
+  15      0.1011559     0.2941E-02  0.1102995     0.2449E-02  2.025    
+  16      0.1168671     0.7555E-02  0.1106713     0.2346E-02  1.970    
+  17      0.1355690     0.1322E-01  0.1112755     0.2303E-02  2.043    
+  18      0.1145379     0.6078E-02  0.1115227     0.2188E-02  1.979    
+  19      0.1277875     0.1710E-01  0.1117142     0.2159E-02  1.933    
+  20      0.1622834     0.2496E-01  0.1121608     0.2160E-02  2.067    
+   
+   
+ Integral [real-dipole]:  0.11216084300451329      +-   2.1599753442623324E-003
+ with chisq    =   2.0666033170632940     
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+   1000      0.112160843004513E+00      0.215997534426233E-02
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ Writing data in the file  ../summary/run1_05/real_1500.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =         1500 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1      0.9881281E-02 0.1597E-02  0.9881281E-02 0.1597E-02  0.000    
+   2      0.4275604E-01 0.1011E-01  0.2035341E-01 0.4139E-02  13.69    
+   3      0.4793170E-01 0.7771E-02  0.3148642E-01 0.3865E-02  10.81    
+   4      0.6738050E-01 0.9571E-02  0.4385699E-01 0.3903E-02  11.00    
+   5      0.7651901E-01 0.1138E-01  0.5167343E-01 0.3933E-02  9.321    
+   6      0.7141033E-01 0.7104E-02  0.5854841E-01 0.3366E-02  8.195    
+   7      0.1223881     0.1813E-01  0.6721870E-01 0.3843E-02  9.927    
+   8      0.2062824     0.9581E-01  0.6911266E-01 0.5327E-02  5.676    
+   9      0.1296993     0.1743E-01  0.7759235E-01 0.5139E-02  6.679    
+  10      0.1297101     0.1627E-01  0.8480739E-01 0.4914E-02  7.087    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1      0.1534221     0.1100E-01  0.1534221     0.1100E-01  0.000    
+   2      0.1542627     0.1295E-01  0.1537767     0.8385E-02 0.2451E-02
+   3      0.1539203     0.7898E-02  0.1538528     0.5749E-02 0.1303E-02
+   4      0.1523934     0.6385E-02  0.1532064     0.4280E-02 0.1043E-01
+   5      0.1824113     0.1976E-01  0.1550206     0.4313E-02 0.6752    
+   6      0.1691114     0.2130E-01  0.1556397     0.4259E-02 0.6214    
+   7      0.1407701     0.5732E-02  0.1512378     0.3512E-02  1.159    
+   8      0.1826164     0.1859E-01  0.1526573     0.3501E-02  1.450    
+   9      0.1569569     0.1082E-01  0.1530434     0.3330E-02  1.294    
+  10      0.1558533     0.1042E-01  0.1532882     0.3171E-02  1.165    
+  11      0.1641098     0.1044E-01  0.1542382     0.3034E-02  1.146    
+  12      0.1653247     0.1296E-01  0.1548440     0.2957E-02  1.103    
+  13      0.1628996     0.1529E-01  0.1551397     0.2904E-02  1.032    
+  14      0.1519980     0.1039E-01  0.1549363     0.2797E-02 0.9666    
+  15      0.3650498     0.1401      0.1553670     0.3158E-02  1.350    
+  16      0.2556360     0.7326E-01  0.1557342     0.3247E-02  1.419    
+  17      0.3991113     0.2445      0.1559291     0.3568E-02  1.334    
+  18      0.1654114     0.1158E-01  0.1564770     0.3429E-02  1.305    
+  19      0.1807614     0.2147E-01  0.1569550     0.3376E-02  1.302    
+  20      0.1688274     0.2843E-01  0.1570701     0.3334E-02  1.259    
+   
+   
+ Integral [real-dipole]:  0.15707010479187700      +-   3.3338086264080120E-003
+ with chisq    =   1.2589347483127640     
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+   1500      0.157070104791877E+00      0.333380862640801E-02
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ Writing data in the file  ../summary/run1_05/real_2000.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =         2000 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1      0.1147686E-01 0.1472E-02  0.1147686E-01 0.1472E-02  0.000    
+   2      0.3625695E-01 0.5684E-02  0.2141097E-01 0.2669E-02  20.70    
+   3      0.5332862E-01 0.1487E-01  0.2500217E-01 0.3536E-02  9.302    
+   4      0.7858748E-01 0.2353E-01  0.2976219E-01 0.4566E-02  7.106    
+   5      0.5824832E-01 0.7346E-02  0.3926826E-01 0.3836E-02  8.097    
+   6      0.1029067     0.2262E-01  0.4556767E-01 0.4415E-02  8.113    
+   7      0.7894221E-01 0.7976E-02  0.5621445E-01 0.3778E-02  9.111    
+   8      0.1398388     0.4199E-01  0.5912949E-01 0.4443E-02  7.153    
+   9      0.1087019     0.5723E-02  0.8547151E-01 0.3187E-02  13.23    
+  10      0.1798356     0.3683E-01  0.8867266E-01 0.3665E-02  11.01    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1      0.1984911     0.2354E-01  0.1984911     0.2354E-01  0.000    
+   2      0.4427807     0.2755      0.2070581     0.3998E-01  1.264    
+   3      0.1559705     0.6788E-02  0.1622267     0.1200E-01  1.833    
+   4      0.1818071     0.2160E-01  0.1642891     0.1043E-01  1.556    
+   5      0.3061352     0.1115      0.1658619     0.1066E-01  1.590    
+   6      0.1790297     0.1361E-01  0.1685318     0.9045E-02  1.478    
+   7      0.1703801     0.9059E-02  0.1690738     0.7280E-02  1.346    
+   8      0.1829580     0.1568E-01  0.1704816     0.6692E-02  1.283    
+   9      0.1945888     0.2078E-01  0.1719595     0.6349E-02  1.275    
+  10      0.1553604     0.8713E-02  0.1689408     0.5573E-02  1.350    
+  11      0.1906434     0.2443E-01  0.1696715     0.5396E-02  1.305    
+  12      0.1815589     0.1640E-01  0.1704254     0.5140E-02  1.253    
+  13      0.1614026     0.5919E-02  0.1679179     0.4285E-02  1.268    
+  14      0.1904342     0.2198E-01  0.1685325     0.4186E-02  1.252    
+  15      0.1538169     0.7342E-02  0.1665076     0.3821E-02  1.329    
+  16      0.2014828     0.2168E-01  0.1674298     0.3755E-02  1.399    
+  17      0.2025000     0.2847E-01  0.1679631     0.3714E-02  1.404    
+  18      0.2088142     0.3404E-01  0.1684201     0.3688E-02  1.405    
+  19      0.2044611     0.3038E-01  0.1688990     0.3655E-02  1.403    
+  20      0.1728381     0.1572E-01  0.1690340     0.3561E-02  1.355    
+   
+   
+ Integral [real-dipole]:  0.16903397016474056      +-   3.5609533938973587E-003
+ with chisq    =   1.3549435317730718     
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+   2000      0.169033970164741E+00      0.356095339389736E-02
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ Writing data in the file  ../summary/run1_05/real_2500.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =         2500 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1      0.9121406E-01 0.5569E-01  0.9121406E-01 0.5569E-01  0.000    
+   2      0.6913735E-01 0.7108E-02  0.6974609E-01 0.8205E-02 0.1941    
+   3      0.1398511     0.1943E-01  0.9410175E-01 0.8545E-02  7.688    
+   4      0.1783111     0.2714E-01  0.1130082     0.9155E-02  8.373    
+   5      0.2235807     0.2942E-01  0.1385539     0.9568E-02  10.35    
+   6      0.3034582     0.4791E-01  0.1613534     0.1089E-01  10.97    
+   7      0.3619808     0.4808E-01  0.1941434     0.1179E-01  13.12    
+   8      0.2984226     0.1823E-01  0.2395893     0.9314E-02  14.57    
+   9      0.4427799     0.5823E-01  0.2570596     0.1014E-01  13.77    
+  10      0.5345540     0.6657E-01  0.2813368     0.1110E-01  14.86    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1      0.6234646     0.4638E-01  0.6234646     0.4638E-01  0.000    
+   2      0.9523074     0.3611      0.6356544     0.5876E-01  1.118    
+   3      0.7003177     0.6236E-01  0.6616464     0.4356E-01 0.8731    
+   4      0.5606520     0.2563E-01  0.6006570     0.2575E-01  1.887    
+   5      0.6691314     0.1059      0.6039403     0.2475E-01  1.545    
+   6       1.324885     0.6263      0.6077972     0.2928E-01  1.524    
+   7       1.052330     0.3958      0.6115227     0.3027E-01  1.477    
+   8      0.7635970     0.1232      0.6181508     0.2915E-01  1.468    
+   9      0.6009560     0.4116E-01  0.6148042     0.2539E-01  1.372    
+  10      0.5949023     0.4561E-01  0.6121282     0.2303E-01  1.293    
+  11      0.7220708     0.9054E-01  0.6173903     0.2224E-01  1.299    
+  12      0.5761979     0.2857E-01  0.6077350     0.1906E-01  1.308    
+  13      0.7471077     0.1108      0.6112935     0.1873E-01  1.325    
+  14      0.7953789     0.2210      0.6126222     0.1867E-01  1.275    
+  15      0.7104269     0.6064E-01  0.6195737     0.1788E-01  1.341    
+  16      0.7697186     0.1378      0.6219591     0.1771E-01  1.329    
+  17      0.5852205     0.3316E-01  0.6169272     0.1624E-01  1.318    
+  18      0.8191479     0.2267      0.6180816     0.1625E-01  1.284    
+  19      0.9292350     0.2216      0.6204565     0.1637E-01  1.338    
+  20      0.5665631     0.2599E-01  0.6112417     0.1472E-01  1.398    
+   
+   
+ Integral [real-dipole]:  0.61124166127357038      +-   1.4720821650451632E-002
+ with chisq    =   1.3982957988362650     
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+   2500      0.611241661273570E+00      0.147208216504516E-01
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ Writing data in the file  ../summary/run1_05/real_3000.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =         3000 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+   3000                        NaN                        NaN
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ Writing data in the file  ../summary/run1_05/real_3500.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =         3500 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+   3500                        NaN                        NaN
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ Writing data in the file  ../summary/run1_05/real_4000.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =         4000 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+   4000                        NaN                        NaN
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ Writing data in the file  ../summary/run1_05/real_4500.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =         4500 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+   4500                        NaN                        NaN
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  
+ Writing data in the file  ../summary/run1_05/real_5000.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/MMHT2014nlo68cl/MMHT2014nlo68cl_0000.dat
+MMHT2014nlo68cl PDF set, member #0, version 3; LHAPDF ID = 25100
+   
+   ----------------------------------
+   |Initializing Dipole Subtraction  |
+   ----------------------------------
+  
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using Vegas points:                   2.E+08
+         Iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ For xq =         5000 
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL=  171532242.
+                              IT=    0  ITMX=   10
+                              MDS=  1   ND=  50
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  6  NCALL= 1775007362.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  31
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ Integral [real-dipole]:                       NaN +-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+    xq         Integral [real-dipole]                 error
+   5000                        NaN                        NaN
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
