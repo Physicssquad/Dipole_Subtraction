@@ -114,6 +114,7 @@ c      amh = 125.0d0
       call printframe1(pt1,its1)   ! vegas points print 
 	xmur = 125d0/2d0
       call printframe6(ecm,xmur,xmur,pdf_name,amH)
+      call system("sleep 1")
 
 c      print*,'  '
 c      print*,"Press 1 to initialise VEGAS:"
@@ -123,7 +124,7 @@ c      read*,int_choice
         xq = xq_initial
         do j=1,it_max
 
-        call printframe2(xq)
+c        call printframe2(xq)
 
 	if (int_choice .eq. 1 ) then
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -6,8 +6,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),c(1:2),Born(1:2),coef(2,-2:0),SumI(-2:0)
       parameter (pi=3.14159265358979d0)
-c      parameter (hbarc2=0.3894d9)      ! in Pb
-      parameter (hbarc2=0.3894d12)    ! in Fb
+      parameter (hbarc2=0.3894d9)      ! in Pb
+c      parameter (hbarc2=0.3894d12)    ! in Fb
       common/leg_choice/leg
       common/energy/S
       common/distribution/xq
@@ -47,15 +47,15 @@ c
         call pdf(xb,xmuf,f2)
         call setlum(f1,f2,xl)
 
-      sig= xl(2)*Born_gg2H(0,p1,p2,p3)
+      sig= xl(2)*Born_bB2H(0,p1,p2,p3)
 c      sig= Born_gg2H(0,p1,p2,p3)
       pi_1 = 0.5d0*rsp
       flux = 4d0*pi_1*rsp
       xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
 
-      flo1_LO  = xnorm * sig
+c      flo1_LO  = xnorm * sig
 c      flo1_LO  = xnorm
-c      flo1_LO  = xnorm*sig/2d0/eps
+      flo1_LO  = xnorm*sig/2d0/eps  !for binning avg 2eps is added
 
       else
         flo1_LO= 0d0

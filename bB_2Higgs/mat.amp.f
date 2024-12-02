@@ -7,7 +7,7 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     [g g -> h]  Born Effective field theory
 c--------------------------------------------------------------------o
-       function Born_gg2h(k,p1,p2,p3)
+       function Born_bB2h(k,p1,p2,p3)
          implicit double precision (a-h,o-z)
          dimension p1(0:3),p2(0:3),p3(0:3)
          parameter(PI=3.141592653589793238D0)
@@ -15,8 +15,6 @@ c--------------------------------------------------------------------o
          common/param2/xmur
          common/amass/am1,am2,amh,am4,am5
          common/energy/s
-
-c         e= DSQRT(ge*4.d0*PI)
 
          s12 = 2d0*dot(p1,p2)
          rp34  = dsqrt(s12)

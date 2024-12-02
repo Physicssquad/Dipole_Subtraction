@@ -31,11 +31,12 @@ c      integer i35,i45,is5,itest
 
         call kinvar2_type_1(xa,xb,xc,xinvmass,p1,p2,p3,p4)
           scale = xinvmass
-          eps = 0.01d0
+          eps = 0.1d0
           Q_ = 125d0
           Q_min = Q_ - eps
           Q_max = Q_ + eps
-        
+c        print*,sp,2d0*dot(p3,p4)+dot(p3,p3)
+c        print*,sp-2d0*dot(p3,p4)-am3**2,dot(p3,p3)
         if( sp  .ge. am3**2) then
           if ( scale .ge. Q_min .and. scale .le. Q_max ) then
 
