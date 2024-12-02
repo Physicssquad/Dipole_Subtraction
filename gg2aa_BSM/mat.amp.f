@@ -411,7 +411,7 @@ cc
            a(i) = 0d0
          enddo
 cc
-      include "amplitude.h"
+      include "include/amplitude.h"
       msq(4) = SGRgg1
 cc      print*,"mod:",SGRgg1
 cc
