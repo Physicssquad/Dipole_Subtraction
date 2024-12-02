@@ -1,0 +1,87 @@
+ Directory not found ../summary/run_00_test00                                                                            
+ Making new directory..
+/home/niraj/OneDrive/WorkSpaceIITG/Generalfiles/integrators/DY1/gg2higgs/summary/run_00_test00
+ Directory constructed successfully🤩
+  
+  
+ Writing data in the file  ../summary/run_00_test00/LO0.dat                                                                    
+  
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_lo_as_0118/NNPDF30_lo_as_0118_0000.dat
+NNPDF30_lo_as_0118 PDF set, member #0, version 2; LHAPDF ID = 262000
+  
+  
+ ____________________________________
+  Calculating LO_gg2H
+ ____________________________________
+ ````````````````````````````````````
+  
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   5.E+03
+         iteration:                   10
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                         
+ ~~~~~~~~~~~~~[Parameters  Used]~~~~~~~~~~~
+ Centre of Mass Energy:        13000
+                   mur:    62.500000000000000     
+                   muf:    62.500000000000000     
+           LHAPDF used: NNPDF30_lo_as_0118                                
+            Higgs mass:    13000.000000000000     
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ [1;32mFor xq =          100 [0m
+  
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       4998.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  49
+   1       0.000000      0.000                NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=      49098.
+                              IT=    0  ITMX=   20
+                              MDS= -1   ND=  49
+   1                NaN        NaN            NaN        NaN  0.000    
+   2                NaN        NaN            NaN        NaN        NaN
+   3                NaN        NaN            NaN        NaN        NaN
+   4                NaN        NaN            NaN        NaN        NaN
+   5                NaN        NaN            NaN        NaN        NaN
+   6                NaN        NaN            NaN        NaN        NaN
+   7                NaN        NaN            NaN        NaN        NaN
+   8                NaN        NaN            NaN        NaN        NaN
+   9                NaN        NaN            NaN        NaN        NaN
+  10                NaN        NaN            NaN        NaN        NaN
+  11                NaN        NaN            NaN        NaN        NaN
+  12                NaN        NaN            NaN        NaN        NaN
+  13                NaN        NaN            NaN        NaN        NaN
+  14                NaN        NaN            NaN        NaN        NaN
+  15                NaN        NaN            NaN        NaN        NaN
+  16                NaN        NaN            NaN        NaN        NaN
+  17                NaN        NaN            NaN        NaN        NaN
+  18                NaN        NaN            NaN        NaN        NaN
+  19                NaN        NaN            NaN        NaN        NaN
+  20                NaN        NaN            NaN        NaN        NaN
+   
+   
+ [1;32mIntegral Leading Order:                       NaN [0m+-                       NaN
+ with chisq    =                       NaN
+  
+  
+  
+ [1;32m   xq         Integral Leading Order                 error[0m
+    100                        NaN                        NaN
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
