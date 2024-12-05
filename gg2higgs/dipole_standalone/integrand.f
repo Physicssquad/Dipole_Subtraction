@@ -55,6 +55,7 @@ c	print*,"dip2:",dipole_type_1_gg_g(2,p1,p2,p3,p4)
 c	print*,"SumD:",SumD
 c	print*," "
 
+c          sigma = xl(2)*( sig - SumD )*2d0* am3/xa/S
           sigma = xl(2)*( sig - SumD )
 c          print*,sig,SumD,sig/SumD
 

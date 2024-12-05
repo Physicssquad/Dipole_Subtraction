@@ -94,7 +94,7 @@ c ~~~~~~~~~~~~~~~~[--------------------------]~~~~~~~~~~~~~~~~~~~c
 c      am1 = 0.51099895000d-3
       am1=0.0d0
       am2=0.0d0
-      am3=125d0
+      am3=125.0d0
       am4=0d0
       am5=0d0
 c      amh = 125.0d0
@@ -112,8 +112,8 @@ c      amh = 125.0d0
         print*," "
 
       call printframe1(pt1,its1)   ! vegas points print 
-	xmur = 125d0
-      call printframe6(ecm,xmur,xmur,pdf_name,am3)
+	xmur = 125d0/2d0
+      call printframe6(ecm,xmur,xmur,pdf_name,amH)
       call system("sleep 1")
 
 c      print*,'  '

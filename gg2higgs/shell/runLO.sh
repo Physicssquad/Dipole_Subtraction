@@ -6,7 +6,6 @@ timestamp=$(date +"%Y_%m_%d_%H_%M_%S")
 # Begin with this .sh file location
 home_path=$(dirname "$0")
 cd $home_path
-
 # home path assighed for future reference
 home_path=$(pwd)
 
@@ -24,6 +23,7 @@ gfortran tee_the_data.f -o "tee_the_data_${timestamp}_LO.o"
 #Everything is ready now start the Executable
 cd $home_path
 cd ../LO_gg2H
+#grep -r "am3=" main.f
 make
 ./runLO | tee "../trash/broken/output_${timestamp}.LO"
 

@@ -29,7 +29,8 @@ c      parameter (hbarc2=0.3894d9)      ! in Pb
         scale = dsqrt(2d0*dot(p1,p2))
 c	write(*,*)'sp,scale =',xa,xb,sp,scale
 
-        xmuf= scale
+c        xmuf= scale
+        xmuf= 125d0
         xmur= xmuf
         xmu2=xmuf**2
 
@@ -40,13 +41,13 @@ c	write(*,*)'sp,scale =',xa,xb,sp,scale
         sig= xl(2)*Born_gg2H(0,p1,p2,p3)
 
 
-c        pi_1 = 0.5d0*rsp
-c        flux = 4d0*pi_1*rsp
-         pi_1 = PI/amH
-         flux = 2d0*sp 
+        pi_1 = 0.5d0*rsp
+        flux = 4d0*pi_1*rsp
+c         pi_1 = PI/amH
+c         flux = 2d0*sp 
 
-c        xnorm=hbarc2/8d0/(2d0*Pi)**4/flux 
-        xnorm=xajac*hbarc2*pi_1/flux
+        xnorm=hbarc2/8d0/(2d0*Pi)**4/flux 
+c        xnorm=xajac*hbarc2*pi_1/flux
 
 c        flo1_LO  = xajac * xnorm * sig* 2d0* amh/xa/S
         flo1_LO  = xajac * xnorm * sig * 2d0* amh/xa/S
