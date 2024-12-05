@@ -16,8 +16,6 @@ c--------------------------------------------------------------------o
          common/amass/am1,am2,amh,am4,am5
          common/energy/s
 
-c         e= DSQRT(ge*4.d0*PI)
-
          s12 = 2d0*dot(p1,p2)
          rp34  = dsqrt(s12)
          
@@ -31,7 +29,7 @@ c         IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2 reduced born k=2
 
            NA = 8
 c          AS = alphasPDF(amh)
-c          AS = AS/4d0/PI
+c          AS = AL/4d0/PI
 
             v = 246d0
 c           AL = DSQRT(AL*4d0*PI)
@@ -41,7 +39,8 @@ c          Born_gg2h= 16d0*AL**2*amh**4d0/(3d0*PI*v)**2/NA
 c           Born_gg2h= AS**2/72d0/PI/v**2/8d0
 
 c 3manually.frm :amp=  1/36*PI^-4*v^-2*s12^2*AL^2    .or.  amp= 1d0/2d0*s12**2*ch2
-          Born_gg2H =  CF*0.5d0*s12**2*ch2/16d0
+c          Born_gg2H =  CF*0.5d0*s12**2*ch2/16d0
+          Born_gg2H =  CF*0.5d0*s12**2*ch2
 c          Born_gg2H = CF * 0.5d0*amh**4*ch2/16d0
 
        return
@@ -87,7 +86,8 @@ c           AS = AS/4d0/PI
                v = 246d0
               ch = -4d0*AL/3d0/v
              ch2 = ch * ch
-              gs = DSQRT(AL*4.d0*PI)
+c              gs = DSQRT(AL*4.d0*PI)
+              gs = AL 
           gs2CH2 = gs**2*ch2
 
            s12 = 2d0*dot(p1,p2)
