@@ -18,27 +18,37 @@ c     incoming parton 4-vectors
       p2(3) = -p2(0)
 
 c     total 4-momentum of the system
-      e_total  = p1(0) + p2(0)
-      px_total = p1(1) + p2(1)
-      py_total = p1(2) + p2(2)
-      pz_total = p1(3) + p2(3)
 
-c     calculate the boost in lab frame 
-c      beta = 0d0
-      beta = (xa - xb) / (xa + xb)
-      gama = 1d0 / sqrt(1d0 - beta**2)
+      p3(0) = p1(0) + p2(0)
+      p3(1) = p1(1) + p2(1)
+      p3(2) = p1(2) + p2(2)
+      p3(3) = p1(3) + p2(3)
 
-c     calculate momentum of the Higgs boson
-      p_h = sqrt(px_total**2 + py_total**2 + pz_total**2)
+!! Initial partons are already in lab frame. No need to boost.
 
-c     Energy of the Higgs boson with mass
-      e_higgs = sqrt(p_h**2 + amh**2)
+C   [ Boost to Lab Frame ]
 
-c     Set the 4-vector for the outgoing Higgs boson
-      p3(0) = gama * (e_higgs + beta * pz_total)
-      p3(1) = px_total
-      p3(2) = py_total
-      p3(3) = gama * (pz_total + beta * e_higgs)
+c      e_total  = p1(0) + p2(0)
+c      px_total = p1(1) + p2(1)
+c      py_total = p1(2) + p2(2)
+c      pz_total = p1(3) + p2(3)
+c
+cc     calculate the boost in lab frame 
+cc      beta = 0d0
+cc      beta = (xa - xb) / (xa + xb)
+cc      gama = 1d0 / sqrt(1d0 - beta**2)
+c
+cc     calculate momentum of the Higgs boson
+c      p_h = sqrt(px_total**2 + py_total**2 + pz_total**2)
+c
+cc     Energy of the Higgs boson with mass
+c      e_higgs = sqrt(p_h**2 + amh**2)
+c
+cc     Set the 4-vector for the outgoing Higgs boson
+c      p3(0) = gama * (e_higgs + beta * pz_total)
+c      p3(1) = px_total
+c      p3(2) = py_total
+c      p3(3) = gama * (pz_total + beta * e_higgs)
 
       return
       end

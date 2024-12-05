@@ -38,7 +38,7 @@ c      integer i35,i45,is5,itest
 c        print*,sp,2d0*dot(p3,p4)+dot(p3,p3)
 c        print*,sp-2d0*dot(p3,p4)-am3**2,dot(p3,p3)
         if( sp  .ge. am3**2) then
-          if ( scale .ge. Q_min .and. scale .le. Q_max ) then
+c          if ( scale .ge. Q_min .and. scale .le. Q_max ) then
 
           call pdf(xa,am3,f1)
           call pdf(xb,am3,f2)
@@ -56,7 +56,7 @@ c	print*,"SumD:",SumD
 c	print*," "
 
 c          sigma = xl(2)*( sig - SumD )*2d0* am3/xa/S
-          sigma = xl(2)*( sig - SumD )
+          sigma = xl(2)*(sig - SumD)
 c          print*,sig,SumD,sig/SumD
 
           pi_1 = 0.5d0*rsp
@@ -64,9 +64,9 @@ c          print*,sig,SumD,sig/SumD
           xnorm=hbarc2/16d0/pi/(xa*xb*s)
           wgt=xnorm*sigma*weight
           fnlo3=wgt/weight/2d0/eps
-        else
-           fnlo3  = 0d0
-        endif
+c        else
+c           fnlo3  = 0d0
+c        endif
         endif
 151   return
       end

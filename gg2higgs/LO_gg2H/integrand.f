@@ -6,8 +6,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),c(1:2),Born(1:2),coef(2,-2:0),SumI(-2:0)
       parameter (pi=3.14159265358979d0)
-c      parameter (hbarc2=0.3894d9)      ! in Pb
-      parameter (hbarc2=0.3894d12)    ! in Fb
+      parameter (hbarc2=0.3894d9)      ! in Pb
+c      parameter (hbarc2=0.3894d12)    ! in Fb
       common/energy/S
       common/renor_scale/scale
       common/usedalpha/AL,ge
@@ -15,7 +15,7 @@ c      parameter (hbarc2=0.3894d9)      ! in Pb
       external Born_gg2H
        
         tau = amH**2/S
-         AL = alphasPDF(amH)
+c         AL = alphasPDF(amH)
 
          xajac = 1d0 - tau
          xa = tau + xajac*yy(1)
@@ -34,6 +34,8 @@ c        xmuf= scale
         xmur= xmuf
         xmu2=xmuf**2
 
+         AL = alphasPDF(xmur)
+
         call pdf(xa,xmuf,f1)
         call pdf(xb,xmuf,f2)
         call setlum(f1,f2,xl)
@@ -41,15 +43,15 @@ c        xmuf= scale
         sig= xl(2)*Born_gg2H(0,p1,p2,p3)
 
 
-        pi_1 = 0.5d0*rsp
-        flux = 4d0*pi_1*rsp
-c         pi_1 = PI/amH
-c         flux = 2d0*sp 
+c        pi_1 = 0.5d0*rsp
+c        flux = 4d0*pi_1*rsp
+         pi_1 = PI/amH
+         flux = 2d0*sp 
 
-        xnorm=hbarc2/8d0/(2d0*Pi)**4/flux 
-c        xnorm=xajac*hbarc2*pi_1/flux
+c        xnorm=hbarc2/8d0/(2d0*Pi)**4/flux 
+        xnorm=hbarc2*pi_1/flux
 
-c        flo1_LO  = xajac * xnorm * sig* 2d0* amh/xa/S
+c        flo1_LO  = xajac * xnorm * sig* xb
         flo1_LO  = xajac * xnorm * sig * 2d0* amh/xa/S
 c        flo1_LO  = xnorm * sig/2d0/eps
 

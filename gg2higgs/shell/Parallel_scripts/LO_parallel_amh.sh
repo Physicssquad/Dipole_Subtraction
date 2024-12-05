@@ -19,8 +19,8 @@ commands=(
 )
 
 # Define the new values for the "max # of distribution increment step_size from xq"
-distribution_steps=(50 75 100 125 150 175 200)
-#distribution_steps=(13000 12000 11000 10000 9000 8000 7000)
+#distribution_steps=(50 75 100 125 150 175 200)
+distribution_steps=(13000 12000 11000 10000 9000 8000 7000)
 
 # Function to modify the input files
 modify_input_files() {
@@ -30,8 +30,8 @@ modify_input_files() {
 #    echo "Modifying files for index: $index with step size: $step_size"
 
     # Modify run.machine.dat
-#    sed -i "2s/.*/${step_size}/" run.machine.dat
-    sed -i "s/am3=[^ ]*/am3=${step_size}d0/" LO_gg2H/main.f
+    sed -i "2s/.*/${step_size}/" run.machine.dat
+#    sed -i "s/am3=[^ ]*/am3=${step_size}d0/" LO_gg2H/main.f
 #    sed -i "2s/.*/${step_size}/" param_card.dat
 #    echo "Updated run.machine.dat with step size: $step_size"
 

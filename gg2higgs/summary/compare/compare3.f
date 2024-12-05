@@ -135,7 +135,7 @@ c~~~~~~~~~~~~~~~~~[ ratio ]
 
        if(ierr1 + ierr2 .eq. 2) then
         print*,"/"//trim(firstfile)//" and  /"//trim(secondfile)
-       write(*,*)achar(27)//'[1;32m'//"   xq         first / second",
+       write(*,*)achar(27)//'[1;32m'//"Ecm/mH        first / second",
 c       write(*,*)achar(27)//'[1;32m'//"   xq
 c     . [first-second]/first*100",
      . achar(27)//'[0m'
@@ -148,9 +148,16 @@ c     .          dabs(xintLO(i)-xintLO_ch(i))
 c     .     /xintLO_ch(i)*100d0
         enddo
 	print*," "
+        print*,"/"//trim(secondfile)//" and  /"//trim(firstfile)
+	print*," "
+       write(*,*)achar(27)//'[1;32m'//"Ecm/mH        first / second",
+c       write(*,*)achar(27)//'[1;32m'//"   xq
+c     . [first-second]/first*100",
+     . achar(27)//'[0m'
         do i=1,it_max
 c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),xintLO(i)+xintLO_ch(i)
 c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
+
       write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO_ch(i)/xintLO(i)
 c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),
 c     .          dabs(xintLO(i)-xintLO_ch(i))
