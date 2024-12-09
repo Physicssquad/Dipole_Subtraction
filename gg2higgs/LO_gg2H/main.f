@@ -144,10 +144,11 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
          xq = xq_initial
 
-         call printframe4(mode)
+         call printframe7(mode)
 
         do j=1,it_max
-          write(*,'(i7,3e27.15)')int(xq),ai_lo2(j),err(j)
+c          write(*,'(i7,3e27.15)')int(xq),ai_lo2(j),err(j)
+          write(*,'(i7,3e27.15)')int(dsqrt(s)),ai_lo2(j),err(j)
           xq = xq + step_size
         enddo
 

@@ -85,3 +85,14 @@ c       character*50 pdf_name
        return
        end
 c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
+c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
+       subroutine printframe7(name)
+       character*50 name
+       
+            print*," "
+       write(*,*)achar(27)//'[1;32m'//"CM_Energy    Integral "
+     .  //trim(name),
+     .  "                 error",
+     . achar(27)//'[0m'
+       end
+

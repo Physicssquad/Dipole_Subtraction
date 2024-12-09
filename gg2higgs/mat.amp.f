@@ -39,8 +39,8 @@ c           Born_gg2h= AS**2/72d0/PI/v**2/8d0
 
 c 3manually.frm :amp=  1/36*PI^-4*v^-2*s12^2*AL^2    .or.  amp= 1d0/2d0*s12**2*ch2
 c          Born_gg2H =  CF*0.5d0*s12**2*ch2/16d0
-c          Born_gg2H =  CF*0.5d0*s12**2*ch2
-           Born_gg2H =  CF*0.5d0*s12**2*ch2/16d0
+          Born_gg2H =  CF*0.5d0*s12**2*ch2
+c           Born_gg2H =  CF*0.5d0*s12**2*ch2/16d0
 c          Born_gg2H = CF * 0.5d0*amh**4*ch2/16d0
 
        return
