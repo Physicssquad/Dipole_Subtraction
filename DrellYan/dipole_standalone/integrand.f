@@ -74,7 +74,7 @@ c           AL = 2d0*PI
 
           call  uu2ee_r(p,sig)
           SumD(1) = dipole_uU_g(1,p) + dipole_uU_g(2,p)
-          SumD(2) = dipole_gq_q(1,p) + dipole_gq_q(2,p)
+c          SumD(2) = dipole_gq_q(1,p) + dipole_gq_q(2,p)
 
 c           sig(2) = xl(8)*( sig(2) - dipole_gq_q(2,p )) 
 c           sig(3) = xl(7)*( sig(3) - dipole_gq_q(1,p )) 
@@ -90,6 +90,7 @@ c          sig(3) = xl(7)*(sig(3) - SumD(3))    ! for gq channel
 
 c          sigma = sig(2) + sig(3)
           sigma = xl(1)*(sig(1)-sumD(1))
+       if (sig(1) .gt. 10d0 print*,sig(1),SumD(1)
 c          if (sigma .ne. sigma ) sigma =0d0 
 
           pi_1 = 0.5d0*rsp

@@ -57,7 +57,7 @@ c	print*," "
 
 c          sigma = xl(2)*( sig - SumD )*2d0* am3/xa/S
           sigma = xl(2)*(sig - SumD)
-c          print*,sig,SumD,sig/SumD
+       if (sig .gt. 1d+5 .and. SumD .gt. 1d+4)print*,sig,SumD,sig/SumD
 
           pi_1 = 0.5d0*rsp
           flux = 4d0*pi_1*rsp

@@ -32,14 +32,18 @@ c          AS = AL/4d0/PI
 
             v = 246d0
 c           AL = DSQRT(AL*4d0*PI)
-           ch = -4d0*AL/3d0/v 
+           AS = AL/4d0/PI
+           ch = -4d0*AS/3d0/v 
           ch2 = ch * ch
+           avg_pol = 4d0
 c          Born_gg2h= 16d0*AL**2*amh**4d0/(3d0*PI*v)**2/NA
 c           Born_gg2h= AS**2/72d0/PI/v**2/8d0
 
 c 3manually.frm :amp=  1/36*PI^-4*v^-2*s12^2*AL^2    .or.  amp= 1d0/2d0*s12**2*ch2
 c          Born_gg2H =  CF*0.5d0*s12**2*ch2/16d0
-          Born_gg2H =  CF*0.5d0*s12**2*ch2
+c          Born_gg2H =  CF*0.5d0*s12**2*ch2/avg_pol/8d0
+          Born_gg2H =  CF*s12**2*ch2/64d0
+! For gluon average of spin polarization will be 1/(d+epsilon)**2 
 c           Born_gg2H =  CF*0.5d0*s12**2*ch2/16d0
 c          Born_gg2H = CF * 0.5d0*amh**4*ch2/16d0
 
