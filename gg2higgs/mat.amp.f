@@ -88,21 +88,36 @@ c           AS = alphasPDF(amh)
 c           AS = AS/4d0/PI
 
                v = 246d0
-              ch = -4d0*AL/3d0/v
-             ch2 = ch * ch
-c              gs = DSQRT(AL*4.d0*PI)
-              gs = AL 
+               AS = AL/4d0/PI
+              ch = -4d0*AS/3d0/v
+c              ch = -4d0*AS/3d0/v - 44d0*AS**2/3d0/v 
+c              ch =  - 44d0*AS**2/3d0/v 
+              ch2 = ch*ch
+
+c             ch2 = ch * ch + (352d0*as**3)/9d0/v/v
+c             ch2 = 16d0*AS**2/9d0 + (352d0*AS**3)/9d0
+c             ch2 =  (352d0*AS**3)/9d0
+              gs = DSQRT(AL*4.d0*PI)
+c              CH = -4d0*AS/3d0*(1d0 + AS*(11d0 + 1d0/6d0))
+c             ch2 = ch**2/v/v
+c              gs = AL 
           gs2CH2 = gs**2*ch2
 
            s12 = 2d0*dot(p1,p2)
            t11 = 2d0*dot(p1,p4)
            t21 = 2d0*dot(p2,p4)
 
-          sig = (48d0*gs2CH2*(s12**4 - t11**4 + t11**2*t21**2 - t21**4- 
-     -      s12**3*(t11 + t21) + 
-     -      2d0*s12**2*(t11**2 + 3d0*t11*t21 + t21**2) + 
-     -      s12*(t11**3 + 4d0*t11**2*t21 + 4d0*t11*t21**2 + t21**3)))/
-     -      (s12*t11*t21)
+c          sig = (48d0*gs2CH2*(s12**4 - t11**4 + t11**2*t21**2 - t21**4- 
+c     -      s12**3*(t11 + t21) + 
+c     -      2d0*s12**2*(t11**2 + 3d0*t11*t21 + t21**2) + 
+c     -      s12*(t11**3 + 4d0*t11**2*t21 + 4d0*t11*t21**2 + t21**3)))/
+c     -      (s12*t11*t21)
+c	print*,"sig1:",sig
+
+         sig = (48d0*gs2CH2*(s12**4 - 2d0*s12**3*(t11 + t21) + 
+     -        3d0*s12**2*(t11 + t21)**2 - 2d0*s12*(t11 + t21)**3 + 
+     -        (t11**2 + t11*t21 + t21**2)**2))/(s12*t11*t21)/256d0
+c	print*,"sig2:",sig
 
 c
 c         sig = (24d0*gs2CH2*(2d0*s12**4*t11*t21-

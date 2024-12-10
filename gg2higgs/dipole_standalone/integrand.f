@@ -38,6 +38,7 @@ c      integer i35,i45,is5,itest
 c        print*,sp,2d0*dot(p3,p4)+dot(p3,p3)
 c        print*,sp-2d0*dot(p3,p4)-am3**2,dot(p3,p3)
         if( sp  .ge. am3**2) then
+c        if (2d0*dot(p1,p4) .lt. 1d-5) print*,sp,am3**2
 c          if ( scale .ge. Q_min .and. scale .le. Q_max ) then
 
           call pdf(xa,am3,f1)
@@ -50,14 +51,34 @@ c          if ( scale .ge. Q_min .and. scale .le. Q_max ) then
 
           SumD = dipole_type_1_gg_g(1,p1,p2,p3,p4) +
      .           dipole_type_1_gg_g(2,p1,p2,p3,p4)
+
+
 c	print*,"dip1:",dipole_type_1_gg_g(1,p1,p2,p3,p4)
 c	print*,"dip2:",dipole_type_1_gg_g(2,p1,p2,p3,p4)
 c	print*,"SumD:",SumD
 c	print*," "
 
 c          sigma = xl(2)*( sig - SumD )*2d0* am3/xa/S
+c	SumD = SumD*363d0
           sigma = xl(2)*(sig - SumD)
-       if (sig .gt. 1d+5 .and. SumD .gt. 1d+4)print*,sig,SumD,sig/SumD
+	if (sigma .ne. sigma ) then
+	print*,sig,SumD
+	print*,"dot(p1,p4),dot(p1,p4)",2d0*dot(p1,p4),2d0*dot(p1,p4)
+	print*,"p1:",p1
+	print*,"p2:",p2
+	print*,"p3:",p3
+	print*,"p4:",p4
+	print*,"sp:",sp
+	print*,"random nos:",xx
+	sigma = 0d0
+	endif
+c	if (sig .gt. 1d+7) then
+c	p1p4 = 2d0*dot(p1,p4)
+c	p2p4 = 2d0*dot(p2,p4)
+c	if (p1p4 .lt. 1d-5 .or. p2p4 .lt. 1d-5) then
+c	print*,"p1p4,p2p4:",2d0*dot(p1,p4),2d0*dot(p2,p4)
+c	print*,"sig,dipoele:",sig,SumD,sig/SumD,SumD/sig
+c	endif
 
           pi_1 = 0.5d0*rsp
           flux = 4d0*pi_1*rsp
