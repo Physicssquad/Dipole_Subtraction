@@ -37,7 +37,13 @@ c      integer i35,i45,is5,itest
           Q_max = Q_ + eps
 c        print*,sp,2d0*dot(p3,p4)+dot(p3,p3)
 c        print*,sp-2d0*dot(p3,p4)-am3**2,dot(p3,p3)
-        if( sp  .ge. am3**2) then
+	icol = 0
+	coll = 1d-15
+	s14 = 2d0*dot(p1,p4)
+	s24 = 2d0*dot(p2,p4)
+	if (s14 .lt. coll) icol =1
+	if (s24 .lt. coll) icol =1
+        if( sp  .ge. am3**2 .and. icol .eq. 0) then
 c        if (2d0*dot(p1,p4) .lt. 1d-5) print*,sp,am3**2
 c          if ( scale .ge. Q_min .and. scale .le. Q_max ) then
 
@@ -60,18 +66,22 @@ c	print*," "
 
 c          sigma = xl(2)*( sig - SumD )*2d0* am3/xa/S
 c	SumD = SumD*363d0
-          sigma = xl(2)*(sig - SumD)
-	if (sigma .ne. sigma ) then
-	print*,sig,SumD
-	print*,"dot(p1,p4),dot(p1,p4)",2d0*dot(p1,p4),2d0*dot(p1,p4)
-	print*,"p1:",p1
-	print*,"p2:",p2
-	print*,"p3:",p3
-	print*,"p4:",p4
-	print*,"sp:",sp
-	print*,"random nos:",xx
-	sigma = 0d0
-	endif
+          sigma =xl(2)* (sig - SumD)
+c           sigma2 = (sig - SumD)
+c        if( dabs(sig) .gt. 10000d0) print*,sig,SumD,sigma2
+
+c        if(dabs(SumD) .gt. 10000d0) print*,sig,SumD,sigma2
+c	if (sigma .ne. sigma ) then
+c	print*,sig,SumD
+c	print*,"s14,s24",s14,s24
+c	print*,"p1:",p1
+c	print*,"p2:",p2
+c	print*,"p3:",p3
+c	print*,"p4:",p4
+c	print*,"sp:",sp
+c	print*,"random nos:",xx
+c	sigma = 0d0
+c	endif
 c	if (sig .gt. 1d+7) then
 c	p1p4 = 2d0*dot(p1,p4)
 c	p2p4 = 2d0*dot(p2,p4)
@@ -85,9 +95,8 @@ c	endif
           xnorm=hbarc2/16d0/pi/(xa*xb*s)
           wgt=xnorm*sigma*weight
           fnlo3=wgt/weight/2d0/eps
-c        else
-c           fnlo3  = 0d0
-c        endif
+        else
+           fnlo3  = 0d0
         endif
 151   return
       end

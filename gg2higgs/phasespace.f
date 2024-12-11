@@ -520,10 +520,10 @@ c     invariant mass of diphoton pair.
       xxinvmass = dsqrt(s34)            
 
 c     yy1: rapidity of photons 3 
-      yy1 = rapid(p3)
+c      yy1 = rapid(p3)
 
 c     yy2: rapiditiy of photon 4
-      yy2 = rapid(p4)
+c      yy2 = rapid(p4)
       
 c     rapidity YY12
       p2q = dot(p2,q)
@@ -536,8 +536,8 @@ c     cos-theta
       ccst2=p4(3)/p4(0)            
 
 c     ppt1 ppt2
-      ppt1 = eperp(p3)
-      ppt2 = eperp(p4)
+c      ppt1 = eperp(p3)
+c      ppt2 = eperp(p4)
 
       qa(0) =  p3(0) - p4(0)
       qa(1) =  p3(1) - p4(1)
@@ -555,12 +555,12 @@ c     ppt1 ppt2
       cststar = p1qa/p1qb
 
 c     cone
-      rr34 = rjet(p3,p4)
-      rr35 = rjet(p3,p5)
-      rr45 = rjet(p4,p5)
-      
-c     transverse energy
-      EEt5 = eperp(p5)  ! for a massless particle Et=pt
+c      rr34 = rjet(p3,p4)
+c      rr35 = rjet(p3,p5)
+c      rr45 = rjet(p4,p5)
+c      
+cc     transverse energy
+c      EEt5 = eperp(p5)  ! for a massless particle Et=pt
 
       return
       end

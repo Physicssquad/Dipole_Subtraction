@@ -8,26 +8,7 @@
       external flo2_PlusA,flo2_PlusB,flo2_PlusC
       common/usedalpha/AL,ge   
       common/distribution/xq
-
-c--------------------------------------------
-c     common blocks used in couplings.f  
-      common/add_par/xms,nd
-      common/add_par1/acut
-      common/rs_par/aam1,c0,aamh
-      common/unpar/xl3,xdu,xlamu
-      common/xmcoeff/xc1,xc2
-      common/cone/ET_iso,r0,rgg
-      common/nviso/niso
-      common/chfile/fname8
-      common/isub/io,is
-      common/max_order/iorder
-      common/param/aem,xmur,lambda
-      common/bin_size/eps
-
-c--------------------------------------------
-
-
-
+      common/amass/am1,am2,amH,am4,am5
 
       dimension PKPlus(1:50),err_Plus(1:50)
       dimension PKReg(1:50),err_Reg(1:50)
@@ -62,37 +43,17 @@ c--------------------------------------------
       read (15,*) eps                   ! epsilon for bin width
       close(15)
 
-c ~~~~~~~~~~~~~~~~[files needed by couplings.f]~~~~~~~~~~~~~~~~~~~c        
-
-      open(unit=20,file='../slicing_files/run.param.dat',
-     .    status='unknown')
-      read (20,*) nf            ! No. of flavours
-      read (20,*) ipdfs1        ! LO pdf set
-      read (20,*) xlqcd1        ! LO L_QCD5
-      read (20,*) ipdfs2        ! NLO pdf set
-      read (20,*) xlqcd2        ! NLO L_QCD5
-      close(20)
-
-      open(unit=30,file='../slicing_files/run.add.dat',status='unknown')
-      read (30,*) xms            ! M_s Fundamental Planck scale
-      read (30,*) nd             ! number of extra dimensions, 2<d<6
-      read (30,*) acut           ! \Lambda = acut*M_s
-      close (30)
-
       aem=1.0D0/128.0D0
-      lambda = xlqcd1
+      am1=0.0d0
+      am2=0.0d0
+      amH=125d0
+      am4=0d0
+      am5=0d0
 
 
-c      write (*,*) 'ADD model'
-c      write (*,*) 'M_s = ',xms,'GeV'
-c      write (*,*) 'ND=',nd
-c      write (*,*) 'acut=',acut
-
-c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c        
-! [ SWITCH ON(1) OFF (0) ]	
-	iselect_plus=1
-	iselect_Regu=1
-	iselect_Delt=1
+      iselect_plus=1
+      iselect_Regu=0
+      iselect_Delt=0
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
@@ -125,7 +86,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
           err_plus(j) = 0d0 
         enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
-	if (iselect_Plus .eq. 1) then
+      if (iselect_Plus .eq. 1) then
 
       mode1 = "[+] distribution"
       mode2 = "PlusA distribution"
@@ -139,17 +100,16 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 
         do j=1,it_max
 
-         call printframe2(xq)
 
 
 c      -------------------------------------------------
          call printframe0(mode2)
          call brm48i(40,0,0) 
-         call vsup(4,npt2,its2,flo2_PlusA,ai_lo2A,sdA,chi2)
-
+         call vsup(2,npt2,its2,flo2_PlusA,ai_lo2A,sdA,chi2)
+	stop
          call printframe0(mode3)
          call brm48i(40,0,0) 
-         call vsup(4,npt2,its2,flo2_PlusB,ai_lo2B,sdB,chi2)
+         call vsup(2,npt2,its2,flo2_PlusB,ai_lo2B,sdB,chi2)
 c      -------------------------------------------------
          ai_lo2 = ai_lo2A - ai_lo2B
 
@@ -194,10 +154,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ r
 
         do j=1,it_max
 
-      call printframe2(xq)
 c     -------------------------------------------------
       call brm48i(40,0,0) 
-      call vsup(4,npt1,its1,flo2_PKReg,ai_lo2,sd,chi2)
+      call vsup(2,npt1,its1,flo2_PKReg,ai_lo2,sd,chi2)
 c     -------------------------------------------------
 
           PKReg(j) = ai_lo2
@@ -233,7 +192,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ d
 
 c     -------------------------------------------------
         call brm48i(40,0,0) 
-        call vsup(2,npt1,its1,flo2_PKDel,ai_lo2,sd,chi2)
+        call vsup(1,npt1,its1,flo2_PKDel,ai_lo2,sd,chi2)
 c     -------------------------------------------------
 
           PKDel(j) = ai_lo2
