@@ -6,7 +6,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusA ter
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       dimension xp1(0:3),xp2(0:3)
       parameter (pi=3.14159265358979d0)
-      parameter (hbarc2=389.3856741D+6)
+      parameter (hbarc2=389.3856741D+9)
       character*50 name
       common/amass/am1,am2,amH,am4,am5
       common/energy/s
@@ -21,6 +21,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusA ter
       xa = tau + xajac*yy(1)
       xb = tau/xa
       x  = yy(2)
+      sp = xa*xb*S
 
 c~~~~~[ LINEAR MAPPINNG ]~~~~~C
 c      xmin = 0.0d0
@@ -28,7 +29,7 @@ c      xmax = 1.0d0 -delta
 c      xjac4 = (xmax - xmin)
 c      x = xjac4*yy(4) + xmin
 
-      delta = 1.0d-9
+      delta = 1.0d-5
       almin = delta
       almax = 1.0d0
       al = almin*(almax/almin)**yy(4)
@@ -53,14 +54,17 @@ c      x = xjac4*yy(4) + xmin
 
         if ( k .eq. 1) call kinvar1(xa*x,xb,p1,p2,p3)
         if ( k .eq. 2) call kinvar1(xa,xb*x,p1,p2,p3)
+c	if (k .eq. 2) print*,xa,xb
+c	if (k .eq. 2) print*,p1
+c	if (k .eq. 2) print*,p2
+c	if (k .eq. 2) print*,p3
+c	if (k .eq. 2) print*,sp,amH**2
+c          sp =  2.0d0*dot(p1,p2)
 
-          sp =  2.0d0*dot(p1,p2)
-
-	print*,xa*x,xb*x
-	  print*,sp,amH**2
+c	print*,xa*x,xb*x
          rsp = dsqrt(sp)
-	if (sp .ne. sp ) stop
-        if( sp .ge. amH**2 ) then
+c	if (sp .ne. sp ) stop
+c        if( sp .ge. amH**2 ) then
 
         coef = Born_gg2h(0,p1,p2,p3)
 
@@ -83,13 +87,14 @@ c      x = xjac4*yy(4) + xmin
            flux = 2d0*sp
           xnorm = hbarc2*pi_1/flux
 
-         PKplus_x = xnorm*xajac*xjac4**sig* 2d0*amH/xa/S
+         PKplus_x = xnorm*xajac*xjac4*sig*2d0*amH/xa/S
 
           PK(k) = PKplus_x
-            endif
+c            endif
             enddo
 
         flo2_PlusA = ALP * (PK(1) + PK(2))    ! ALP overall factor taken here
+c	print*,flo2_PlusA,SumPlus,xa
       return
       end
 
@@ -101,7 +106,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       dimension xp1(0:3),xp2(0:3)
       parameter (pi=3.14159265358979d0)
-      parameter (hbarc2=389.3856741D+6)
+      parameter (hbarc2=389.3856741D+9)
       character*50 name
       common/energy/s
       common/pdfname/name
@@ -116,6 +121,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
       xa = tau + xajac*yy(1)
       xb = tau/xa
       x  = yy(2)
+      sp = xa*xb*S
 
       delta = 1.0d-5
       almin = delta
@@ -137,9 +143,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
 
         call kinvar1(xa,xb,p1,p2,p3)
 
-        sp   =  2.0d0*dot(p1,p2)
+c        sp   =  2.0d0*dot(p1,p2)
          rsp = dsqrt(sp)
-        if( sp .ge. amH**2 ) then
+c       if( sp .ge. amH**2 ) then
 
         coef = Born_gg2h(0,p1,p2,p3)
 
@@ -167,7 +173,7 @@ c              ALP = 1.0d0
 
           PK(k) = PKplus_x
 
-            endif
+c            endif
             enddo
 
         flo2_PlusB = ALP * (PK(1) + PK(2))
@@ -183,7 +189,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
      .          ,p(0:3,1:4),Born(1:2),AllReg(1:2)
       dimension SumP(1:2),SumK(1:2)
       parameter (pi=3.14159265358979d0)
-      parameter (hbarc2=389.3856741D+6)
+      parameter (hbarc2=389.3856741D+9)
       common/energy/s
       common/factscale/xmuf
       common/usedalpha/AL,ge
@@ -200,17 +206,19 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
       AllReg(1) = 0d0
       AllReg(2) = 0d0
       PKReg = 0.0d0
+      sp = xa*xb*S
 
       do k=1,2
 
         if ( k .eq. 1) call kinvar1(xa*x,xb,p1,p2,p3)
         if ( k .eq. 2) call kinvar1(xa,xb*x,p1,p2,p3)
 
-        sp = 2.0d0*dot(p1,p2)
+c        sp = 2.0d0*dot(p1,p2)
         rsp = dsqrt(sp)
 
 
-        if ( sp .ge. amH**2 ) then
+c        if ( sp .ge. amH**2 ) then
+c	if (sp .ge. amH**2) then !print*,sp,amH**2
 
             xmuf = amH
             xmur = xmuf 
@@ -238,7 +246,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
 
            AllReg(k) = PKplus_x  
 
-         endif
+c         endif
          enddo
 
          flo2_PKReg = AllReg(1) + AllReg(2)
@@ -254,7 +262,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
      .         ,p(0:3,1:4),Born(1:2)
      .         ,SumP(1:2),SumK(1:2)
       parameter (pi=3.14159265358979d0)
-      parameter (hbarc2=389.3856741D+6)
+      parameter (hbarc2=389.3856741D+9)
       common/energy/s
       common/factscale/xmuf
       common/usedalpha/AL,ge
@@ -272,13 +280,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
 
         call kinvar1(xa,xb,p1,p2,p3)
 
-        scale = dsqrt(2d0*dot(p1,p2))
 
         xmuf= amH
         xmur= xmuf
         xmu2=xmuf**2
 
          AL = alphasPDF(xmur)
+         ALP= AL/2d0/PI
 
         call pdf(xa,xmuf,f1)
         call pdf(xb,xmuf,f2)
@@ -292,24 +300,10 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
          pi_1 = PI/amH
          flux = 2d0*sp
 
-        xnorm=hbarc2*pi_1/flux
+        xnorm=ALP*hbarc2*pi_1/flux
 
         flo2_PKDel  = xajac * xnorm * sig * 2d0* amh/xa/S
-
-            call pdf(xa,xmuf,f1)
-            call pdf(xb,xmuf,f2)
-            call setlum(f1,f2,xl)
-
-            sig1 = Alp*sig1
-
-            azmth = 2.0d0*pi
-            pf = 0.5d0*rsp
-            ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
-
-            wgt1 = sig1/flux_1*ps2*xjac*vwgt
-            PKDel = xnorm*wgt1/vwgt
-
-         flo2_PKDel = PKDel
+c 	print*,flo2_PKDel,SumDel,xnorm,sig
 
       return
       end

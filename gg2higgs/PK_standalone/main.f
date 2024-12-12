@@ -52,8 +52,8 @@
 
 
       iselect_plus=1
-      iselect_Regu=0
-      iselect_Delt=0
+      iselect_Regu=1
+      iselect_Delt=1
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
@@ -106,7 +106,7 @@ c      -------------------------------------------------
          call printframe0(mode2)
          call brm48i(40,0,0) 
          call vsup(2,npt2,its2,flo2_PlusA,ai_lo2A,sdA,chi2)
-	stop
+
          call printframe0(mode3)
          call brm48i(40,0,0) 
          call vsup(2,npt2,its2,flo2_PlusB,ai_lo2B,sdB,chi2)
