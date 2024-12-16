@@ -6,8 +6,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),c(1:2),Born(1:2),coef(2,-2:0),SumI(-2:0)
       parameter (pi=3.14159265358979d0)
-c      parameter (hbarc2=0.3894d9)      ! in Pb
-      parameter (hbarc2=0.3894d12)    ! in Fb
+      parameter (hbarc2=0.3894d9)      ! in Pb
+c      parameter (hbarc2=0.3894d12)    ! in Fb
       common/energy/S
       common/renor_scale/scale
       common/usedalpha/AL,ge

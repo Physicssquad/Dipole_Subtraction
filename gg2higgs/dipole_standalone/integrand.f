@@ -30,22 +30,19 @@ c      integer i35,i45,is5,itest
          fnlo3 = 0d0
 
         call kinvar2_type_1(xa,xb,xc,xinvmass,p1,p2,p3,p4)
-          scale = xinvmass
-          eps = 0.1d0
-          Q_ = 125d0
-          Q_min = Q_ - eps
-          Q_max = Q_ + eps
-c        print*,sp,2d0*dot(p3,p4)+dot(p3,p3)
-c        print*,sp-2d0*dot(p3,p4)-am3**2,dot(p3,p3)
-	icol = 0
-	coll = 1d-15
-	s14 = 2d0*dot(p1,p4)
-	s24 = 2d0*dot(p2,p4)
-	if (s14 .lt. coll) icol =1
-	if (s24 .lt. coll) icol =1
+
+        icol = 0
+        coll = 1d-10
+
+        s12 = 2d0*dot(p1,p2)
+        s14 = 2d0*dot(p1,p4)
+        s24 = 2d0*dot(p2,p4)
+
+
+        if (s14 .lt. coll) icol =1
+        if (s24 .lt. coll) icol =1
+
         if( sp  .ge. am3**2 .and. icol .eq. 0) then
-c        if (2d0*dot(p1,p4) .lt. 1d-5) print*,sp,am3**2
-c          if ( scale .ge. Q_min .and. scale .le. Q_max ) then
 
           call pdf(xa,am3,f1)
           call pdf(xb,am3,f2)
@@ -59,107 +56,18 @@ c          if ( scale .ge. Q_min .and. scale .le. Q_max ) then
      .           dipole_type_1_gg_g(2,p1,p2,p3,p4)
 
 
-c	print*,"dip1:",dipole_type_1_gg_g(1,p1,p2,p3,p4)
-c	print*,"dip2:",dipole_type_1_gg_g(2,p1,p2,p3,p4)
-c	print*,"SumD:",SumD
-c	print*," "
-
-c          sigma = xl(2)*( sig - SumD )*2d0* am3/xa/S
-c	SumD = SumD*363d0
           sigma =xl(2)* (sig - SumD)
-c           sigma2 = (sig - SumD)
-c        if( dabs(sig) .gt. 10000d0) print*,sig,SumD,sigma2
-
-c        if(dabs(SumD) .gt. 10000d0) print*,sig,SumD,sigma2
-c	if (sigma .ne. sigma ) then
-c	print*,sig,SumD
-c	print*,"s14,s24",s14,s24
-c	print*,"p1:",p1
-c	print*,"p2:",p2
-c	print*,"p3:",p3
-c	print*,"p4:",p4
-c	print*,"sp:",sp
-c	print*,"random nos:",xx
-c	sigma = 0d0
-c	endif
-c	if (sig .gt. 1d+7) then
-c	p1p4 = 2d0*dot(p1,p4)
-c	p2p4 = 2d0*dot(p2,p4)
-c	if (p1p4 .lt. 1d-5 .or. p2p4 .lt. 1d-5) then
-c	print*,"p1p4,p2p4:",2d0*dot(p1,p4),2d0*dot(p2,p4)
-c	print*,"sig,dipoele:",sig,SumD,sig/SumD,SumD/sig
-c	endif
 
           pi_1 = 0.5d0*rsp
           flux = 4d0*pi_1*rsp
           xnorm=hbarc2/16d0/pi/(xa*xb*s)
           wgt=xnorm*sigma*weight
-          fnlo3=wgt/weight/2d0/eps
+          fnlo3=wgt/weight
         else
            fnlo3  = 0d0
         endif
 151   return
       end
-c---------------------------------------------------------------------
-c          crashed = 0d0
-c          if (SumD(1) .ne. SumD(1) ) crashed = 1d0
-c          if (sig(4)  .ne.  sig(4) ) crashed = 1d0
-c          if (dipole_gg_g(1,p) .ne. dipole_gg_g(1,p) ) crashed = 1d0
-c          if (dipole_gg_g(2,p) .ne. dipole_gg_g(2,p) ) crashed = 1d0
-c
-c          if ( crashed .eq. 1d0) then
-c
-c                print*,dipole_gg_g(1,p),dipole_gg_g(2,p)
-c                print*,SumD(1),sig(4),xl(4)
-c                print*,p1
-c                print*,p2
-c                print*,p3
-c                print*,p4
-c                print*,p5
-c                do i=1,6
-c                print*,"xx(",i,")",xx(i)
-c                enddo
-c
-c                stop
-c           endif
-
-
-c          if (sig(4) - SumD(1) .ge. diff) then
-c                  ifilter = ifilter + 1 
-c           goto 151
-c          endif
-c          if (sig(4) .ge. 100d0) print*,"|M^2|:",sig(4),"SumD:",SumD(1) 
-c
- 
-
-
-c          sigma = xl(4)*sig(4)
-c          sigma = xl(4)*SumD(1)
-
-c          call dipole(p,dip,sum_dipole)
-c          print*,"sum","sigma",sum_dipole,sigma
-c          stop
-c          sigma = xl(4)*SumD(1)
-c          sigma = xl(4)*sum_dipole
-
-c
-c          pi_1 = 0.5d0*rsp
-c          flux = 4d0*pi_1*rsp
-c          xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
-c          wgt=xxjac*xnorm*sigma*weight
-c          fnlo3=wgt/weight/2d0/eps
-c          endif
-cc        print*,sigma,sig(4),dipole_gg_g(1,p),dipole_gg_g(2,p),weight
-c          endif
-c
-cc        if (fnlo3 .ne. fnlo3) then
-cc        print*,sigma,sig(4),dipole_gg_g(1,p),dipole_gg_g(2,p),weight
-ccc        stop
-cc        endif
-c
-c151   return
-c      end
-c
 C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        
       integer function integrand(ndim,xx,ncomp,f,userdata,nvec ,core
      .                            ,weight,iter)
@@ -179,24 +87,9 @@ c      real*8 xx(ndim) ,f(ncomp),weight,fnlo3,yy(10)
        yy(8) = 0d0 
        yy(9) = 0d0 
        yy(10)= 0d0 
-c      yy(1) = 0.12340281150796895
-c      yy(2) = 8.1425347725021593E-002
-c      yy(3) = 5.1260423665517460E-002
-c      yy(4) = 5.3867273304085077E-002
-c      yy(5) = 0.42047285107264892
-c      yy(6) = 0.74830006590247478     
 
-
-
-c	print*,xx
-c	print*,yy
       f(1)=fnlo3(yy,weight)
 
-c      f(1)=fnlo3(yy,weight)
-c	print*,"f=",f
-c	print*,"Fun "
-c	print*,xx
-c      f= xx(1)*xx(2)*xx(3)*xx(4)*xx(5)*xx(6)
       return
       end
 C ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ C        

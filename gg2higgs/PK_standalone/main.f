@@ -1,7 +1,7 @@
       program intPK
       implicit double precision (a-h,o-z)
       dimension c(1:2)
-      character*50 name,mode,mode1,mode2,mode3,mode4
+      character*50 name,headline,headline1,headline2,headline3,headline4
       character*100 command,run_tag,dir_path,filename,filename1
       common/energy/s
       external flo2_Plus,flo2_PKDel,flo2_PKReg
@@ -58,7 +58,7 @@
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
       open(unit=20,file='../output_files.dat',status='unknown')
-      do i=1,5   
+      do i=1,2   
       read (20,*) 
       enddo
       read (20,*) filename
@@ -73,8 +73,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
       Call initPDF(0)
        s=ecm*ecm
 
-      mode = "P and K terms"
-      call printframe0(mode)
+      headline = "P and K terms"
+      call printframe0(headline)
 
         ! HERE RESET ALL THE VALUES TO INITIALISE
         do l = 1,it_max
@@ -88,14 +88,14 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
       if (iselect_Plus .eq. 1) then
 
-      mode1 = "[+] distribution"
-      mode2 = "PlusA distribution"
-      mode3 = "PlusB distribution"
+      headline1 = "[+] distribution"
+      headline2 = "PlusA distribution"
+      headline3 = "PlusB distribution"
       pt2 = pt1
       npt2 = pt2
       its2 = its1
 
-      call printframe0(mode1)
+      call printframe0(headline1)
       call printframe1(pt2,its2)   ! Prints Vegas points
 
         do j=1,it_max
@@ -103,11 +103,11 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 
 
 c      -------------------------------------------------
-         call printframe0(mode2)
+         call printframe0(headline2)
          call brm48i(40,0,0) 
          call vsup(2,npt2,its2,flo2_PlusA,ai_lo2A,sdA,chi2)
 
-         call printframe0(mode3)
+         call printframe0(headline3)
          call brm48i(40,0,0) 
          call vsup(2,npt2,its2,flo2_PlusB,ai_lo2B,sdB,chi2)
 c      -------------------------------------------------
@@ -116,14 +116,14 @@ c      -------------------------------------------------
          PKPlus(j)   = ai_lo2
          err_plus(j) = sdA + sdB
 
-      mode = "Plus"
-      call printframe3(mode,ai_lo2,sd,chi2)   
+      headline = "Plus"
+      call printframe3(headline,ai_lo2,sd,chi2)   
 
         xq=xq + xincr
         enddo
 
         xq = xq_initial
-      call printframe4(mode)
+      call printframe4(headline)
 
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
@@ -148,8 +148,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ r
  
         xq = xq_initial
 
-      mode = "Regular Terms "
-      call printframe0(mode)
+      headline = "Regular Terms "
+      call printframe0(headline)
       call printframe1(pt1,its1)
 
         do j=1,it_max
@@ -162,13 +162,13 @@ c     -------------------------------------------------
           PKReg(j) = ai_lo2
           err_Reg(j)=sd
 
-      mode = "Regular"
-         call printframe3(mode,ai_lo2,sd,chi2)
+      headline = "Regular"
+         call printframe3(headline,ai_lo2,sd,chi2)
 
            xq=xq + xincr
         enddo
         xq = xq_initial
-      call printframe4(mode)
+      call printframe4(headline)
 
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
@@ -182,8 +182,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ d
 
         xq = xq_initial
 
-      mode = "Delta Functions"
-      call printframe0(mode)
+      headline = "Delta Functions"
+      call printframe0(headline)
       call printframe1(pt1,its1)
 
         do j=1,it_max
@@ -198,14 +198,14 @@ c     -------------------------------------------------
           PKDel(j) = ai_lo2
           err_Del(j)=sd
 
-      mode = "Delta"
-      call printframe3(mode,ai_lo2,sd,chi2)
+      headline = "Delta"
+      call printframe3(headline,ai_lo2,sd,chi2)
 
            xq=xq + xincr
         enddo
         xq = xq_initial
 
-       call printframe4(mode)
+       call printframe4(headline)
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
      .             int(xq),PKDel(j),err_Del(j)

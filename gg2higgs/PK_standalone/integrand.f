@@ -11,17 +11,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusA ter
       common/amass/am1,am2,amH,am4,am5
       common/energy/s
       common/pdfname/name
-      common/factscale/xmuf
       common/usedalpha/AL,ge
-      common/distribution/xq
-      common/bin_size/eps
 
       tau = amH**2/S
       xajac = 1d0 - tau
       xa = tau + xajac*yy(1)
       xb = tau/xa
-      x  = yy(2)
-      sp = xa*xb*S
+c      sp = xa*xb*S
 
 c~~~~~[ LINEAR MAPPINNG ]~~~~~C
 c      xmin = 0.0d0
@@ -32,14 +28,9 @@ c      x = xjac4*yy(4) + xmin
       delta = 1.0d-5
       almin = delta
       almax = 1.0d0
-      al = almin*(almax/almin)**yy(4)
+      al = almin*(almax/almin)**yy(2)
       xjac4 = al*dlog(almax/almin)
       x = 1.0d0 - al
-
-      xtjac = 2.0d0
-      xjac = xtjac*xjac4
-
-      xnorm=hbarc2
 
         flo2_PlusA  = 0.0d0
         PKplus_x = 0.0d0
@@ -47,24 +38,18 @@ c      x = xjac4*yy(4) + xmin
         sig = 0.0d0
         PK(1) = 0.0d0
         PK(2) = 0.0d0
-        Qmass = 0.0d0
-
-
+       
+        eps = 0.5
+        amH_min = amH - eps
+        amH_max = amH + eps
         do k = 1,2
 
         if ( k .eq. 1) call kinvar1(xa*x,xb,p1,p2,p3)
         if ( k .eq. 2) call kinvar1(xa,xb*x,p1,p2,p3)
-c	if (k .eq. 2) print*,xa,xb
-c	if (k .eq. 2) print*,p1
-c	if (k .eq. 2) print*,p2
-c	if (k .eq. 2) print*,p3
-c	if (k .eq. 2) print*,sp,amH**2
-c          sp =  2.0d0*dot(p1,p2)
-
-c	print*,xa*x,xb*x
+c	  print*,"sp1:",dsqrt(dot(p3,p3))
+          sp = 2d0*dot(p1,p2)
          rsp = dsqrt(sp)
-c	if (sp .ne. sp ) stop
-c        if( sp .ge. amH**2 ) then
+	if (rsp .ge. amH_min ) then 
 
         coef = Born_gg2h(0,p1,p2,p3)
 
@@ -80,6 +65,8 @@ c        if( sp .ge. amH**2 ) then
             call setlum(f1,f2,xl)
 
             call getPKPlus(1,x,xmuf,p1,p2,p3,SumPlus)
+c	print*,SumPlus
+c	stop
            
             sig = xl(2)*SumPlus*coef
   
@@ -90,11 +77,10 @@ c        if( sp .ge. amH**2 ) then
          PKplus_x = xnorm*xajac*xjac4*sig*2d0*amH/xa/S
 
           PK(k) = PKplus_x
-c            endif
+	endif
             enddo
 
         flo2_PlusA = ALP * (PK(1) + PK(2))    ! ALP overall factor taken here
-c	print*,flo2_PlusA,SumPlus,xa
       return
       end
 
@@ -120,17 +106,15 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
       xajac = 1d0 - tau
       xa = tau + xajac*yy(1)
       xb = tau/xa
-      x  = yy(2)
       sp = xa*xb*S
+      rsp = dsqrt(sp)
 
       delta = 1.0d-5
       almin = delta
       almax = 1.0d0
-      al = almin*(almax/almin)**yy(4)
+      al = almin*(almax/almin)**yy(2)
       xjac4 = al*dlog(almax/almin)
       x = 1.0d0 - al
-
-      xnorm=hbarc2
 
         flo2_PlusB  = 0.0d0
         PKplus_x = 0.0d0
@@ -142,10 +126,10 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
         do k = 1,2
 
         call kinvar1(xa,xb,p1,p2,p3)
-
-c        sp   =  2.0d0*dot(p1,p2)
+          sp = xa*xb*S 
+          sp = 2d0*dot(p1,p2)
          rsp = dsqrt(sp)
-c       if( sp .ge. amH**2 ) then
+
 
         coef = Born_gg2h(0,p1,p2,p3)
 
@@ -154,7 +138,6 @@ c       if( sp .ge. amH**2 ) then
             xmuf2 = xmuf*xmuf 
                AL = alphasPDF(xmur) 
               ALP = AL/2d0/Pi
-c              ALP = 1.0d0
 
             call pdf(xa,xmuf,f1)
             call pdf(xb,xmuf,f2)

@@ -3,7 +3,7 @@ virtual.dat 			! virtual contribution output file
 PK.dat				! For PK Plus_Distribution  this will be used to combine last three files.
 LO.dat				! Leading order
 LO_ref.dat				! reference filename
-PK_Plus2.dat			! Plus data 
+PK_Plus.dat			! Plus data 
 PK_Regular.dat			! PK regular file
 PK_Delta.dat			! PK delta files
 

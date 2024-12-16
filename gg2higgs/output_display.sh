@@ -1,6 +1,6 @@
 #!/bin/bash
 
-filename="compare3.f"
+filename="compare7.f"
 
 
 home_path=$(dirname "$0")

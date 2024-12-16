@@ -10,7 +10,7 @@ SRCDIR = ../
 LOCALSRCDIR = .
 
 # Program and object files
-PROG = runPK_Plus
+PROG = runPK
 
 OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/mat.amp.o    \
