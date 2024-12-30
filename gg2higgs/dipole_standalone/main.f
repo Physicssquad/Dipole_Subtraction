@@ -90,7 +90,7 @@ c        i=2
           print*," "
 
           call printframe1(pt1,its1)
-c         call printframe5(e_cut,t_cut)
+          call printframe6(ecm,am3,am3,name,am3)
 
 
 
@@ -116,9 +116,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           enddo
           xq = xq_initial
          
-          call printframe4(mode)
+          call printframe4a(mode)
           do j=1,it_max
-          write(*,'(i7,3e27.15)')int(xq),ai_nlo3(j),xerr(j)
+          write(*,'(i7,3e27.15)')int(ecm),ai_nlo3(j),xerr(j)
           
           xq = xq + step_size 
           enddo
@@ -130,8 +130,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     .          //trim(filename),status='unknown', access='append')
          xq = xq_initial
          do i=1,it_max
-          write(20,*)xq,ai_nlo3(i),xerr(i)
-          xq = xq + step_size 
+          write(20,*)ecm,ai_nlo3(i),xerr(i)
          enddo
          close(20)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

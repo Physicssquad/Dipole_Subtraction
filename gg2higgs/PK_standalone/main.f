@@ -75,6 +75,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
 
       headline = "P and K terms"
       call printframe0(headline)
+      call printframe6(ecm,amH,amH,name,amH)
+
 
         ! HERE RESET ALL THE VALUES TO INITIALISE
         do l = 1,it_max

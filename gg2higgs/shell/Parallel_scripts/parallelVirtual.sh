@@ -7,15 +7,15 @@ cd ../../
 
 # Define the commands to run in parallel, and add a unique identifier to each command
 commands=(
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-#    "(./shell/runDipole.sh)"
-#    "(./shell/runDipole.sh)"
+    "(./shell/runVirtual.sh)"
+    "(./shell/runVirtual.sh)"
+    "(./shell/runVirtual.sh)"
+    "(./shell/runVirtual.sh)"
+    "(./shell/runVirtual.sh)"
+    "(./shell/runVirtual.sh)"
+    "(./shell/runVirtual.sh)"
+#    "(./shell/runVirtual.sh)"
+#    "(./shell/runVirtual.sh)"
 )
 
 # Define the new values for the "max # of distribution increment step_size from xq"
@@ -35,7 +35,7 @@ modify_input_files() {
 #    echo "Updated run.machine.dat with step size: $step_size"
 
     # Modify output_files.dat
-    sed -i "s/real[0-9]*.dat/real${index}.dat/" output_files.dat
+    sed -i "s/virtual[0-9]*.dat/virtual${index}.dat/" output_files.dat
 #    echo "Updated output_files.dat for index: $index"
 }
 
@@ -71,7 +71,7 @@ cd ../../
 
 output_dir=$(sed -n '7p' run.machine.dat | awk '{print $1}')
 
-output_summary_file="summary/${output_dir}/real_all.dat"
+output_summary_file="summary/${output_dir}/virtual_all.dat"
 temp_file="temp_summary.dat"
 
 # Ensure the summary file is empty before we start
@@ -81,7 +81,7 @@ temp_file="temp_summary.dat"
 # Iterate over the distribution steps and process the corresponding output files
 for i in ${!distribution_steps[@]}; do
     q_value=${distribution_steps[$i]}
-    file="summary/${output_dir}/real${i}.dat"
+    file="summary/${output_dir}/virtual${i}.dat"
     
     # Check if the file exists
     if [[ -f $file ]]; then

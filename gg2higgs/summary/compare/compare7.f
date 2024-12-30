@@ -141,7 +141,7 @@ c        read(17,*) xqVir(i),xintVir(i)
         close(17)
         print*," "
         print*,"/"//trim(virtual)
-       write(*,*)achar(27)//'[1;32m'//"   xq           Integral_VIR",
+       write(*,*)achar(27)//'[1;32m'//" ECM/amH        Integral_VIR",
      .     "                   error",
      . achar(27)//'[0m'
         do i=1,it_max
@@ -174,7 +174,7 @@ c        read(17,*) xqreal(i),xintreal(i)
 
         print*," "
         print*,"/"//trim(real_dipole)
-       write(*,*)achar(27)//'[1;32m'//"   xq           Integral Real",
+       write(*,*)achar(27)//'[1;32m'//" ECM/amH        Integral Real",
      .  "                  error",
      . achar(27)//'[0m'
         do i=1,it_max
@@ -204,7 +204,7 @@ c        read(17,*) xqPK(i),xintPK(i)
         close(17)
         print*," "
         print*,"/"//trim(PK)
-       write(*,*)achar(27)//'[1;32m'//"   xq","          Integral PK",
+       write(*,*)achar(27)//'[1;32m'//"ECM/amH","          Integral PK",
      .  "                     error",
      . achar(27)//'[0m'
         do i=1,it_max
@@ -242,13 +242,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
        if (inlo .eq. 3) then
        print*," "
-       write(*,*)achar(27)//'[1;32m'//"   xq  ",
+       write(*,*)achar(27)//'[1;32m'//"ECM/amH",
      . "       sigma NLO dipole","                 error",
      . achar(27)//'[0m'
         call sleep(1)
         xq = xq_initial
         do i=1,it_max
-          write(*,'(i7,3e27.15,3e27.15)')int(xq),
+          write(*,'(i7,3e27.15,3e27.15)')int(xqPK(i)),
      .  xintPK(i)+xintvir(i)+xintreal(i)
      .   ,xVir_err(i)+xreal_err(i)+xPK_err(i)
 c     .  xintvir(i)+xintreal(i))
@@ -281,9 +281,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        print*,"For comparison with other data "
        print*," "
        print*,"/"//trim(ref)
-       write(*,*)achar(27)//'[1;32m'//"   xq  ",
-     ."     sigma slicing code", 
+c       write(*,*)achar(27)//'[1;32m'//"   xq  ",
+c     ."     sigma slicing code", 
+c     . achar(27)//'[0m'
+       write(*,*)achar(27)//'[1;32m'//"ECM/amH",
+     ."     sigma matrix code", 
      . achar(27)//'[0m'
+
         do i=1,it_max
           write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
         enddo
@@ -292,12 +296,16 @@ c~~~~~~~~~~~~~~~~~[ ratio ]
 
         if (inlo + inloch .eq. 4) then
        print*," "
-        write(*,*)achar(27)//'[1;32m'//"   xq  ",
-     .  "  slicing/dipole sigma_NLO, and dipole/slicing",
+c        write(*,*)achar(27)//'[1;32m'//"   xq  ",
+c     .  "  slicing/dipole sigma_NLO, and dipole/slicing",
+c     . achar(27)//'[0m'
+        write(*,*)achar(27)//'[1;32m'//" ECM/amH",
+     .  "     matrix /dipole                   dipole/matrix",
      . achar(27)//'[0m'
+
         xq = xq_initial
         do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xq),
+          write(*,'(i7,3e27.15)')int(xqPK(i)),
      .  xintch(i)/(xintPK(i)+xintvir(i)+xintreal(i)),
      .  (xintPK(i)+xintvir(i)+xintreal(i))/xintch(i)
 c     .  (xintPK(i)+xintvir(i)+xintreal(i))/xintch(i)

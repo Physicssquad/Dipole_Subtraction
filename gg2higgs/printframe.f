@@ -59,6 +59,17 @@ c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c
      . achar(27)//'[0m'
        end
 cc ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
+       subroutine printframe4a(name)
+       character*50 name
+       
+            print*," "
+       write(*,*)achar(27)//'[1;32m'//" ecm/amH     Integral "
+     .  //trim(name),
+     .  "                 error",
+     . achar(27)//'[0m'
+       end
+cc ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
+c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
        subroutine printframe5(e_cut,t_cut)
        implicit double precision(a-h,o-z)
           print*,"                                        "

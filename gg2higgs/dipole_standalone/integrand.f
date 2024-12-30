@@ -8,7 +8,7 @@ C -------------------------------------------------------------------- C
 c      integer i35,i45,is5,itest
       integer k1,k2,k3,ipass,n4,unphy
       parameter (pi=3.14159265358979d0)
-      parameter (hbarc2=389.3856741D+6)
+      parameter (hbarc2=389.3856741D+9)
       common/amass/am1,am2,am3,am4,am5
       common/energy/s
       common/set/set1
