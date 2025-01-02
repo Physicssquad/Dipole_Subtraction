@@ -196,13 +196,16 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
         if ( k .eq. 1) call kinvar1(xa*x,xb,p1,p2,p3)
         if ( k .eq. 2) call kinvar1(xa,xb*x,p1,p2,p3)
 
+        s12 = 2.0d0*dot(p1,p2)
 c        sp = 2.0d0*dot(p1,p2)
-        rsp = dsqrt(sp)
+        rsp = dsqrt(s12)
 
-
-c        if ( sp .ge. amH**2 ) then
+c        if ( rsp .ge. amH -0.1d0 ) then
 c	if (sp .ge. amH**2) then !print*,sp,amH**2
 
+c	print*,"sp:",sp
+c        print*,"s12",s12
+c        print*,"   "
             xmuf = amH
             xmur = xmuf 
 

@@ -4,7 +4,7 @@
 1E+5    	! vegas points        For [ virtual+ eikonal ] only 
 10	 	! vegas iterations    For [ virtual+ eikonal ] only 
 
-1E+7    	! vegas points        For [ PK_Regular & PK_Delta terms ] only 
+1E+5    	! vegas points        For [ PK_Regular & PK_Delta terms ] only 
 10	 	! vegas iterations    For [ PK_Regular & PK_Delta terms ] only 
 
 1E+3    	! vegas points        For [ LO  ] only 

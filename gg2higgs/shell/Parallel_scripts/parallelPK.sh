@@ -71,10 +71,26 @@ cd ../../
 output_dir=$(sed -n '7p' run.machine.dat | awk '{print $1}')
 
 output_summary_file="summary/${output_dir}/PK_all.dat"
+output_summary_bk_file="summary/${output_dir}/PK_all_backup.dat"
 temp_file="temp_summary.dat"
 
 # Ensure the summary file is empty before we start
-> $output_summary_file
+if [[ -s "$output_summary_file" ]]; then
+    echo "  "
+    echo "Warning: $output_summary_file is not empty."
+    echo "Saving old data as PK_all_backup.dat"
+    echo "  "
+    echo "  "
+    cat $output_summary_file > $output_summary_bk_file 
+    echo "New Data is being saved in $output_summary_file"
+    echo "  "
+    > $output_summary_file
+else
+    echo "Data is being saved in $output_summary_file"
+    echo "  "
+    echo "  "
+    > $output_summary_file
+fi
 > $temp_file
 
 # Iterate over the distribution steps and process the corresponding output files
@@ -97,12 +113,23 @@ for i in ${!distribution_steps[@]}; do
 done
 
 # Prepend the processed first lines to the output summary file
-cat $temp_file $output_summary_file > "temp_all.dat" && mv "temp_all.dat" $output_summary_file
+if [[ -s "$temp_file" ]]; then
+    cat $temp_file $output_summary_file > "temp_all.dat" && mv "temp_all.dat" "$output_summary_file"
+    echo "  "
+    echo "  "
+    echo "Processing complete. Summary saved to $output_summary_file."
+    echo "  "
+else
+    mv $output_summary_bk_file $output_summary_file 
+    echo "  "
+    echo "  "
+    echo "Warning: $temp_file is empty. No action performed."
+    echo "  "
+fi
+
+
+#cat $temp_file $output_summary_file > "temp_all.dat" && mv "temp_all.dat" $output_summary_file
 
 # Remove the temporary file
 rm -f $temp_file
 
-echo "  "
-echo "  "
-echo "Processing complete. Summary saved to $output_summary_file."
-echo "  "

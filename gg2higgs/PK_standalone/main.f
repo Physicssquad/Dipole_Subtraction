@@ -51,9 +51,9 @@
       am5=0d0
 
 
-      iselect_plus=1
+      iselect_plus=0
       iselect_Regu=1
-      iselect_Delt=1
+      iselect_Delt=0
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
@@ -81,11 +81,11 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
         ! HERE RESET ALL THE VALUES TO INITIALISE
         do l = 1,it_max
           PKReg(l)    = 0d0
-          err_Reg(j)  = 0d0 
+          err_Reg(l)  = 0d0 
           PKDel(l)    = 0d0
-          err_Del(j)  = 0d0
-          PKPlus(j)   = 0d0
-          err_plus(j) = 0d0 
+          err_Del(l)  = 0d0
+          PKPlus(l)   = 0d0
+          err_plus(l) = 0d0 
         enddo
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
       if (iselect_Plus .eq. 1) then

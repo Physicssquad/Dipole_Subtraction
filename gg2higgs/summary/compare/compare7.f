@@ -109,10 +109,12 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqLO(i),xintLO(i),xLO_err(i)
+        xintLO(i) = xintLO(i)*1e+3 ! iHixs data is in pb  
         enddo
         close(17)
         print*,"/LO.dat"
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        Integral_LO",
+c       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        Integral_LO",
+       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        iHiXs_LO",
      .     "                   error",
      . achar(27)//'[0m'
         do i=1,it_max
@@ -136,6 +138,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      .     ,status='unknown')
         do i=1,it_max
         read(17,*) xqVir(i),xintVir(i),xVir_err(i)
+         xintVir(i) = xintVir(i)*0d0
 c        read(17,*) xqVir(i),xintVir(i)
         enddo
         close(17)
@@ -200,6 +203,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         do i=1,it_max
         read(17,*) xqPK(i),xintPK(i),xPK_err(i)
 c        read(17,*) xqPK(i),xintPK(i)
+c        xintPK(i) = xintPK(i)*0d0
         enddo
         close(17)
         print*," "
@@ -211,9 +215,10 @@ c        read(17,*) xqPK(i),xintPK(i)
         write(*,'(i7,3e27.15,3e27.15)')int(xqPK(i)),xintPK(i),xPK_err(i)
         enddo
         print*," "
-        print*,"Do you want to see individual data of PK ? 
-     .          [y/n]"
-        read*,yes
+c        print*,"Do you want to see individual data of PK ? 
+c     .          [y/n]"
+c        read*,yes
+        yes = 'n'
         if (yes .eq. 'y' .or. yes .eq. 'Y') then 
        
         call compare6  
@@ -284,12 +289,20 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c       write(*,*)achar(27)//'[1;32m'//"   xq  ",
 c     ."     sigma slicing code", 
 c     . achar(27)//'[0m'
+c       write(*,*)achar(27)//'[1;32m'//"ECM/amH",
+c     ."     sigma matrix code", 
+c     . achar(27)//'[0m'
        write(*,*)achar(27)//'[1;32m'//"ECM/amH",
-     ."     sigma matrix code", 
+     ."     sigma iHiXs code", 
      . achar(27)//'[0m'
 
         do i=1,it_max
-          write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
+        ! iHixs few conversion taken here
+c         xintch(i) = xintch(i)*1e+3/1.071378-xintLO(i)
+         xintch(i) = xintch(i)*1e+3
+c         xintch(i) = xintch(i)*1e+3
+	                      
+         write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
         enddo
         endif
 c~~~~~~~~~~~~~~~~~[ ratio ]        
@@ -300,7 +313,8 @@ c        write(*,*)achar(27)//'[1;32m'//"   xq  ",
 c     .  "  slicing/dipole sigma_NLO, and dipole/slicing",
 c     . achar(27)//'[0m'
         write(*,*)achar(27)//'[1;32m'//" ECM/amH",
-     .  "     matrix /dipole                   dipole/matrix",
+c     .  "     matrix /dipole                   dipole/matrix",
+     .  "     iHiXs /dipole                   dipole/iHiXs",
      . achar(27)//'[0m'
 
         xq = xq_initial
