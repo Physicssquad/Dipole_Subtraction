@@ -5,11 +5,11 @@
      .                                ,xqPKterm2(1:50),xintPKterm2(1:50)
      .                                ,xqch(1:50),xintch(1:50)
      .   ,xLO_err(1:50),xVir_err(1:50),xreal_err(1:50),xPK_err(1:50)
+     .   ,xqLOref(1:50),xintLOref(1:50),xLOref_err(1:50)
         character*100 run_tag
         character*50 name,yes
         character*100 message
-        character*100 real_dipole,virtual,PK,ref,LO
-
+        character*100 real_dipole,virtual,PK,ref,LO,ref_NLO
         
 c       Leading Order
       open(unit=15,file='../../run.machine.dat',status='unknown')
@@ -24,13 +24,25 @@ c       Leading Order
 
 c      open(unit=20,file='../../output_files2.dat',status='unknown')
       open(unit=20,file='../../output_files.dat',status='unknown')
+      read (20,*) 
+      read (20,*)
+      read (20,*)
+      read (20,*)
+      read (20,*)
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
       read (20,*) real_dipole
       read (20,*) virtual 
       read (20,*) PK
       read (20,*) LO
       read (20,*) ref
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
+      read (20,*) ref_NLO 
       close(20)
-
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c checking existance of dir and file run.machine.dat
@@ -98,29 +110,66 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                [LO contribution]      
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       call system("test -f ../"// trim(run_tag) //"/LO.dat 
-     . && echo 1 > command.txt || echo 0  > command.txt")
+c       call system("test -f ../"// trim(run_tag) //"/LO.dat 
+       call system("test -f ../"// trim(run_tag) //"/"//trim(LO)//
+     . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
        read(13,*)ierr
        close(13)
        call system("rm command.txt")
        if(ierr .eq. 1) then
-        open(unit=17,file='../'//trim(run_tag)//'/LO.dat',
-     .     status='unknown')
+c        open(unit=17,file='../'//trim(run_tag)//'/LO.dat',
+        open(unit=17,file='../'//trim(run_tag)//'/'//trim(LO)
+     .     ,status='unknown')
         do i=1,it_max
         read(17,*) xqLO(i),xintLO(i),xLO_err(i)
-        xintLO(i) = xintLO(i)*1e+3 ! iHixs data is in pb  
+c        xintLO(i) = xintLO(i)*1e+3 ! iHixs data is in pb  
+c         xintLO(i)= xintLO(i)*1.071378
         enddo
         close(17)
-        print*,"/LO.dat"
+        print*,"/"//trim(LO)
 c       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        Integral_LO",
-       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        iHiXs_LO",
+       write(*,*)achar(27)//'[1;32m'//"   xq"," ","       dipole_LO",
      .     "                   error",
      . achar(27)//'[0m'
         do i=1,it_max
         write(*,'(i7,3e27.15,3e27.15)')int(xqLO(i)),xintLO(i),xLO_err(i)
         enddo
       endif
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c                [LO_ref contribution]      
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+c       call system("test -f ../"// trim(run_tag) //"/LO.dat 
+       call system("test -f ../"// trim(run_tag) //"/"//trim(ref)//
+     . " && echo 1 > command.txt || echo 0  > command.txt")
+c     . && echo 1 > command.txt || echo 0  > command.txt")
+       open(unit=13,file="command.txt",status="unknown")
+       read(13,*)ierr
+       close(13)
+       call system("rm command.txt")
+       if(ierr .eq. 1) then
+c        open(unit=17,file='../'//trim(run_tag)//'/LO.dat',
+        open(unit=17,file='../'//trim(run_tag)//'/'//trim(ref)
+     .     ,status='unknown')
+        do i=1,it_max
+        read(17,*) xqLOref(i),xintLOref(i),xLOref_err(i)
+c        xintLOref(i) = xintLOref(i)*1e+3*1.071378 ! iHixs data is in pb  
+        xintLOref(i) = xintLOref(i)*1e+3 ! iHixs data is in pb  
+        enddo
+        close(17)
+c        print*,"/LO.dat"
+        print*,"/"//trim(ref)
+c       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        Integral_LO",
+       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        iHiXs_LO",
+     .     "                   error",
+     . achar(27)//'[0m'
+        do i=1,it_max
+        write(*,'(i7,3e27.15,3e27.15)')int(xqLOref(i)),
+     .      xintLOref(i),xLOref_err(i)
+        enddo
+      endif
+
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c                [Virtual contribution]
@@ -138,7 +187,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      .     ,status='unknown')
         do i=1,it_max
         read(17,*) xqVir(i),xintVir(i),xVir_err(i)
-         xintVir(i) = xintVir(i)*0d0
+c         xintVir(i) = xintVir(i)*0d0
 c        read(17,*) xqVir(i),xintVir(i)
         enddo
         close(17)
@@ -172,6 +221,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         do i=1,it_max
         read(17,*) xqreal(i),xintreal(i),xreal_err(i)
 c        read(17,*) xqreal(i),xintreal(i)
+        xintreal(i) = xintreal(i)*0d0
         enddo
         close(17)
 
@@ -264,11 +314,11 @@ c     .  xintvir(i)+xintreal(i)+xintLO(i)
         endif
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-c       "Sigma_Chinmoy" and Ratio with Dipole
+c       "Sigma_referen" and Ratio with Dipole
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         inloch = 0
-       call system("test -f ../"// trim(run_tag) //"/"//trim(ref)//
+       call system("test -f ../"// trim(run_tag) //"/"//trim(ref_NLO)//
      . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
        read(13,*)ierr
@@ -276,7 +326,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        call system("rm command.txt")
        if(ierr .eq. 1) then
                inloch = 1
-        open(unit=17,file='../'//trim(run_tag)//'/'//trim(ref)
+        open(unit=17,file='../'//trim(run_tag)//'/'//trim(ref_NLO)
      .     ,status='unknown')
         do i=1,it_max
         read(17,*) xqch(i),xintch(i)
@@ -285,7 +335,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        print*," "
        print*,"For comparison with other data "
        print*," "
-       print*,"/"//trim(ref)
+       print*,"/"//trim(ref_NLO)
 c       write(*,*)achar(27)//'[1;32m'//"   xq  ",
 c     ."     sigma slicing code", 
 c     . achar(27)//'[0m'
@@ -298,8 +348,8 @@ c     . achar(27)//'[0m'
 
         do i=1,it_max
         ! iHixs few conversion taken here
-c         xintch(i) = xintch(i)*1e+3/1.071378-xintLO(i)
-         xintch(i) = xintch(i)*1e+3
+c         xintch(i) = xintch(i)*1e+3/1.071378-xintLOref(i)
+         xintch(i) = xintch(i)
 c         xintch(i) = xintch(i)*1e+3
 	                      
          write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
@@ -344,7 +394,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         character*100 run_tag
         character*50 name,firstfile,secondfile,thirdfile,fourthfile
      .               ,decision
-     . ,real_dipole,virtual,PK,LO,ref
+     . ,real_dipole,virtual,PK,LO,ref,ref_NLO
 
         
       open(unit=15,file='../../run.machine.dat',status='unknown')
@@ -581,7 +631,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         character*100 run_tag
         character*50 name,firstfile,secondfile,thirdfile,fourthfile
      .               ,decision
-     . ,real_dipole,virtual,PK,LO,ref
+     . ,real_dipole,virtual,PK,LO,ref,ref_NLO
 
         
       open(unit=15,file='../../run.machine.dat',status='unknown')

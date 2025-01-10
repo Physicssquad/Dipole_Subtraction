@@ -9,6 +9,7 @@
       common/usedalpha/AL,ge   
       common/distribution/xq
       common/amass/am1,am2,amH,am4,am5
+      common/scales/xmuf,xmur
 
       dimension PKPlus(1:50),err_Plus(1:50)
       dimension PKReg(1:50),err_Reg(1:50)
@@ -49,11 +50,15 @@
       amH=125d0
       am4=0d0
       am5=0d0
+ 
+c Parameters:
+      xmuf = amH/2d0
+      xmur = xmuf
 
 
-      iselect_plus=0
+      iselect_plus=1
       iselect_Regu=1
-      iselect_Delt=0
+      iselect_Delt=1
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
@@ -75,7 +80,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
 
       headline = "P and K terms"
       call printframe0(headline)
-      call printframe6(ecm,amH,amH,name,amH)
+      call printframe6(ecm,xmur,xmuf,name,amH)
 
 
         ! HERE RESET ALL THE VALUES TO INITIALISE
@@ -113,6 +118,7 @@ c      -------------------------------------------------
          call brm48i(40,0,0) 
          call vsup(2,npt2,its2,flo2_PlusB,ai_lo2B,sdB,chi2)
 c      -------------------------------------------------
+	print*,"ratio:",ai_lo2A/ai_lo2B
          ai_lo2 = ai_lo2A - ai_lo2B
 
          PKPlus(j)   = ai_lo2

@@ -17,7 +17,8 @@
          call vegas_m(3,fxn,avgi,sd,chisq)
       enddo
       ncall=10*npt
-      itmx=2*its
+c      itmx=2*its
+      itmx=its*2
       plot=.true.
       call vegas_m(2,fxn,avgi,sd,chisq)
       do i=1,itmx

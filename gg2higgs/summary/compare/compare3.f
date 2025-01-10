@@ -74,15 +74,19 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     Ready to start comparing files    
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-c       print*,"Available files in "//trim(run_tag)//"  are"
-c       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
-c       print*,"Enter the first file name"
-c       read*,firstfile
-c       print*,"Enter the second file name"
-c       read*,secondfile
+       print*,"Available files in "//trim(run_tag)//"  are"
+       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
+       print*,"Enter the first file name"
+       read*,firstfile
+       print*,"Enter the second file name"
+       read*,secondfile
 
-	firstfile = 'LO_all.dat'
-	secondfile = 'LO_ref.dat'
+c	firstfile = 'virtual_all.dat'
+c	secondfile = 'virtual_ref.dat'
+c	firstfile = 'PK_all.dat'
+c	secondfile = 'PK_ref.dat'
+c	firstfile = 'real_all.dat'
+c	secondfile = 'real_ref.dat'
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
 
@@ -97,6 +101,7 @@ c~~~~~~~~~~~~~~~~~[ first  file ]
      .     status='unknown')
         do i=1,it_max
         read(17,*) xqLO(i),xintLO(i)
+c         xintLO(i) = xintLO(i)/1.002008
         enddo
         close(17)
         print*,"/"//trim(firstfile)
@@ -120,6 +125,7 @@ c~~~~~~~~~~~~~~~~~[ second file ]
      .     ,status='unknown')
         do i=1,it_max
         read(17,*) xqLO_ch(i),xintLO_ch(i)
+c        xintLO_ch(i) = xintLO_ch(i)*1e+3
         enddo
         close(17)
         print*,"/"//trim(secondfile)

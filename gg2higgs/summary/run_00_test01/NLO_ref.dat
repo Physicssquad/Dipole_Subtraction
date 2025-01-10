@@ -1,15 +1,3 @@
-13000    9.19212
-12000    8.01547
-11000    6.89194
-10000    5.82606
-9000     4.82259
-8000     3.88752
-7000     3.02728
-This is iHiXs data in pb without delta contribution (only NLO Correction)
-
-
-
-
 13000		 32.623952 
 12000		 28.650961 
 11000		 24.822383 
@@ -19,6 +7,18 @@ This is iHiXs data in pb without delta contribution (only NLO Correction)
 7000 		 11.288284 
 this is Ihixs pure gg contribution ( R_LO* eftnlo ) eftlo is also included
 iHixs result with 125 as scale.
+
+
+
+
+13000    9.19212
+12000    8.01547
+11000    6.89194
+10000    5.82606
+9000     4.82259
+8000     3.88752
+7000     3.02728
+This is iHiXs data in pb without delta contribution (only NLO Correction)
 
 
 

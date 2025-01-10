@@ -12,25 +12,35 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusA ter
       common/energy/s
       common/pdfname/name
       common/usedalpha/AL,ge
+      common/scales/xmuf,xmur
 
       tau = amH**2/S
-      xajac = 1d0 - tau
-      xa = tau + xajac*yy(1)
-      xb = tau/xa
-c      sp = xa*xb*S
+      delta = 1d-5 
+
+c~~~~~[ Exponential MAPPINNG ]~~~~~C
+c      almin = delta
+c      almax = 1.0d0
+c      al = almin*(almax/almin)**yy(1)
+c      xjac4 = al*dlog(almax/almin)
+c      x = 1.0d0 - al
 
 c~~~~~[ LINEAR MAPPINNG ]~~~~~C
-c      xmin = 0.0d0
-c      xmax = 1.0d0 -delta
-c      xjac4 = (xmax - xmin)
-c      x = xjac4*yy(4) + xmin
+      xmin = tau 
+      xmax = 1.0d0 - delta
+      xjac4 = (xmax - xmin)
+      x = xjac4*yy(1) + xmin
 
-      delta = 1.0d-5
-      almin = delta
-      almax = 1.0d0
-      al = almin*(almax/almin)**yy(2)
-      xjac4 = al*dlog(almax/almin)
-      x = 1.0d0 - al
+      xamin = tau/x
+      xamax = 1d0
+
+      xajac =  (xamax - xamin)
+      xa = tau + xajac*yy(2)
+
+      xb = tau/x/xa
+
+      sp = xa*xb*S
+      rsp = dsqrt(sp)
+
 
         flo2_PlusA  = 0.0d0
         PKplus_x = 0.0d0
@@ -39,22 +49,14 @@ c      x = xjac4*yy(4) + xmin
         PK(1) = 0.0d0
         PK(2) = 0.0d0
        
-        eps = 0.5
-        amH_min = amH - eps
-        amH_max = amH + eps
         do k = 1,2
 
         if ( k .eq. 1) call kinvar1(xa*x,xb,p1,p2,p3)
         if ( k .eq. 2) call kinvar1(xa,xb*x,p1,p2,p3)
-c	  print*,"sp1:",dsqrt(dot(p3,p3))
-          sp = 2d0*dot(p1,p2)
-         rsp = dsqrt(sp)
-	if (rsp .ge. amH_min ) then 
 
+c This born used x kinematics as 1-x fraction of momenta is taken by gluon radiation
         coef = Born_gg2h(0,p1,p2,p3)
 
-             xmuf = amH 
-             xmur = xmuf
             xmuf2 = xmuf*xmuf 
                AL = alphasPDF(xmur) 
               ALP = AL/2d0/Pi
@@ -65,8 +67,6 @@ c	  print*,"sp1:",dsqrt(dot(p3,p3))
             call setlum(f1,f2,xl)
 
             call getPKPlus(1,x,xmuf,p1,p2,p3,SumPlus)
-c	print*,SumPlus
-c	stop
            
             sig = xl(2)*SumPlus*coef
   
@@ -74,10 +74,10 @@ c	stop
            flux = 2d0*sp
           xnorm = hbarc2*pi_1/flux
 
-         PKplus_x = xnorm*xajac*xjac4*sig*2d0*amH/xa/S
+          PKplus_x = xnorm*xajac*xjac4*sig*2d0*amH/xa/x/S
 
           PK(k) = PKplus_x
-	endif
+
             enddo
 
         flo2_PlusA = ALP * (PK(1) + PK(2))    ! ALP overall factor taken here
@@ -96,11 +96,12 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
       character*50 name
       common/energy/s
       common/pdfname/name
-      common/factscale/xmuf
+c      common/factscale/xmuf
       common/usedalpha/AL,ge
       common/distribution/xq
       common/bin_size/eps
       common/amass/am1,am2,amH,am4,am5
+      common/scales/xmuf,xmur
 
       tau = amH**2/S
       xajac = 1d0 - tau
@@ -109,12 +110,22 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
       sp = xa*xb*S
       rsp = dsqrt(sp)
 
+
       delta = 1.0d-5
-      almin = delta
-      almax = 1.0d0
-      al = almin*(almax/almin)**yy(2)
-      xjac4 = al*dlog(almax/almin)
-      x = 1.0d0 - al
+c~~~~~[ LINEAR MAPPINNG ]~~~~~C
+      xmin = tau 
+      xmax = 1.0d0 - delta
+      xjac4 = (xmax - xmin)
+      x = xjac4*yy(2) + xmin
+
+
+
+c~~~~~[ Exponential MAPPINNG ]~~~~~C
+c      almin = delta 
+c      almax = 1.0d0
+c      al = almin*(almax/almin)**yy(2)
+c      xjac4 = al*dlog(almax/almin)
+c      x = 1.0d0 - al
 
         flo2_PlusB  = 0.0d0
         PKplus_x = 0.0d0
@@ -127,14 +138,11 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
 
         call kinvar1(xa,xb,p1,p2,p3)
           sp = xa*xb*S 
-          sp = 2d0*dot(p1,p2)
          rsp = dsqrt(sp)
 
 
         coef = Born_gg2h(0,p1,p2,p3)
 
-             xmuf = amH
-             xmur = xmuf
             xmuf2 = xmuf*xmuf 
                AL = alphasPDF(xmur) 
               ALP = AL/2d0/Pi
@@ -156,7 +164,6 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB ter
 
           PK(k) = PKplus_x
 
-c            endif
             enddo
 
         flo2_PlusB = ALP * (PK(1) + PK(2))
@@ -174,11 +181,12 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+9)
       common/energy/s
-      common/factscale/xmuf
+c      common/factscale/xmuf
       common/usedalpha/AL,ge
       common/distribution/xq
       common/bin_size/eps
       common/amass/am1,am2,amH,am4,am5
+      common/scales/xmuf,xmur
 
       tau = amH**2/S
       xajac = 1d0 - tau
@@ -196,18 +204,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Regular T
         if ( k .eq. 1) call kinvar1(xa*x,xb,p1,p2,p3)
         if ( k .eq. 2) call kinvar1(xa,xb*x,p1,p2,p3)
 
-        s12 = 2.0d0*dot(p1,p2)
-c        sp = 2.0d0*dot(p1,p2)
-        rsp = dsqrt(s12)
+        rsp = dsqrt(sp)
 
-c        if ( rsp .ge. amH -0.1d0 ) then
-c	if (sp .ge. amH**2) then !print*,sp,amH**2
-
-c	print*,"sp:",sp
-c        print*,"s12",s12
-c        print*,"   "
-            xmuf = amH
-            xmur = xmuf 
 
             AL = alphasPDF(xmur)
             ALP = AL/2d0/Pi
@@ -227,12 +225,10 @@ c        print*,"   "
            flux = 2d0*sp
           xnorm = hbarc2*pi_1/flux
 
-         PKplus_x = xnorm*xajac*sig* 2d0*amH/xa/S
+         PKReg = xnorm*xajac*sig* 2d0*amH/xa/S
 
+           AllReg(k) = PKReg  
 
-           AllReg(k) = PKplus_x  
-
-c         endif
          enddo
 
          flo2_PKReg = AllReg(1) + AllReg(2)
@@ -267,7 +263,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
         call kinvar1(xa,xb,p1,p2,p3)
 
 
-        xmuf= amH
+        xmuf= amH/2d0  
         xmur= xmuf
         xmu2=xmuf**2
 
@@ -281,7 +277,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
 
         call getPKDel(1.0d0,xmuf,p1,p2,p3,SumDel)
 
-         sig = xl(2)* SumDel  !  [qq lum]
+         sig = xl(2)* SumDel 
 
          pi_1 = PI/amH
          flux = 2d0*sp
@@ -289,7 +285,6 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
         xnorm=ALP*hbarc2*pi_1/flux
 
         flo2_PKDel  = xajac * xnorm * sig * 2d0* amh/xa/S
-c 	print*,flo2_PKDel,SumDel,xnorm,sig
 
       return
       end

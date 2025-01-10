@@ -117,11 +117,10 @@ c     Initial state dipole for the case of gg --> Higgs [2 ~~> 1+1jet]
         call reducemomenta_type_1(2,p1,p2,p3,p4,p5,p6,p7)
         Born= born_gg2h(2,p5,p6,p7) 
 
-        dipole_type_1_gg_g=
+         dipole_type_1_gg_g=
      -          (-16*AL*Born*CA*Pi*(s12**4 - 2*s12**3*(s14 + s24) + 
      -      s12**2*(s14 + s24)**2 - 2*s12*(s14 + s24)**3 + 
      -      (s14 + s24)**4))/(s12*(s12 - s14 - s24)**2*s24*(s14 + s24))
-
       endif  
       return
       end 

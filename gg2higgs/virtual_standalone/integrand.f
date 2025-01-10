@@ -22,7 +22,7 @@
       common/renor_scale/scale
       common/usedalpha/AL,ge
       common/amass/am1,am2,amH,am4,am5        
-      external Born_gg2aa
+      external Born_gg2h
        
 
          tau = amH**2/S
@@ -34,7 +34,7 @@
          sp  = xa*xb*s
          rsp = dsqrt(sp)
         
-              xmuf=amH
+              xmuf=amH/2d0
               xmur=xmuf
               xmu2=xmuf**2
 
@@ -48,9 +48,11 @@
               s12 = 2d0*dot(p1,p2)
              xlqr = dlog(s12/xmu2)
 
-        virtualPLUSeikonal=(-11d0*CA)/3d0+2d0*CA*xlqr - 
-     -     Ca*xlqr**2 + (2d0*Nf)/3d0 + 
-     -  (7d0*Ca*Pi**2)/6d0
+c        virtualPLUSeikonal= (-11d0*CA)/3d0+2d0*CA*xlqr - 
+c     -     Ca*xlqr**2 + (2d0*Nf)/3d0 + 
+c     -  (7d0*Ca*Pi**2)/6d0
+      virtualPLUSeikonal =(-100.*CA)/9. + (11.*CA*xlqr)/3.-2*CA*xlqr**2+
+     -  (16.*Nf)/9. - (2.*xlqr*Nf)/3. + (7.*CA*Pi**2)/3.
             virtualPLUSeikonal=as*Born*virtualPLUSeikonal
            
             pi_1 = PI/amH

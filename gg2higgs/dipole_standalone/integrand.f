@@ -25,9 +25,6 @@ c      integer i35,i45,is5,itest
       xb = xx(2)
       xc = xx(3)
 
-            sp = xa*xb*s
-           rsp = dsqrt(sp)
-         fnlo3 = 0d0
 
         call kinvar2_type_1(xa,xb,xc,xinvmass,p1,p2,p3,p4)
 
@@ -38,17 +35,25 @@ c      integer i35,i45,is5,itest
         s14 = 2d0*dot(p1,p4)
         s24 = 2d0*dot(p2,p4)
 
+            sp = xa*xb*s
+            sp = s12
+           rsp = dsqrt(sp)
+         fnlo3 = 0d0
+          amH = am3
+          xmuf = amH/2d0
+          xmur = xmuf 
 
         if (s14 .lt. coll) icol =1
         if (s24 .lt. coll) icol =1
 
         if( sp  .ge. am3**2 .and. icol .eq. 0) then
+c        if( icol .eq. 0) then
 
-          call pdf(xa,am3,f1)
-          call pdf(xb,am3,f2)
+          call pdf(xa,xmuf,f1)
+          call pdf(xb,xmuf,f2)
           call setlum(f1,f2,xl)
 
-          AL = alphasPDF(am3)
+          AL = alphasPDF(xmur)
 
           call amp_mat_r(p1,p2,p3,p4,sig)
 
@@ -58,8 +63,7 @@ c      integer i35,i45,is5,itest
 
           sigma =xl(2)* (sig - SumD)
 
-          pi_1 = 0.5d0*rsp
-          flux = 4d0*pi_1*rsp
+	print*,sigma
           xnorm=hbarc2/16d0/pi/(xa*xb*s)
           wgt=xnorm*sigma*weight
           fnlo3=wgt/weight

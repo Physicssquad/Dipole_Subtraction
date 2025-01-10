@@ -1,0 +1,20 @@
+~~~~~~~[ LATEST UPDATES ]~~~~~~~
+1. Shell Scripts:
+    updated to go from 13000 to 500 Gev.
+    matrix individual data can be extrected for individual contribution.
+2. PK Standalone:
+   Plus Is working correctly for Linear mapping in the x kinematics.
+   
+3. Reference:
+   Matrix results is now available in data files from 13000 Gev to 500 Gev
+   this result is generated with 1d-4 precision. 
+   with mur = muf = 62.5.
+
+4. VirtuaL: 
+   When I compared virtual data with the Matrix individual contribution there is an 
+   overall constant factor which i need to figure out. 
+
+5. Status of complete result.
+   run_00_test_01 --> all the reference datas. for precision 1d-2(matrix)  
+
+~~~~~~~[ LATEST UPDATES ]~~~~~~~
