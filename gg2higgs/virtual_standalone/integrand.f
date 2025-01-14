@@ -4,6 +4,7 @@
       dimension f1(-6:6),f2(-6:6),xl(15)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),c(1:2),coef(2,-2:0)
+     .          ,p_ex(0:3,1:3),ans_loop(0:2)
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+9)
       parameter (cf=4d0/3d0)
@@ -47,6 +48,10 @@
              Born = Born_gg2h(0,p1,p2,p3)
               s12 = 2d0*dot(p1,p2)
              xlqr = dlog(s12/xmu2)
+         energy = 13000
+         alpha_s = AL
+         call p1d_to_p2d_3(p1,p2,p3,p_ex) 
+         call main(p_ex,alpha_s,energy,xmuf,answer,ans_loop)
 
 c        virtualPLUSeikonal= (-11d0*CA)/3d0+2d0*CA*xlqr - 
 c     -     Ca*xlqr**2 + (2d0*Nf)/3d0 + 
@@ -54,7 +59,14 @@ c     -  (7d0*Ca*Pi**2)/6d0
       virtualPLUSeikonal =(-100.*CA)/9. + (11.*CA*xlqr)/3.-2*CA*xlqr**2+
      -  (16.*Nf)/9. - (2.*xlqr*Nf)/3. + (7.*CA*Pi**2)/3.
             virtualPLUSeikonal=as*Born*virtualPLUSeikonal
-           
+	print*,"finite:",virtualPLUSeikonal
+          print *, "evaluate_loop"
+          print *, "Tree:       ",answer 
+          print *, "Loop ep^0:  ",ans_loop(0)
+          print *, "ep^0 ratio: ",ans_loop(0)/virtualPLUSeikonal
+          print *, "Loop ep^-1: ",ans_loop(1)
+          print *, "Loop ep^-2: ",ans_loop(2)
+
             pi_1 = PI/amH
             flux = 2d0*sp
            xnorm = xajac*hbarc2*pi_1/flux

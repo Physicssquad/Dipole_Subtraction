@@ -221,7 +221,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         do i=1,it_max
         read(17,*) xqreal(i),xintreal(i),xreal_err(i)
 c        read(17,*) xqreal(i),xintreal(i)
-        xintreal(i) = xintreal(i)*0d0
+c        xintreal(i) = xintreal(i)*0d0
         enddo
         close(17)
 
@@ -348,8 +348,8 @@ c     . achar(27)//'[0m'
 
         do i=1,it_max
         ! iHixs few conversion taken here
-c         xintch(i) = xintch(i)*1e+3/1.071378-xintLOref(i)
-         xintch(i) = xintch(i)
+         xintch(i) = xintch(i)*1e+3-xintLOref(i)
+c         xintch(i) = xintch(i)
 c         xintch(i) = xintch(i)*1e+3
 	                      
          write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)

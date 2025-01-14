@@ -8,12 +8,6 @@ cd ../../
 # Define the commands to run in parallel, and add a unique identifier to each command
 commands=(
     "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
-    "(./shell/runDipole.sh)"
 #    "(./shell/runDipole.sh)"
 #    "(./shell/runDipole.sh)"
 )

@@ -5,6 +5,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       dimension f1(-6:6),f2(-6:6),xl(15)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
      .          ,p(0:3,1:4),c(1:2),Born(1:2),coef(2,-2:0),SumI(-2:0)
+     .          ,p_ex(0:3,1:3)
       parameter (pi=3.14159265358979d0)
 c      parameter (hbarc2=0.3894d9)      ! in Pb
       parameter (hbarc2=389.3856741D+9)
@@ -29,7 +30,7 @@ c      parameter (hbarc2=0.3894d12)    ! in Fb
 c	write(*,*)'sp,scale =',xa,xb,sp,scale
 
 c        xmuf= scale
-        xmuf= 125d0
+        xmuf= 125d0/2d0
         xmur= xmuf
         xmu2=xmuf**2
 
@@ -38,8 +39,29 @@ c        xmuf= scale
         call pdf(xa,xmuf,f1)
         call pdf(xb,xmuf,f2)
         call setlum(f1,f2,xl)
+        call p1d_to_p2d_3(p1,p2,p3,p_ex) 
+        energy = 13000
+        alpha_s = AL
+        call main(p_ex,alpha_s,energy,xmuf,answer)
 
-        sig= xl(2)*Born_gg2H(0,p1,p2,p3)
+c        sig= xl(2)*Born_gg2H(0,p1,p2,p3)
+        sig= xl(2)*answer
+!	do i=0,3
+!	print*,"p_ex(",i,",1)=",p1(i)
+!	enddo
+!	print*," "
+!	do i=0,3
+!	print*,"p_ex(",i,",2)=",p2(i)
+!	enddo
+!	print*," "
+!	do i=0,3
+!	print*,"p_ex(",i,",3)=",p3(i)
+!	enddo
+!	print*," "
+	print*,"Born1:",Born_gg2H(0,p1,p2,p3)
+	print*,"Born2:",answer
+	print*," "
+!	stop
 
          pi_1 = PI/amH
          flux = 2d0*sp 

@@ -5,6 +5,7 @@ C -------------------------------------------------------------------- C
       implicit double precision(a-h,o-z) 
       dimension  xx(10),p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
      .             ,p(0:3,1:5),dip(27),B1(1:2),xl(15),f1(-6:6),f2(-6:6)
+     .      ,p_ex(0:3,4)
 c      integer i35,i45,is5,itest
       integer k1,k2,k3,ipass,n4,unphy
       parameter (pi=3.14159265358979d0)
@@ -56,14 +57,21 @@ c        if( icol .eq. 0) then
           AL = alphasPDF(xmur)
 
           call amp_mat_r(p1,p2,p3,p4,sig)
-
+        call p1d_to_p2d_4(p1,p2,p3,p4,p_ex)
+        call main(p_ex,AL,S,xmuf,answer)
+c	if ( sig .ge. 100d0 ) then
+	print*,"sig:",sig
+	print*,"ans:",answer
           SumD = dipole_type_1_gg_g(1,p1,p2,p3,p4) +
      .           dipole_type_1_gg_g(2,p1,p2,p3,p4)
+	print*,"dip:",SumD
+	print*," "
+c	endif
 
 
-          sigma =xl(2)* (sig - SumD)
 
-	print*,sigma
+          sigma =xl(2)* (answer - SumD )
+
           xnorm=hbarc2/16d0/pi/(xa*xb*s)
           wgt=xnorm*sigma*weight
           fnlo3=wgt/weight

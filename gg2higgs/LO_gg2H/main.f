@@ -24,7 +24,19 @@ c     common blocks used in couplings.f
       common/isub/io,is
       common/max_order/iorder
 c      common/param/aem,xmur,lambda
-
+c     use openloops
+c      integer :: id, error, k
+c      real(8) :: m2_tree, m2_loop(0:2), acc
+c      real(8) :: p_ex(0:3,4)
+c      real(8) :: mH = 125.0
+c      real(8) :: mu = 100, alpha_s =0.12513948609039191, energy=13000
+c      call set_parameter("mass(25)", mH)
+c      call set_parameter("verbose", 1)
+c      call set_parameter("model","heft")
+c      id = register_process("21 21 -> 25 21", 1)
+c
+c       call start()
+c       call evaluate_tree(id, p_ex, m2_tree) 
 c--------------------------------------------
 
 
