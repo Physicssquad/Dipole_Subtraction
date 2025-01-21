@@ -1,5 +1,6 @@
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       function flo1_LO(yy,vwgt)
+       use openloops
       implicit double precision (a-h,o-z)
       dimension yy(2)
       dimension f1(-6:6),f2(-6:6),xl(15)
@@ -14,6 +15,7 @@ c      parameter (hbarc2=0.3894d12)    ! in Fb
       common/renor_scale/scale
       common/usedalpha/AL,ge
       common/amass/am1,am2,amH,am4,am5
+      common/caller/icall,id
       external Born_gg2H
        
         tau = amH**2/S
@@ -40,28 +42,15 @@ c        xmuf= scale
         call pdf(xb,xmuf,f2)
         call setlum(f1,f2,xl)
         call p1d_to_p2d_3(p1,p2,p3,p_ex) 
-        energy = 13000
+        energy = 13000d0
         alpha_s = AL
-        call main(p_ex,alpha_s,energy,xmuf,answer)
+c        call ol_get_LO(p_ex,alpha_s,energy,xmuf,answer)
+c	print*,"before:",icall
+c        call ol_get_LO(p1,p2,p3,answer)
+        call p1d_to_p2d_3(p1,p2,p3,p_ex) 
+        call evaluate_tree(id, p_ex,answer)
 
-c        sig= xl(2)*Born_gg2H(0,p1,p2,p3)
         sig= xl(2)*answer
-!	do i=0,3
-!	print*,"p_ex(",i,",1)=",p1(i)
-!	enddo
-!	print*," "
-!	do i=0,3
-!	print*,"p_ex(",i,",2)=",p2(i)
-!	enddo
-!	print*," "
-!	do i=0,3
-!	print*,"p_ex(",i,",3)=",p3(i)
-!	enddo
-!	print*," "
-	print*,"Born1:",Born_gg2H(0,p1,p2,p3)
-	print*,"Born2:",answer
-	print*," "
-!	stop
 
          pi_1 = PI/amH
          flux = 2d0*sp 
@@ -69,6 +58,7 @@ c        sig= xl(2)*Born_gg2H(0,p1,p2,p3)
         xnorm=hbarc2*pi_1/flux !/1.002008    !here this 1.002008 is some missing constant factor. I am using it here for time being.
 
         flo1_LO  = xajac * xnorm * sig * 2d0* amh/xa/S
+	icall = 1
 
       return
       end

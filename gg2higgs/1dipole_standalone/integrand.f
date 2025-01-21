@@ -11,7 +11,7 @@ c      integer i35,i45,is5,itest
       integer k1,k2,k3,ipass,n4,unphy
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+9)
-      common/amass/am1,am2,am3,am4,am5
+      common/amass/am1,am2,amH,am4,am5
       common/energy/s
       common/set/set1
       common/distribution/xq
@@ -27,19 +27,18 @@ c      integer i35,i45,is5,itest
       external dipole_type_1_gg_g
 
       xa = xx(1)
-      xb = xx(2)
-      xc = xx(3)
-c        amH = am3
-c        tau = amH**2/S
-c         xajac = 1d0 - tau
-c         xa = tau + xajac*xx(1)
-c         xb = tau/xa
+      xc = xx(2)
 
+      tau = amH**2/S
+      xajac = 1d0 - tau
+      xa = tau + xajac*xx(1)
+      xb = tau/xa
 
         call kinvar2_type_1(xa,xb,xc,xinvmass,p1,p2,p3,p4)
+c        call kinvar2(xx,xinvmass,p1,p2,p3,p4)
 
         icol = 0
-        coll = 1d-10
+        coll = 1d-20
 
         s12 = 2d0*dot(p1,p2)
         s14 = 2d0*dot(p1,p4)
@@ -49,19 +48,24 @@ c         xb = tau/xa
             sp = s12
            rsp = dsqrt(sp)
          fnlo3 = 0d0
-          amH = am3
           xmuf = amH/2d0
           xmur = xmuf 
+
         if (s14 .lt. coll) icol =1
         if (s24 .lt. coll) icol =1
-        e4 =(s12-amH**2)/2d0/rsp
-        if (dabs(e4) .le. 1d-2) icol = 1
 c	icol = icol+icut
 c	icut = 0
 
 c	if (icol .ne. 0 ) print*,icol
-c        if( sp  .ge. am3**2-1d0 .or. sp .le. am3**2+1d0 ) then
-        if( sp  .ge. amH**2 .and.  icol .eq. 0  ) then
+c        if( sp  .ge. am3**2 .and. icol .eq. 0 ) then
+        if( icol .eq. 0 ) then
+	print*,"s12:",s12
+	print*,"s14:",s14
+	print*,"s24:",s24
+	print*,"amH:",dot(p3,p3)
+	print*," "
+c	stop
+
           call pdf(xa,xmuf,f1)
           call pdf(xb,xmuf,f2)
           call setlum(f1,f2,xl)
@@ -70,10 +74,11 @@ c        if( sp  .ge. am3**2-1d0 .or. sp .le. am3**2+1d0 ) then
 c        call set_parameter("alpha_s",AL)
 
         call amp_mat_r(p1,p2,p3,p4,sig)
-c	print*,p1
-c	print*,p2
-c	print*,p3
-c	print*,p4
+c	print*,"p1",p1
+c	print*,"p2",p2
+c	print*,"p3",p3
+c	print*,"p4",p4
+c	stop
 
 c        call p1d_to_p2d_4(p1,p2,p3,p4,p_ex) 
 c        call evaluate_tree(id_NLO_1r,p_ex,answer)
@@ -81,9 +86,10 @@ c        call evaluate_tree(id_NLO_1r,p_ex,answer)
           SumD = dipole_type_1_gg_g(1,p1,p2,p3,p4) +
      .           dipole_type_1_gg_g(2,p1,p2,p3,p4)
 
-c           sigma =xl(2)*(answer - SumD )
+           sigma =xl(2)*(answer - SumD )
 c	sigma = 0d0
-         sigma =xl(2)* (sig - SumD )
+c         sigma =xl(2)* (sig - SumD )
+	sigma = s14/s12 + s24/s12
 c	if (answer .ne. answer ) sigma =0d0
 c	if (SumD .ne. SumD ) SumD=0d0
 c	if (answer .ge. 0d0 .and. SumD .ge. 0d0 ) then 
@@ -99,17 +105,19 @@ c	endif
           
             
 c	if (sig .ge. 10000d0) then
-c	print*,"SumD",SumD
-c	print*,"ans",answer
-c	print*,"sig ",sig
+	print*,"SumD",SumD
+cc	print*,"ans",answer
+	print*,"sig ",sig
+c	STOP
 c	print*,"ratio:",answer/SumD
 c	print*," "
 c        endif
 
           xnorm=hbarc2/16d0/pi/(xa*xb*s)
-c          wgt=xajac*xnorm*sigma*weight*2d0* amh/xa/S
+          wgt=xajac*xnorm*sigma*weight*2d0* amh/xa/S
 c          wgt=xajac*xnorm*sigma*weight
-          wgt=xnorm*sigma*weight
+c          wgt=xajac*xnorm*sigma*weight
+c          wgt=xnorm*sigma*weight
           fnlo3=wgt/weight
 c	 fnlo3 = xnorm*sigma
 c	print*,"fnlo3:",fnlo3,sigma,xl(2),sig,SumD

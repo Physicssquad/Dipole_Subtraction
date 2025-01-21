@@ -10,6 +10,7 @@
       common/distribution/xq
       common/mass/amh
       common/param2/xmur
+      common/caller/icall
 
 c--------------------------------------------
 c     common blocks used in couplings.f  
@@ -102,6 +103,7 @@ c ~~~~~~~~~~~~~~~~[--------------------------]~~~~~~~~~~~~~~~~~~~c
 
         call initpdfsetbyname(pdf_name)
         Call initPDF(0)
+        icall = 0
       
 c      am1 = 0.51099895000d-3
       am1=0.0d0

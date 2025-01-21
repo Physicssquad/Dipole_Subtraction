@@ -1,4 +1,4 @@
-2E+5	   	! vegas points        For [ real-dipole ] only 
+2E+6	   	! vegas points        For [ real-dipole ] only 
 10	 	! vegas iterations    For [ real-dipole ] only 
 
 1E+4    	! vegas points        For [ virtual+ eikonal ] only 

@@ -158,6 +158,8 @@ c       Boost to lab frame
 c ---------------------------------------------
       beta=(xb-xa)/(xa+xb)
       gamma=1d0/dsqrt(1d0-beta*beta)
+c      beta=0d0
+c      gamma = 1d0
 
       p3(0) = gamma*(e3 - beta*pz3)
       p3(1) = px3
@@ -168,6 +170,9 @@ c ---------------------------------------------
       p4(1)=p1(1)+p2(1)-p3(1)
       p4(2)=p1(2)+p2(2)-p3(2)
       p4(3)=p1(3)+p2(3)-p3(3)
+c	print*,"p3-PS:",p3
+c	print*,"p4-PS:",p4
+c	print*,"e3:",e3
 
       xinvmass = dsqrt(dot(p3,p3))
 

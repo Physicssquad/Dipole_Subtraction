@@ -1,3 +1,39 @@
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 21 : 01 : 2025 ]
+1. 1dipole_standalone
+  - I have tried to use the constraint on the higgs mass to generate xb from random xa gives born kinematics.
+  - Phase space always lies in the singular regions.
+  - for Dipole and real matrix element precisely local cancellation is happening. DIR= 1dipole_standalone
+  - 
+
+2. Planning to use .f95 in some codes slowly move to this version.
+
+
+
+
+
+~~~~~~~[ LATEST UPDATES ]~~~~~~~
+
+
+
+
+
+
+
+
+
+~~~~~~~[ LATEST UPDATES ]~~~~~~~
+1. Openloops
+    implementation of openloops in our code is completed
+    1-real is matching with openloops, we can move forward with the matrix element in hand.
+    LO is also matching with the openloops in heft
+    ISSUE
+    - Openloops also calculates the I operator however the i-operator for the heft process is not giving me the results. 
+    - 
+2. I operator is not available in Openloops. Will be updated soon.
+~~~~~~~[ LATEST UPDATES ]~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~
 1. Shell Scripts:
     updated to go from 13000 to 500 Gev.

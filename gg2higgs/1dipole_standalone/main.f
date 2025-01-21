@@ -107,7 +107,7 @@ c          call printframe2(xq)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if (I .eq. 1 ) then
             call brm48i(40,0,0) 
-            call vsup(3,npt1,its1,fnlo3,ans,sd,chi2)
+            call vsup(2,npt1,its1,fnlo3,ans,sd,chi2)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         elseif(I .eq. 2) THEN
                 CALL cubacheck(ans,sd)

@@ -26,7 +26,7 @@ OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/pdf_lha.o    \
           $(OBJDIR)/vsup.o       \
           $(OBJDIR)/integrand.o  \
-          $(OBJDIR)/ol_test.o  \
+          $(OBJDIR)/ol_interface.o  \
           $(OBJDIR)/phasespace.o
 
 # Add OpenLoops library to the linking process
