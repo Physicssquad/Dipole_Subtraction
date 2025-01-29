@@ -158,7 +158,6 @@ c        xintLOref(i) = xintLOref(i)*1e+3*1.071378 ! iHixs data is in pb
         xintLOref(i) = xintLOref(i)*1e+3 ! iHixs data is in pb  
         enddo
         close(17)
-c        print*,"/LO.dat"
         print*,"/"//trim(ref)
 c       write(*,*)achar(27)//'[1;32m'//"   xq"," ","        Integral_LO",
        write(*,*)achar(27)//'[1;32m'//"   xq"," ","        iHiXs_LO",
@@ -221,7 +220,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         do i=1,it_max
         read(17,*) xqreal(i),xintreal(i),xreal_err(i)
 c        read(17,*) xqreal(i),xintreal(i)
-c        xintreal(i) = xintreal(i)*0d0
+        xintreal(i) = xintreal(i)*0.1591549430918955
         enddo
         close(17)
 
@@ -348,7 +347,8 @@ c     . achar(27)//'[0m'
 
         do i=1,it_max
         ! iHixs few conversion taken here
-         xintch(i) = xintch(i)*1e+3-xintLOref(i)
+c         xintch(i) = xintch(i)*1e+3/1.062739-xintLOref(i)
+         xintch(i) = xintch(i)-xintLOref(i)
 c         xintch(i) = xintch(i)
 c         xintch(i) = xintch(i)*1e+3
 	                      

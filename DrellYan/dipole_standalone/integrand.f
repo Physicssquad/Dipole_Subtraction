@@ -90,7 +90,8 @@ c          sig(3) = xl(7)*(sig(3) - SumD(3))    ! for gq channel
 
 c          sigma = sig(2) + sig(3)
           sigma = xl(1)*(sig(1)-sumD(1))
-       if (sig(1) .gt. 10d0 print*,sig(1),SumD(1)
+
+c       if (sig(1) .gt. 10d0 ) print*,sig(1),SumD(1)
 c          if (sigma .ne. sigma ) sigma =0d0 
 
           pi_1 = 0.5d0*rsp

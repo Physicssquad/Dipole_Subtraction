@@ -91,7 +91,7 @@ c     Initial state dipole for the case of gg --> Higgs [2 ~~> 1+1jet]
       implicit double precision (a-h,o-z)
       parameter(PI=3.141592653589793238D0)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
-     .         ,p5(0:3),p6(0:3),p7(0:3)
+     .         ,p1til(0:3),p2til(0:3),p3til(0:3)
       common/usedalpha/AL,ge
 
       s12=2.d0*dot(p1,p2) 
@@ -105,8 +105,8 @@ c     Initial state dipole for the case of gg --> Higgs [2 ~~> 1+1jet]
       CA = 3.0d0
 
       if ( k .eq. 1 ) then ! Dipole leg 1 
-        call reducemomenta_type_1(1,p1,p2,p3,p4,p5,p6,p7) 
-        Born= Born_gg2h(1,p5,p6,p7) 
+        call reducemomenta_type_1(1,p1,p2,p3,p4,p1til,p2til,p3til) 
+        Born= Born_gg2h(1,p1til,p2til,p3til) 
 
         dipole_type_1_gg_g=
      -          (-16*AL*Born*CA*Pi*(s12**4 - 2*s12**3*(s14 + s24) + 
@@ -114,8 +114,8 @@ c     Initial state dipole for the case of gg --> Higgs [2 ~~> 1+1jet]
      -      (s14 + s24)**4))/(s12*s14*(s12 - s14 - s24)**2*(s14 + s24))
 
       else if ( k .eq. 2 ) then ! Diople leg 2
-        call reducemomenta_type_1(2,p1,p2,p3,p4,p5,p6,p7)
-        Born= born_gg2h(2,p5,p6,p7) 
+        call reducemomenta_type_1(2,p1,p2,p3,p4,p1til,p2til,p3til)
+        Born= born_gg2h(2,p1til,p2til,p3til) 
 
          dipole_type_1_gg_g=
      -          (-16*AL*Born*CA*Pi*(s12**4 - 2*s12**3*(s14 + s24) + 
@@ -137,12 +137,12 @@ c---------------------------------------------------------------------c
      .   p1til(0:3),p2til(0:3),p3til(0:3),ak(0:3),aktil(0:3)
      .   ,akadd(0:3),diff(0:3)
 
-      s12=2.d0*dot(p1,p2)
-      s13=2.d0*dot(p1,p3)
-      s14=2.d0*dot(p1,p4)
-      s23=2.d0*dot(p2,p3)
-      s24=2.d0*dot(p2,p4)
-      s34=2.d0*dot(p3,p4)
+      s12= 2.d0*dot(p1,p2)
+      s13= 2.d0*dot(p1,p3)
+      s14= 2.d0*dot(p1,p4)
+      s23= 2.d0*dot(p2,p3)
+      s24= 2.d0*dot(p2,p4)
+      s34= 2.d0*dot(p3,p4)
  
         x412=(s12-s14-s24)/s12
         if (k .eq .1) then   ! this choice is for leg1
@@ -169,6 +169,7 @@ c---------------------------------------------------------------------c
 
         p1til(i) = p1(i)
         p2til(i) = x412*p2(i)
+
            ak(i) = p1(i)+p2(i)-p4(i)
         aktil(i) = p2til(i)+p1(i)
         akadd(i) = ak(i)+aktil(i)

@@ -96,7 +96,7 @@ c        i=2
           print*," "
 
           call printframe1(pt1,its1)
-          call printframe6(ecm,am3,am3,name,am3)
+          call printframe6(ecm,am3/2d0,am3/2d0,name,am3)
 
 
 

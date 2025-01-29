@@ -1,3 +1,16 @@
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 29 : 01 : 2025 ]
+
+1.   ../catani_examples/catani-eg-DIS/ [ Implementation ]
+     Started Implementation (Page -110) arXiv:hep-ph/9605323v3  (D.23)       
+     LO amplitude taken from R.D. Field updated in integrand.f ✅
+     
+     
+2.  
+
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 29 : 01 : 2025 ]
+
+
+
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 21 : 01 : 2025 ]
 1. 1dipole_standalone
   - I have tried to use the constraint on the higgs mass to generate xb from random xa gives born kinematics.

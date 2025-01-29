@@ -241,4 +241,29 @@ c________________________________________________________________________c
 
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[End of PK functions]
+      SUBROUTINE MATDIP_CHECK(RESULT, SIG, SUMD, MODE)
+      DOUBLE PRECISION SIG, SUMD
+      CHARACTER*(*) MODE
+      INTEGER RESULT
+
+      ! Initialize RESULT to 0 by default
+      RESULT = 0
+
+      ! Check for 'flip' mode
+      IF (MODE .EQ. 'flip') THEN
+          IF ((SIG .GT. 0D0 .AND. SUMD .LT. 0D0) .OR.
+     &        (SIG .LT. 0D0 .AND. SUMD .GT. 0D0)) THEN
+              RESULT = 1
+          ENDIF
+
+      ! Check for 'noflip' mode
+      ELSE IF (MODE .EQ. 'noflip') THEN
+          IF ((SIG .GT. 0D0 .AND. SUMD .GT. 0D0) .OR.
+     &        (SIG .LT. 0D0 .AND. SUMD .LT. 0D0)) THEN
+              RESULT = 1
+          ENDIF
+      ENDIF
+
+      RETURN
+      END
       

@@ -24,6 +24,8 @@ c      integer i35,i45,is5,itest
       common/caller/icall
       common/prc_id/id_LO,id_NLO_1r
       common/cuts_inPS/icut
+      common/checks/ct
+
       external dipole_type_1_gg_g
 
       xa = xx(1)
@@ -57,13 +59,13 @@ c	icol = icol+icut
 c	icut = 0
 
 c	if (icol .ne. 0 ) print*,icol
-c        if( sp  .ge. am3**2 .and. icol .eq. 0 ) then
-        if( icol .eq. 0 ) then
-	print*,"s12:",s12
-	print*,"s14:",s14
-	print*,"s24:",s24
-	print*,"amH:",dot(p3,p3)
-	print*," "
+
+c        if( icol .eq. 0 ) then
+c	print*,"s12:",s12
+c	print*,"s14:",s14
+c	print*,"s24:",s24
+c	print*,"amH:",dot(p3,p3)
+c	print*," "
 c	stop
 
           call pdf(xa,xmuf,f1)
@@ -86,10 +88,38 @@ c        call evaluate_tree(id_NLO_1r,p_ex,answer)
           SumD = dipole_type_1_gg_g(1,p1,p2,p3,p4) +
      .           dipole_type_1_gg_g(2,p1,p2,p3,p4)
 
-           sigma =xl(2)*(answer - SumD )
+c           sigma =xl(2)*(answer - SumD )
 c	sigma = 0d0
-c         sigma =xl(2)* (sig - SumD )
-	sigma = s14/s12 + s24/s12
+         if (s12 - s14 - s24 .eq. amh**2) then 
+         sigma =xl(2)* (sig - SumD )
+        if( sp  .ge. am3**2 .and. icol .eq. 0 ) then
+	if (sig .gt. 0d0 .and. SumD .gt. 0d0 
+     .     .or.
+     .      sig .lt. 0d0 .and. SumD .lt. 0d0) then
+
+       if (dabs(ct) .ge. 0.99d0 .and. dabs(ct) .le. 1d0 
+c     .     ) then
+     .       .and. p4(4) .gt. 0d0) then
+
+
+
+c	if (dabs(sig -SumD) .ge. 10000d0) then
+	print*,"SumD:",SumD
+	print*,"sig :",sig
+	print*,"  xa:",xa
+	print*,"  xc:",xc
+	print*," s12:",s12
+	print*," s14:",s14
+	print*," s24:",s24
+       print*,"p4-PS:",p4
+       print*,"ct:",ct
+
+	print*
+c	endif
+	endif
+	endif
+
+
 c	if (answer .ne. answer ) sigma =0d0
 c	if (SumD .ne. SumD ) SumD=0d0
 c	if (answer .ge. 0d0 .and. SumD .ge. 0d0 ) then 
@@ -105,9 +135,9 @@ c	endif
           
             
 c	if (sig .ge. 10000d0) then
-	print*,"SumD",SumD
+c	print*,"SumD",SumD
 cc	print*,"ans",answer
-	print*,"sig ",sig
+c	print*,"sig ",sig
 c	STOP
 c	print*,"ratio:",answer/SumD
 c	print*," "
@@ -123,6 +153,7 @@ c	 fnlo3 = xnorm*sigma
 c	print*,"fnlo3:",fnlo3,sigma,xl(2),sig,SumD
         else
            fnlo3  = 0d0
+        endif
         endif
 151   return
       end

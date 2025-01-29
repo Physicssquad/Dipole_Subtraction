@@ -23,11 +23,11 @@ c--------------------------------------------------------------------o
          rp34  = dsqrt(s12)
          
          IF(k .eq. 0)  CF =  1d0               !Leading Order k=0
-         IF(k .eq. 1)  CF = - 1d0               !leg 1 reduced born k=1 
-         IF(k .eq. 2)  CF = - 1d0               !Leg 2 reduced born k=2
+         IF(k .eq. 1)  CF = - 10d0/9d0              !leg 1 reduced born k=1 
+         IF(k .eq. 2)  CF = - 10d0/9d0              !Leg 2 reduced born k=2
 c CF is the colour factor in comes up in reduced born.
            NA = 8
-            v = 246d0
+            v = 246.22d0
            AS = AL/4d0/PI
            ch = -4d0*AS/3d0/v 
           ch2 = ch * ch
@@ -35,9 +35,6 @@ c CF is the colour factor in comes up in reduced born.
 
 c          Born_gg2H =  CF*s12**2*ch2/64d0*1.002008 ! this factor 1.002008 is a missing constant factor.
           Born_gg2H =  CF*s12**2*ch2/64d0 ! this factor 1.002008 is a missing constant factor.
-c        if (icall .eq. 0 ) call ol_get_LO(p1,p2,p3,answer)
-        
-c	print*,Born_gg2H
 c        call p1d_to_p2d_3(p1,p2,p3,p_ex) 
 c        call evaluate_tree(id_LO, p_ex,answer)
 c        Born_gg2H  = CF*answer
@@ -56,8 +53,8 @@ c---------------------------------------------------------------------
        common/scales/xinvmass
        common/amass/am1,am2,amh,am4,am5
 
-
-               v = 246d0
+c               v = 246.22d0
+               v = 246.22d0
                AS = AL/4d0/PI
               ch = -4d0*AS/3d0/v
               ch2 = ch*ch

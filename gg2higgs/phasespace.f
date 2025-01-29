@@ -106,6 +106,90 @@ c     invariant mass of diphoton pair.
       return
       end
 c---------------------------------------------------------------------
+c   Try
+
+c      SUBROUTINE GEN_PHASE_SPACE( X1,X2,X4, AM3,AM4, RS, P1,P2,P3,P4 )
+      subroutine kinvar2_type_2(x1,x2,x4,xinvmass,p1,p2,p3,p4)
+  
+      DOUBLE PRECISION X1, X2, X4, RS
+      DOUBLE PRECISION P1(0:3), P2(0:3), P3(0:3), P4(0:3)
+      DOUBLE PRECISION XA, XB, V, OMV
+      DOUBLE PRECISION SP, RSP, SRS2,s34, S
+      DOUBLE PRECISION E3, E4, XLAM, PCM, PF, CT, ST
+      DOUBLE PRECISION PX3, PY3, PZ3
+      DOUBLE PRECISION BETA, GAMMA,am1,am2,am3,am4,am5
+      double precision  dot
+
+      common/energy/s
+      common/amass/am1,am2,am3,am4,am5
+      common/checks/ct,pcm,xlam
+
+
+      ! Assign random inputs and auxiliary variables
+      XA = X1
+      XB = X2
+      V = X4
+      OMV = 1D0 - V
+      RS = dsqrt(s)
+      ! Compute invariant mass square and energy scale
+      SP = XA * XB * S
+      RSP = DSQRT(SP)
+      SRS2 = 0.5D0 * DSQRT(RS * RS)
+
+! Incoming parton 4-vectors in COM frame
+      P1(0) = SRS2 * XA
+      P1(1) = 0D0
+      P1(2) = 0D0
+      P1(3) = P1(0)
+
+      P2(0) = SRS2 * XB
+      P2(1) = 0D0
+      P2(2) = 0D0
+      P2(3) = -P2(0)
+
+! Handle final-state particles
+! Parametrization in the COM frame
+
+      E3 = 0.5D0 * (SP + AM3**2 - AM4**2) / RSP
+c      E4 = 0.5D0 * (SP + AM4**2 - AM3**2) / RSP
+
+      XLAM = (AM4**2 - (RSP + AM3)**2) * (AM4**2 - (RSP - AM3)**2)
+      PCM = 0.5D0 * DSQRT(XLAM)/RSP
+
+      PF = DSQRT(E3**2 - AM3**2)
+      CT = 2D0 * V - 1D0
+      ST = DSQRT(1D0 - CT**2)
+
+      PX3 = PF * ST 
+      PY3 = 0D0 
+      PZ3 = PF * CT 
+
+      !Boost to the lab frame
+      BETA = (XB - XA) / (XA + XB)
+      GAMMA = 1D0 / DSQRT(1D0 - BETA * BETA)
+
+c      BETA = 0d0
+c      gamma = 1d0
+
+      P3(0) = GAMMA * (E3 - BETA * PZ3)
+      P3(1) = PX3
+      P3(2) = PY3
+      P3(3) = GAMMA * (PZ3 - BETA * E3)
+
+c       print*,"p3",e3,p3
+
+      ! Conservation of momentum for the fourth particle
+c      P4(0) = P1(0) + P2(0) - P3(0)
+c      P4(1) = P1(1) + P2(1) - P3(1)
+c      P4(2) = P1(2) + P2(2) - P3(2)
+c      P4(3) = P1(3) + P2(3) - P3(3)
+
+c     invariant mass of diphoton pair.
+c      s34    = 2d0*dot(p3,p4)
+c      xxinvmass= dsqrt(s34)
+
+      RETURN
+      END
 c---------------------------------------------------------------o
 
 C          C~~~~~~[ MASSIVE  CASE ]~~~~~~~~C
@@ -117,6 +201,7 @@ C          C~~~~~~[ MASSIVE  CASE ]~~~~~~~~C
       dimension qa(0:3),qb(0:3)
       COMMON/energy/s
       common/amass/am1,am2,am3,am4,am5
+      common/checks/ct
 
       xa=x1
       xb=x2
@@ -140,26 +225,21 @@ c     incoming parton 4-vectors
       p2(2)=0d0
       p2(3)=-p2(0)
 
-c For massive case where m3 and m4 are non-zero
-c ---------------------------------------------
-c       Parametrization in the c.o.m. frame
-c ---------------------------------------------
+c  For massive case where m3 and m4 are non-zero
+c  ---------------------------------------------
+c        Parametrization in the c.o.m. frame
+c  ---------------------------------------------
       xmd = (am3**2 - am4**2)
-      e3 = 0.5d0*(rsp + xmd/rsp)
-      pf = dsqrt(e3**2 - am3**2)
-      ct = 2d0*v-1
-      st = dsqrt(1d0 - ct**2d0)
+       e3 = 0.5d0*(rsp + xmd/rsp)
+       pf = dsqrt(e3**2 - am3**2)
+       ct = 2d0*v-1
+       st = dsqrt(1d0 - ct**2d0)
       px3 = pf*st
       py3 = 0d0
       pz3 = pf*ct
-        
-c ---------------------------------------------
-c       Boost to lab frame
-c ---------------------------------------------
+
       beta=(xb-xa)/(xa+xb)
       gamma=1d0/dsqrt(1d0-beta*beta)
-c      beta=0d0
-c      gamma = 1d0
 
       p3(0) = gamma*(e3 - beta*pz3)
       p3(1) = px3
@@ -170,14 +250,90 @@ c      gamma = 1d0
       p4(1)=p1(1)+p2(1)-p3(1)
       p4(2)=p1(2)+p2(2)-p3(2)
       p4(3)=p1(3)+p2(3)-p3(3)
-c	print*,"p3-PS:",p3
-c	print*,"p4-PS:",p4
-c	print*,"e3:",e3
 
       xinvmass = dsqrt(dot(p3,p3))
 
       return
       end
+
+
+
+c---------------------------------------------------------------o
+c
+cC          C~~~~~~[ MASSIVE  CASE ]~~~~~~~~C
+c
+c      subroutine kinvar2_type_2(x1,x2,x4,xinvmass,p1,p2,p3,p4)
+c      implicit double precision (a-h,o-z)
+c      dimension xx(10)
+c      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3)
+c      dimension qa(0:3),qb(0:3)
+c      COMMON/energy/s
+c      common/amass/am1,am2,am3,am4,am5
+c      common/checks/ct
+c
+c      xa=x1
+c      xb=x2
+c      v=x4
+c      omv=1d0-v     
+c
+cc      s = RS*RS
+c      sp = xa*xb*s
+c      rsp = dsqrt(sp)
+c
+c      srs2=0.5*dsqrt(s)
+c
+cc     incoming parton 4-vectors
+c      p1(0)=srs2*xa
+c      p1(1)=0d0
+c      p1(2)=0d0
+c      p1(3)=p1(0)
+c
+c      p2(0)=srs2*xb
+c      p2(1)=0d0
+c      p2(2)=0d0
+c      p2(3)=-p2(0)
+c
+cc For massive case where m3 and m4 are non-zero
+cc ---------------------------------------------
+cc       Parametrization in the c.o.m. frame
+cc ---------------------------------------------
+cc      xmd = (am3**2 - am4**2)
+c      e3 = 0.5d0*(sp+am3*2 - am4**2)/rsp
+c      e4 = 0.5d0*(sp+am4*2 - am3**2)/rsp
+c     xlam = (am4**2 - (rsp + am3)**2)*(am4**2 - (rsp - am3)**2)
+c      pcm = 0.5d0*dsqrt(xlam)
+c      pf = dsqrt(e3**2 - am3**2)
+c      ct = 2d0*v-1
+c      st = dsqrt(1d0 - ct**2d0)
+c      px3 = pf*st
+c      py3 = 0d0
+c      pz3 = pf*ct
+c        
+cc ---------------------------------------------
+cc       Boost to lab frame
+cc ---------------------------------------------
+c      beta=(xb-xa)/(xa+xb)
+c      gamma=1d0/dsqrt(1d0-beta*beta)
+cc      beta=0d0
+cc      gamma = 1d0
+c
+c      p3(0) = gamma*(e3 - beta*pz3)
+c      p3(1) = px3
+c      p3(2) = py3
+c      p3(3) = gamma*(pz3 - beta*e3)
+c
+c      p4(0)=p1(0)+p2(0)-p3(0)
+c      p4(1)=p1(1)+p2(1)-p3(1)
+c      p4(2)=p1(2)+p2(2)-p3(2)
+c      p4(3)=p1(3)+p2(3)-p3(3)
+cc	print*,"p3-PS:",p3
+cc	print*,"e3:",e3
+c
+c      xinvmass = dsqrt(dot(p3,p3))
+c
+c      return
+c      end
+
 
 ! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++            
 ! +                            Three Body Phase space                                      +

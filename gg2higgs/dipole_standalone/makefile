@@ -32,6 +32,7 @@ OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/phasespace.o \
           $(OBJDIR)/couplings.o  \
           $(OBJDIR)/ol_interface.o  \
+          $(OBJDIR)/rambo_tmp.o  \
           $(OBJDIR)/dipole.o
 
 # Add OpenLoops library to the linking process

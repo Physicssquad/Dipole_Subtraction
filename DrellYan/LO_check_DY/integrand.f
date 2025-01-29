@@ -47,7 +47,7 @@ c      if (rsp .gt. xcut) then
 
 
         call kinvar2(yy,xinvmass,p1,p2,p3,p4)
-        scale  = xinvmass
+         scale  = xinvmass
 c      if (scale .ge. 0d0) then
         if ( scale .ge. xlow .and. scale .le. xhigh) then 
              
