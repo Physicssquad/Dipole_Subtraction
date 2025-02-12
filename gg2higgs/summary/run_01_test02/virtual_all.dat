@@ -1,0 +1,565 @@
+     13000     6.762053249933940e+03     3.188731693389610e-04
+     12000     5.976565592420629e+03     2.791296948867293e-04
+     11000     5.213674427007147e+03     2.368090749739036e-04
+     10000     4.476201608820972e+03     1.992091755540882e-04
+      9000     3.767553396621500e+03     1.647037331650645e-04
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
+NNPDF30_nlo_as_0118 PDF set, member #0, version 2; LHAPDF ID = 260000
+ #####################################################################
+ #        ___                                          version 2.1.3 #
+ #       /   \ ___  ____  _  _  |     __   __  ___   __    ___       #
+ #       |   | |__| |__   |\ |  |    /  \ /  \ |__| /__    __/       #
+ #       \___/ |    |___  | \|  |___ \__/ \__/ |    __/   /__        #
+ #                                                                   #
+ #####################################################################
+ #       You are using OpenLoops 2 to evaluate loop amplitudes       #
+ #                             Authors:                              #
+ #       F. Buccioni, J.-N. Lang, J. Lindert, P. Maierhoefer,        #
+ #                S. Pozzorini, M. Zoller, H. Zhang                  #
+ #                                                                   #
+ #         Please cite Eur.Phys.J. C79 (2019) no.10, 866             #
+ #                     Phys. Rev. Lett. 108 (2012) 111601            #
+ #                     Eur.Phys.J. C78 (2018) no.1, 70               #
+ #                                                                   #
+ #####################################################################
+
+                                                            
+         *******************************************        
+         *              C O L L I E R              *        
+         *                                         *        
+         *        Complex One-Loop Library         *        
+         *      In Extended Regularizations        *        
+         *                                         *        
+         *    by A.Denner, S.Dittmaier, L.Hofer    *        
+         *                                         *        
+         *              version 1.2.4              *        
+         *                                         *        
+         *******************************************        
+                                                            
+  
+------------------------------------------------------------------------
+|              You are using CutTools - Version 1.9.5                  |
+|              Authors: G. Ossola, C. Papadopoulos, R. Pittau          |
+|              Published in JHEP 0803:042,2008                         |
+|              http://www.ugr.es/~pittau/CutTools                      |
+|                                                                      |
+|              Compiler with  34  significant digits detetected        |
+ ---------------------------------------------------------------------- 
+   
+########################################################################
+#                                                                      #
+#                        You are using OneLOop                         #
+#                                                                      #
+# for the evaluation of 1-loop scalar 1-, 2-, 3- and 4-point functions #
+#                                                                      #
+# author: Andreas van Hameren <hamerenREMOVETHIS@ifj.edu.pl>           #
+#   date: 2018-06-13                                                   #
+#                                                                      #
+# Please cite                                                          #
+#    A. van Hameren,                                                   #
+#      Comput.Phys.Commun. 182 (2011) 2427-2438, arXiv:1007.4716       #
+#    A. van Hameren, C.G. Papadopoulos and R. Pittau,                  #
+#      JHEP 0909:106,2009, arXiv:0903.4665                             #
+# in publications with results obtained with the help of this program. #
+#                                                                      #
+########################################################################
+  
+ Writing data in the file  ../summary/run_01_test02/virtual0.dat                                                               
+  
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating virtual contribrtion
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   1.E+04
+         iteration:                    5
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
+                              IT=    0  ITMX=    5
+                              MDS= -1   ND=  49
+   1       6751.764      12.87       6751.764      12.87      0.000    
+   2       6761.954     0.2549       6761.950     0.2547     0.6254    
+   3       6762.035     0.4570E-01   6762.033     0.4496E-01 0.3665    
+   4       6762.037     0.3178E-01   6762.036     0.2595E-01 0.2468    
+   5       6762.040     0.3088E-01   6762.038     0.1986E-01 0.1881    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=      98098.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  49
+   1       6762.053     0.1007E-02   6762.053     0.1007E-02  0.000    
+   2       6762.053     0.1010E-02   6762.053     0.7131E-03 0.3370    
+   3       6762.052     0.1007E-02   6762.053     0.5819E-03 0.7040    
+   4       6762.053     0.1011E-02   6762.053     0.5044E-03 0.6833    
+   5       6762.054     0.1012E-02   6762.053     0.4515E-03 0.6671    
+   6       6762.053     0.1005E-02   6762.053     0.4118E-03 0.5447    
+   7       6762.054     0.1011E-02   6762.053     0.3814E-03 0.6232    
+   8       6762.052     0.1009E-02   6762.053     0.3567E-03 0.6942    
+   9       6762.054     0.1007E-02   6762.053     0.3363E-03 0.8566    
+  10       6762.054     0.1005E-02   6762.053     0.3189E-03 0.9363    
+   
+   
+ Integral virtual contribrtion:   6762.0532499339397      +-   3.1887316933896105E-004
+ with chisq    =  0.93628807346900444     
+  
+  
+  
+  ecm/amH     Integral virtual contribrtion                 error
+    100      0.676205324993394E+04      0.318873169338961E-03
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
+NNPDF30_nlo_as_0118 PDF set, member #0, version 2; LHAPDF ID = 260000
+ #####################################################################
+ #        ___                                          version 2.1.3 #
+ #       /   \ ___  ____  _  _  |     __   __  ___   __    ___       #
+ #       |   | |__| |__   |\ |  |    /  \ /  \ |__| /__    __/       #
+ #       \___/ |    |___  | \|  |___ \__/ \__/ |    __/   /__        #
+ #                                                                   #
+ #####################################################################
+ #       You are using OpenLoops 2 to evaluate loop amplitudes       #
+ #                             Authors:                              #
+ #       F. Buccioni, J.-N. Lang, J. Lindert, P. Maierhoefer,        #
+ #                S. Pozzorini, M. Zoller, H. Zhang                  #
+ #                                                                   #
+ #         Please cite Eur.Phys.J. C79 (2019) no.10, 866             #
+ #                     Phys. Rev. Lett. 108 (2012) 111601            #
+ #                     Eur.Phys.J. C78 (2018) no.1, 70               #
+ #                                                                   #
+ #####################################################################
+
+                                                            
+         *******************************************        
+         *              C O L L I E R              *        
+         *                                         *        
+         *        Complex One-Loop Library         *        
+         *      In Extended Regularizations        *        
+         *                                         *        
+         *    by A.Denner, S.Dittmaier, L.Hofer    *        
+         *                                         *        
+         *              version 1.2.4              *        
+         *                                         *        
+         *******************************************        
+                                                            
+  
+------------------------------------------------------------------------
+|              You are using CutTools - Version 1.9.5                  |
+|              Authors: G. Ossola, C. Papadopoulos, R. Pittau          |
+|              Published in JHEP 0803:042,2008                         |
+|              http://www.ugr.es/~pittau/CutTools                      |
+|                                                                      |
+|              Compiler with  34  significant digits detetected        |
+ ---------------------------------------------------------------------- 
+   
+########################################################################
+#                                                                      #
+#                        You are using OneLOop                         #
+#                                                                      #
+# for the evaluation of 1-loop scalar 1-, 2-, 3- and 4-point functions #
+#                                                                      #
+# author: Andreas van Hameren <hamerenREMOVETHIS@ifj.edu.pl>           #
+#   date: 2018-06-13                                                   #
+#                                                                      #
+# Please cite                                                          #
+#    A. van Hameren,                                                   #
+#      Comput.Phys.Commun. 182 (2011) 2427-2438, arXiv:1007.4716       #
+#    A. van Hameren, C.G. Papadopoulos and R. Pittau,                  #
+#      JHEP 0909:106,2009, arXiv:0903.4665                             #
+# in publications with results obtained with the help of this program. #
+#                                                                      #
+########################################################################
+  
+ Writing data in the file  ../summary/run_01_test02/virtual1.dat                                                               
+  
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating virtual contribrtion
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   1.E+04
+         iteration:                    5
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
+                              IT=    0  ITMX=    5
+                              MDS= -1   ND=  49
+   1       5971.172      8.633       5971.172      8.633      0.000    
+   2       5976.450     0.1899       5976.448     0.1898     0.3734    
+   3       5976.552     0.3844E-01   5976.548     0.3766E-01 0.3303    
+   4       5976.553     0.2740E-01   5976.551     0.2216E-01 0.2244    
+   5       5976.562     0.2686E-01   5976.556     0.1709E-01 0.1944    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=      98098.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  49
+   1       5976.565     0.8818E-03   5976.565     0.8818E-03  0.000    
+   2       5976.566     0.8837E-03   5976.565     0.6242E-03 0.3633    
+   3       5976.564     0.8809E-03   5976.565     0.5093E-03 0.5745    
+   4       5976.566     0.8846E-03   5976.565     0.4414E-03 0.6119    
+   5       5976.566     0.8854E-03   5976.565     0.3950E-03 0.6446    
+   6       5976.565     0.8799E-03   5976.565     0.3604E-03 0.5393    
+   7       5976.566     0.8854E-03   5976.565     0.3338E-03 0.6688    
+   8       5976.564     0.8837E-03   5976.565     0.3122E-03 0.7751    
+   9       5976.567     0.8819E-03   5976.565     0.2943E-03 0.9675    
+  10       5976.567     0.8796E-03   5976.566     0.2791E-03  1.105    
+   
+   
+ Integral virtual contribrtion:   5976.5655924206294      +-   2.7912969488672930E-004
+ with chisq    =   1.1050167603001595     
+  
+  
+  
+  ecm/amH     Integral virtual contribrtion                 error
+    100      0.597656559242063E+04      0.279129694886729E-03
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
+NNPDF30_nlo_as_0118 PDF set, member #0, version 2; LHAPDF ID = 260000
+ #####################################################################
+ #        ___                                          version 2.1.3 #
+ #       /   \ ___  ____  _  _  |     __   __  ___   __    ___       #
+ #       |   | |__| |__   |\ |  |    /  \ /  \ |__| /__    __/       #
+ #       \___/ |    |___  | \|  |___ \__/ \__/ |    __/   /__        #
+ #                                                                   #
+ #####################################################################
+ #       You are using OpenLoops 2 to evaluate loop amplitudes       #
+ #                             Authors:                              #
+ #       F. Buccioni, J.-N. Lang, J. Lindert, P. Maierhoefer,        #
+ #                S. Pozzorini, M. Zoller, H. Zhang                  #
+ #                                                                   #
+ #         Please cite Eur.Phys.J. C79 (2019) no.10, 866             #
+ #                     Phys. Rev. Lett. 108 (2012) 111601            #
+ #                     Eur.Phys.J. C78 (2018) no.1, 70               #
+ #                                                                   #
+ #####################################################################
+
+                                                            
+         *******************************************        
+         *              C O L L I E R              *        
+         *                                         *        
+         *        Complex One-Loop Library         *        
+         *      In Extended Regularizations        *        
+         *                                         *        
+         *    by A.Denner, S.Dittmaier, L.Hofer    *        
+         *                                         *        
+         *              version 1.2.4              *        
+         *                                         *        
+         *******************************************        
+                                                            
+  
+------------------------------------------------------------------------
+|              You are using CutTools - Version 1.9.5                  |
+|              Authors: G. Ossola, C. Papadopoulos, R. Pittau          |
+|              Published in JHEP 0803:042,2008                         |
+|              http://www.ugr.es/~pittau/CutTools                      |
+|                                                                      |
+|              Compiler with  34  significant digits detetected        |
+ ---------------------------------------------------------------------- 
+   
+########################################################################
+#                                                                      #
+#                        You are using OneLOop                         #
+#                                                                      #
+# for the evaluation of 1-loop scalar 1-, 2-, 3- and 4-point functions #
+#                                                                      #
+# author: Andreas van Hameren <hamerenREMOVETHIS@ifj.edu.pl>           #
+#   date: 2018-06-13                                                   #
+#                                                                      #
+# Please cite                                                          #
+#    A. van Hameren,                                                   #
+#      Comput.Phys.Commun. 182 (2011) 2427-2438, arXiv:1007.4716       #
+#    A. van Hameren, C.G. Papadopoulos and R. Pittau,                  #
+#      JHEP 0909:106,2009, arXiv:0903.4665                             #
+# in publications with results obtained with the help of this program. #
+#                                                                      #
+########################################################################
+  
+ Writing data in the file  ../summary/run_01_test02/virtual2.dat                                                               
+  
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating virtual contribrtion
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   1.E+04
+         iteration:                    5
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
+                              IT=    0  ITMX=    5
+                              MDS= -1   ND=  49
+   1       5211.863      6.312       5211.863      6.312      0.000    
+   2       5213.563     0.1416       5213.562     0.1416     0.7247E-01
+   3       5213.656     0.3148E-01   5213.652     0.3073E-01 0.2437    
+   4       5213.662     0.2368E-01   5213.658     0.1875E-01 0.1874    
+   5       5213.676     0.2293E-01   5213.665     0.1452E-01 0.2324    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=      98098.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  49
+   1       5213.674     0.7485E-03   5213.674     0.7485E-03  0.000    
+   2       5213.675     0.7493E-03   5213.674     0.5296E-03 0.5048    
+   3       5213.673     0.7482E-03   5213.674     0.4322E-03 0.7377    
+   4       5213.675     0.7505E-03   5213.674     0.3746E-03 0.7258    
+   5       5213.675     0.7512E-03   5213.674     0.3352E-03 0.6880    
+   6       5213.674     0.7466E-03   5213.674     0.3058E-03 0.5816    
+   7       5213.675     0.7510E-03   5213.674     0.2832E-03 0.7044    
+   8       5213.673     0.7494E-03   5213.674     0.2649E-03 0.7506    
+   9       5213.675     0.7478E-03   5213.674     0.2497E-03 0.9483    
+  10       5213.675     0.7460E-03   5213.674     0.2368E-03  1.063    
+   
+   
+ Integral virtual contribrtion:   5213.6744270071467      +-   2.3680907497390357E-004
+ with chisq    =   1.0628780084463647     
+  
+  
+  
+  ecm/amH     Integral virtual contribrtion                 error
+    100      0.521367442700715E+04      0.236809074973904E-03
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
+NNPDF30_nlo_as_0118 PDF set, member #0, version 2; LHAPDF ID = 260000
+ #####################################################################
+ #        ___                                          version 2.1.3 #
+ #       /   \ ___  ____  _  _  |     __   __  ___   __    ___       #
+ #       |   | |__| |__   |\ |  |    /  \ /  \ |__| /__    __/       #
+ #       \___/ |    |___  | \|  |___ \__/ \__/ |    __/   /__        #
+ #                                                                   #
+ #####################################################################
+ #       You are using OpenLoops 2 to evaluate loop amplitudes       #
+ #                             Authors:                              #
+ #       F. Buccioni, J.-N. Lang, J. Lindert, P. Maierhoefer,        #
+ #                S. Pozzorini, M. Zoller, H. Zhang                  #
+ #                                                                   #
+ #         Please cite Eur.Phys.J. C79 (2019) no.10, 866             #
+ #                     Phys. Rev. Lett. 108 (2012) 111601            #
+ #                     Eur.Phys.J. C78 (2018) no.1, 70               #
+ #                                                                   #
+ #####################################################################
+
+                                                            
+         *******************************************        
+         *              C O L L I E R              *        
+         *                                         *        
+         *        Complex One-Loop Library         *        
+         *      In Extended Regularizations        *        
+         *                                         *        
+         *    by A.Denner, S.Dittmaier, L.Hofer    *        
+         *                                         *        
+         *              version 1.2.4              *        
+         *                                         *        
+         *******************************************        
+                                                            
+  
+------------------------------------------------------------------------
+|              You are using CutTools - Version 1.9.5                  |
+|              Authors: G. Ossola, C. Papadopoulos, R. Pittau          |
+|              Published in JHEP 0803:042,2008                         |
+|              http://www.ugr.es/~pittau/CutTools                      |
+|                                                                      |
+|              Compiler with  34  significant digits detetected        |
+ ---------------------------------------------------------------------- 
+   
+########################################################################
+#                                                                      #
+#                        You are using OneLOop                         #
+#                                                                      #
+# for the evaluation of 1-loop scalar 1-, 2-, 3- and 4-point functions #
+#                                                                      #
+# author: Andreas van Hameren <hamerenREMOVETHIS@ifj.edu.pl>           #
+#   date: 2018-06-13                                                   #
+#                                                                      #
+# Please cite                                                          #
+#    A. van Hameren,                                                   #
+#      Comput.Phys.Commun. 182 (2011) 2427-2438, arXiv:1007.4716       #
+#    A. van Hameren, C.G. Papadopoulos and R. Pittau,                  #
+#      JHEP 0909:106,2009, arXiv:0903.4665                             #
+# in publications with results obtained with the help of this program. #
+#                                                                      #
+########################################################################
+  
+ Writing data in the file  ../summary/run_01_test02/virtual3.dat                                                               
+  
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating virtual contribrtion
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   1.E+04
+         iteration:                    5
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
+                              IT=    0  ITMX=    5
+                              MDS= -1   ND=  49
+   1       4476.383      4.945       4476.383      4.945      0.000    
+   2       4476.101     0.1005       4476.101     0.1005     0.3265E-02
+   3       4476.183     0.2540E-01   4476.178     0.2463E-01 0.3144    
+   4       4476.192     0.1984E-01   4476.187     0.1545E-01 0.2755    
+   5       4476.204     0.1920E-01   4476.193     0.1204E-01 0.3295    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=      98098.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  49
+   1       4476.201     0.6295E-03   4476.201     0.6295E-03  0.000    
+   2       4476.202     0.6303E-03   4476.201     0.4454E-03 0.4882    
+   3       4476.201     0.6300E-03   4476.201     0.3637E-03 0.7886    
+   4       4476.202     0.6315E-03   4476.201     0.3152E-03 0.8001    
+   5       4476.202     0.6319E-03   4476.201     0.2820E-03 0.7962    
+   6       4476.201     0.6278E-03   4476.201     0.2573E-03 0.6529    
+   7       4476.202     0.6315E-03   4476.201     0.2383E-03 0.7438    
+   8       4476.201     0.6306E-03   4476.201     0.2229E-03 0.7607    
+   9       4476.202     0.6292E-03   4476.202     0.2101E-03 0.9179    
+  10       4476.202     0.6273E-03   4476.202     0.1992E-03  1.022    
+   
+   
+ Integral virtual contribrtion:   4476.2016088209721      +-   1.9920917555408824E-004
+ with chisq    =   1.0221744269366582     
+  
+  
+  
+  ecm/amH     Integral virtual contribrtion                 error
+    100      0.447620160882097E+04      0.199209175554088E-03
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
+NNPDF30_nlo_as_0118 PDF set, member #0, version 2; LHAPDF ID = 260000
+ #####################################################################
+ #        ___                                          version 2.1.3 #
+ #       /   \ ___  ____  _  _  |     __   __  ___   __    ___       #
+ #       |   | |__| |__   |\ |  |    /  \ /  \ |__| /__    __/       #
+ #       \___/ |    |___  | \|  |___ \__/ \__/ |    __/   /__        #
+ #                                                                   #
+ #####################################################################
+ #       You are using OpenLoops 2 to evaluate loop amplitudes       #
+ #                             Authors:                              #
+ #       F. Buccioni, J.-N. Lang, J. Lindert, P. Maierhoefer,        #
+ #                S. Pozzorini, M. Zoller, H. Zhang                  #
+ #                                                                   #
+ #         Please cite Eur.Phys.J. C79 (2019) no.10, 866             #
+ #                     Phys. Rev. Lett. 108 (2012) 111601            #
+ #                     Eur.Phys.J. C78 (2018) no.1, 70               #
+ #                                                                   #
+ #####################################################################
+
+                                                            
+         *******************************************        
+         *              C O L L I E R              *        
+         *                                         *        
+         *        Complex One-Loop Library         *        
+         *      In Extended Regularizations        *        
+         *                                         *        
+         *    by A.Denner, S.Dittmaier, L.Hofer    *        
+         *                                         *        
+         *              version 1.2.4              *        
+         *                                         *        
+         *******************************************        
+                                                            
+  
+------------------------------------------------------------------------
+|              You are using CutTools - Version 1.9.5                  |
+|              Authors: G. Ossola, C. Papadopoulos, R. Pittau          |
+|              Published in JHEP 0803:042,2008                         |
+|              http://www.ugr.es/~pittau/CutTools                      |
+|                                                                      |
+|              Compiler with  34  significant digits detetected        |
+ ---------------------------------------------------------------------- 
+   
+########################################################################
+#                                                                      #
+#                        You are using OneLOop                         #
+#                                                                      #
+# for the evaluation of 1-loop scalar 1-, 2-, 3- and 4-point functions #
+#                                                                      #
+# author: Andreas van Hameren <hamerenREMOVETHIS@ifj.edu.pl>           #
+#   date: 2018-06-13                                                   #
+#                                                                      #
+# Please cite                                                          #
+#    A. van Hameren,                                                   #
+#      Comput.Phys.Commun. 182 (2011) 2427-2438, arXiv:1007.4716       #
+#    A. van Hameren, C.G. Papadopoulos and R. Pittau,                  #
+#      JHEP 0909:106,2009, arXiv:0903.4665                             #
+# in publications with results obtained with the help of this program. #
+#                                                                      #
+########################################################################
+  
+ Writing data in the file  ../summary/run_01_test02/virtual4.dat                                                               
+  
+   
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Calculating virtual contribrtion
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+using vegas points:                   1.E+04
+         iteration:                    5
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ RM48 INITIALIZED:        40           0         0
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
+                              IT=    0  ITMX=    5
+                              MDS= -1   ND=  49
+   1       3768.855      3.832       3768.855      3.832      0.000    
+   2       3767.478     0.6977E-01   3767.479     0.6977E-01 0.1291    
+   3       3767.550     0.1997E-01   3767.544     0.1921E-01 0.5438    
+   4       3767.544     0.1638E-01   3767.544     0.1246E-01 0.3627    
+   5       3767.555     0.1590E-01   3767.548     0.9809E-02 0.3478    
+
+
+
+ INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=      98098.
+                              IT=    0  ITMX=   10
+                              MDS= -1   ND=  49
+   1       3767.553     0.5203E-03   3767.553     0.5203E-03  0.000    
+   2       3767.553     0.5211E-03   3767.553     0.3682E-03 0.4671    
+   3       3767.553     0.5210E-03   3767.553     0.3007E-03 0.8034    
+   4       3767.554     0.5222E-03   3767.553     0.2606E-03 0.9143    
+   5       3767.554     0.5225E-03   3767.553     0.2332E-03 0.9163    
+   6       3767.553     0.5191E-03   3767.553     0.2127E-03 0.7904    
+   7       3767.554     0.5219E-03   3767.553     0.1970E-03 0.8321    
+   8       3767.553     0.5216E-03   3767.553     0.1843E-03 0.7914    
+   9       3767.554     0.5202E-03   3767.553     0.1737E-03 0.9414    
+  10       3767.554     0.5185E-03   3767.553     0.1647E-03  1.030    
+   
+   
+ Integral virtual contribrtion:   3767.5533966214998      +-   1.6470373316506448E-004
+ with chisq    =   1.0299461033520878     
+  
+  
+  
+  ecm/amH     Integral virtual contribrtion                 error
+    100      0.376755339662150E+04      0.164703733165064E-03
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

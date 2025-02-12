@@ -23,7 +23,6 @@ c      almax = 1.0d0
 c      al = almin*(almax/almin)**yy(1)
 c      xjac4 = al*dlog(almax/almin)
 c      x = 1.0d0 - al
-
 c~~~~~[ LINEAR MAPPINNG ]~~~~~C
       xmin = tau 
       xmax = 1.0d0 - delta
@@ -75,6 +74,8 @@ c This born used x kinematics as 1-x fraction of momenta is taken by gluon radia
           xnorm = hbarc2*pi_1/flux
 
           PKplus_x = xnorm*xajac*xjac4*sig*2d0*amH/xa/x/S
+c.....[?] x in the denomonator ?
+c          PKplus_x = xnorm*xajac*xjac4*sig*2d0*amH/xa/S
 
           PK(k) = PKplus_x
 
@@ -189,10 +190,25 @@ c      common/factscale/xmuf
       common/scales/xmuf,xmur
 
       tau = amH**2/S
-      xajac = 1d0 - tau
-      xa = tau + xajac*yy(1)
-      xb = tau/xa
-      x  = yy(2)
+c      xajac = 1d0 - tau
+c      xa = tau + xajac*yy(1)
+c      xb = tau/xa
+c      x  = yy(2)
+
+c... added for the check as sp is to be fixed 
+      delta = 0d0
+      xmin = tau 
+      xmax = 1.0d0 - delta
+      xjac4 = (xmax - xmin)
+      x = xjac4*yy(1) + xmin
+
+      xamin = tau/x
+      xamax = 1d0
+
+      xajac =  (xamax - xamin)
+      xa = tau + xajac*yy(2)
+      xb = tau/x/xa
+c... till here linear mapping is added
 
       AllReg(1) = 0d0
       AllReg(2) = 0d0
@@ -221,18 +237,17 @@ c      common/factscale/xmuf
 
             sig = Alp*sig1*coef
 
-           pi_1 = PI/amH
+c           pi_1 = PI/amH**2  ! what is this factor in the denominator ?
+           pi_1 = PI/amH 
            flux = 2d0*sp
           xnorm = hbarc2*pi_1/flux
 
-         PKReg = xnorm*xajac*sig* 2d0*amH/xa/S
+         PKReg = xnorm*xajac*xjac4*sig* 2d0*amH/xa/S
 
            AllReg(k) = PKReg  
 
          enddo
-
          flo2_PKReg = AllReg(1) + AllReg(2)
-
       return
       end
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta terms]
@@ -246,7 +261,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+9)
       common/energy/s
-      common/factscale/xmuf
+      common/scales/xmuf,xmur
       common/usedalpha/AL,ge
       common/distribution/xq
       common/bin_size/eps
@@ -261,10 +276,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
         rsp = dsqrt(sp)
 
         call kinvar1(xa,xb,p1,p2,p3)
-
-
-        xmuf= amH/2d0  
-        xmur= xmuf
+c        xmuf= amH/2d0   !.....already defined in main through common 
+c        xmur= xmuf
         xmu2=xmuf**2
 
          AL = alphasPDF(xmur)
@@ -274,12 +287,12 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta ter
         call pdf(xb,xmuf,f2)
         call setlum(f1,f2,xl)
 
-
         call getPKDel(1.0d0,xmuf,p1,p2,p3,SumDel)
 
          sig = xl(2)* SumDel 
 
-         pi_1 = PI/amH
+c         pi_1 = PI/amH**2  ! same confusion about the factor in denominator
+         pi_1 = PI/amH  ! same confusion about the factor in denominator
          flux = 2d0*sp
 
         xnorm=ALP*hbarc2*pi_1/flux

@@ -7,12 +7,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         real(8) :: p_ex(0:3,3),p1(0:3),p2(0:3),p3(0:3)
         real(8) :: mH = 125.0
         real(8) :: mu, alpha_s, energy,ge,am1,am2,amH,am4,am5
-      common/usedalpha/alpha_s,ge
+c      common/usedalpha/alpha_s,ge
       common/energy/energy
       common/amass/am1,am2,mH,am4,am5
       common/caller/icall
       
          mu = mH/2d0
+c	alpha_s = 125d0/2d0
       !  call set_parameter("order_ew", 1)
       !  call set_parameter("order_qcd", 2)
         if ( icall .eq. 0d0 ) then
@@ -34,7 +35,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         real(8) :: p_ex(0:3,4),p1(0:3),p2(0:3),p3(0:3),p4(0:3)
         real(8) :: mH = 125.0
         real(8) :: mu, alpha_s, energy,ge,am1,am2,amH,am4,am5
-      common/usedalpha/alpha_s,ge
+c      common/usedalpha/alpha_s,ge
       common/energy/energy
       common/amass/am1,am2,mH,am4,am5
       
@@ -43,7 +44,7 @@ c	if ( icall .eq. 0d0 ) then
         call set_parameter("mass(25)", mH)
         call set_parameter("verbose",-1)
         call set_parameter("model","heft") 
-c        call set_parameter("alpha_s", alpha_s)
+c        call set_parameter("alpha_s", mu)
         call set_parameter("mu", mu)
 
         id_NLO_1r = register_process("21 21 -> 25 21", 1)

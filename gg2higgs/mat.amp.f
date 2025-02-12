@@ -23,8 +23,8 @@ c--------------------------------------------------------------------o
          rp34  = dsqrt(s12)
          
          IF(k .eq. 0)  CF =  1d0               !Leading Order k=0
-         IF(k .eq. 1)  CF = - 10d0/9d0              !leg 1 reduced born k=1 
-         IF(k .eq. 2)  CF = - 10d0/9d0              !Leg 2 reduced born k=2
+         IF(k .eq. 1)  CF = -1d0              !leg 1 reduced born k=1 
+         IF(k .eq. 2)  CF = -1d0              !Leg 2 reduced born k=2
 c CF is the colour factor in comes up in reduced born.
            NA = 8
             v = 246.22d0

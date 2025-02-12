@@ -1,4 +1,5 @@
       program uU2eE_Virtual 
+      use openloops
       implicit double precision (a-h,o-z)
       dimension x(10),y(10),ai_lo2(1:50),err(0:50)
       parameter (pi=3.14159265358979d0)
@@ -6,6 +7,7 @@
       common/amass/am1,am2,amH,am4,am5
       common/usedalpha/AL,ge
       common/distribution/xq
+      common/prc_id/id_LO,id_NLO_1r
 
 
       character*50 name,mode
@@ -50,6 +52,10 @@
 
         call initpdfsetbyname(name)
         Call initPDF(0)
+
+c ... Openloops initialization
+        call ol_LO_init(id_LO)
+        call ol_NLO_real_init(id_NLO_1r)
       
 c      am1 = 0.51099895000d-3
       am1=0.0d0
@@ -83,7 +89,7 @@ c       writes data in output file
          call printframe3(mode,ans,sd,chi2)
         enddo
 
-        call printframe4(mode)
+        call printframe4a(mode)
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
      .             int(xq),ai_lo2(j),err(j)
@@ -96,7 +102,7 @@ c       writes data in output file
 c     .  //trim(filename),status='unknown', access='append')
          xq = xq_initial
          do i=1,it_max
-          write(20,*)xq,ai_lo2(i),err(i)
+          write(20,*)amH/ECM,ai_lo2(i),err(i)
           xq = xq + xstep
          enddo
          close(20)

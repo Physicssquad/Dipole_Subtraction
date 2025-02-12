@@ -5,6 +5,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Mis
       dot=p(0)*q(0)-p(1)*q(1)-p(2)*q(2)-p(3)*q(3)
       return
       end
+
+      function dot2(p,q)
+      implicit double precision (a-h,o-z)
+      dimension p(0:3),q(0:3)
+      dot2=p(0)*q(0)+p(1)*q(1)+p(2)*q(2)+p(3)*q(3)
+      return
+      end
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Functions used in PK_Plus PK_Delta and PK_Regular]
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ For qq initiated process with qg splliting ]
@@ -135,7 +142,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Fo
       data PI/3.141592653589793238462643D0/
 
       CA = 3d0
-      PggP = 2d0*CA*1d0/(1.0d0-x)
+      one_minus_x = (1.0d0-x)
+      PggP = 2d0*CA*1d0/one_minus_x
 
       return
       end
@@ -159,10 +167,9 @@ c________________________________________________________________________c
 
       CA = 3d0
       TR = 0.5d0
-      NF = 3d0
+      NF = 5d0   !...[?] number of quark flavours?
 
       PggD = 11d0/6d0*CA - 2d0/3d0*NF*TR 
-      PggD = 2d0*CA*PggD 
       return
       end
 c________________________________________________________________________c 
@@ -194,7 +201,8 @@ c________________________________________________________________________c
 
       CA = 3d0
       TR = 0.5d0
-      NF = 3d0
+      NF = 5d0  !...[?] is this no of quark flavours?
+c...for checking I am taking 5 flavour as in the matrix.[11 feb]
 
       AKbarD_gg = (50d0/9d0-Pi**2)*CA - 16d0/9d0*TR*NF
 

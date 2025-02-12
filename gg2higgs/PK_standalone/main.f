@@ -1,4 +1,5 @@
       program intPK
+      use openloops
       implicit double precision (a-h,o-z)
       dimension c(1:2)
       character*50 name,headline,headline1,headline2,headline3,headline4
@@ -10,6 +11,7 @@
       common/distribution/xq
       common/amass/am1,am2,amH,am4,am5
       common/scales/xmuf,xmur
+      common/prc_id/id_LO,id_NLO_1r
 
       dimension PKPlus(1:50),err_Plus(1:50)
       dimension PKReg(1:50),err_Reg(1:50)
@@ -53,7 +55,7 @@
  
 c Parameters:
       xmuf = amH/2d0
-      xmur = xmuf
+      xmur = xmuf   !...being used in all common blocks.
 
 
       iselect_plus=1
@@ -76,6 +78,11 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P 
         xq_initial = xq
       call initpdfsetbyname(name)
       Call initPDF(0)
+
+c ... Openloops initialization
+        call ol_LO_init(id_LO)
+c        call ol_NLO_real_init(id_NLO_1r)
+
        s=ecm*ecm
 
       headline = "P and K terms"
@@ -118,7 +125,6 @@ c      -------------------------------------------------
          call brm48i(40,0,0) 
          call vsup(2,npt2,its2,flo2_PlusB,ai_lo2B,sdB,chi2)
 c      -------------------------------------------------
-	print*,"ratio:",ai_lo2A/ai_lo2B
          ai_lo2 = ai_lo2A - ai_lo2B
 
          PKPlus(j)   = ai_lo2

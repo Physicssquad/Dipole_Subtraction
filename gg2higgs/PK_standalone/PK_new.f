@@ -20,6 +20,8 @@ c~~~~[ These functions are taken from misc.f ]~~~~~~~~c
           Pplus = 0.0d0
        SumPlus  = 0.0d0
 
+c... s12 = x * [2*p1 \times p2]
+
           Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! kinematics depends on the PS generation 
         SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
 c	print*,"Plus:",Pplus,AKbarP_gg(x),AKtilP_gg(x),x
@@ -78,14 +80,10 @@ c      common /usedalpha/ AL,ge
         Cf = 4d0/3d0
         Tr = 0.5d0
         xmuf2 = xmuf*xmuf
-        
 
       do k = 1,2
-
         Born = Born_gg2h(0,p1,p2,p3)
         coef = Born
-
-
        xmuf2 = xmuf*xmuf
 
         Pdel = PggD(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
@@ -97,4 +95,4 @@ c      common /usedalpha/ AL,ge
 
       return
       end
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[** END **]
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[** END **]

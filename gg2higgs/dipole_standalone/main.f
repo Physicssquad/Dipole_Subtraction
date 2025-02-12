@@ -15,12 +15,14 @@
       common/t_cuts/e_cut,t_cut
       common/caller/icall
       common/prc_id/id_LO,id_NLO_1r
+      common/counter_diff/diff,eps,isame,idiff
 
 
       character*50 name,mode
       character*100 run_tag,filename
       external fnlo3
-
+      isame = 0
+      idiff = 0
       !input data card
       open(unit=10,file='../run.vegas.dat',status='unknown')    
       read (10,*) pt1          ! vegas points     LO 2 body
@@ -108,6 +110,9 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if (I .eq. 1 ) then
             call brm48i(40,0,0) 
             call vsup(3,npt1,its1,fnlo3,ans,sd,chi2)
+	print*,idiff
+	print*,isame
+        
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         elseif(I .eq. 2) THEN
                 CALL cubacheck(ans,sd)

@@ -1,14 +1,14 @@
-5E+6	   	! vegas points        For [ real-dipole ] only 
+1E+5	   	! vegas points        For [ real-dipole ] only 
 10	 	! vegas iterations    For [ real-dipole ] only 
 
 1E+4    	! vegas points        For [ virtual+ eikonal ] only 
-10	 	! vegas iterations    For [ virtual+ eikonal ] only 
+5	 	! vegas iterations    For [ virtual+ eikonal ] only 
 
-1E+4    	! vegas points        For [ PK_Regular & PK_Delta terms ] only 
-6	 	! vegas iterations    For [ PK_Regular & PK_Delta terms ] only 
+1E+5    	! vegas points        For [ PK_Regular & PK_Delta terms ] only 
+10	 	! vegas iterations    For [ PK_Regular & PK_Delta terms ] only 
 
 1E+4    	! vegas points        For [ LO  ] only 
 10	 	! vegas iterations    For [ LO  ] only 
 
-5E+4    	! vegas points        For [ PK_Plus terms ] only 
-6	 	! vegas iterations    For [ PK_Plus terms ] only 
+5E+5    	! vegas points        For [ PK_Plus terms ] only 
+10	 	! vegas iterations    For [ PK_Plus terms ] only 

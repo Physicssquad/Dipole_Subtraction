@@ -77,14 +77,14 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        print*,"Available files in "//trim(run_tag)//"  are"
        call system ("cd ../"//trim(run_tag)//" && ls -ltr")
        print*,"Enter the first file name"
-       read*,firstfile
+c       read*,firstfile
        print*,"Enter the second file name"
-       read*,secondfile
+c       read*,secondfile
 
 c	firstfile = 'virtual_all.dat'
 c	secondfile = 'virtual_ref.dat'
-c	firstfile = 'PK_all.dat'
-c	secondfile = 'PK_ref.dat'
+	firstfile = 'PK_all.dat'
+	secondfile = 'PK_ref.dat'
 c	firstfile = 'real_all.dat'
 c	secondfile = 'real_ref.dat'
 

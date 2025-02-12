@@ -27,7 +27,8 @@ commands=(
 
 # Define the new values for the "max # of distribution increment step_size from xq"
 #distribution_steps=(100 400 700 1000 1300 1600 1900 2200 2500)
-distribution_steps=(13000 12000 11000 10000 9000 8000 7000 6000 5000 4000 3000 2000 1000 500)
+#distribution_steps=(13000 12000 11000 10000 9000 8000 7000 6000 5000 4000 3000 2000 1000 500)
+distribution_steps=(13000 12000 11000 10000 9000 8000 7000 6000 5000 4000 3000)
 
 # Function to modify the input files
 modify_input_files() {
@@ -66,10 +67,10 @@ parallel --line-buffer ::: \
     "(sleep 7; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[7]} 7; ${commands[0]})" \
     "(sleep 8; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[8]} 8; ${commands[0]})" \
     "(sleep 9; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[9]} 9; ${commands[0]})" \
-    "(sleep 10; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[10]} 10; ${commands[0]})" \
-    "(sleep 11; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[11]} 11; ${commands[0]})" \
-    "(sleep 12; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[12]} 12; ${commands[0]})" \
-    "(sleep 13; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[13]} 13; ${commands[0]})" 
+    "(sleep 10; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[10]} 10; ${commands[0]})" 
+#    "(sleep 11; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[11]} 11; ${commands[0]})" \
+#    "(sleep 12; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[12]} 12; ${commands[0]})" \
+#    "(sleep 13; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[13]} 13; ${commands[0]})" 
 
 # Clean up the temporary directory
 cp $tmp_dir2/run.machine.dat $tmp_dir2/output_files.dat .
