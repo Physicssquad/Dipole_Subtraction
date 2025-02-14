@@ -1,3 +1,4 @@
+
 C ------------------------------------------------------------------ C 
 c                        Our vegas specific
 C -------------------------------------------------------------------- C      
@@ -7,7 +8,8 @@ C -------------------------------------------------------------------- C
       dimension  xx(10),p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
      .             ,p(0:3,1:5),dip(27),B1(1:2),xl(15),f1(-6:6),f2(-6:6)
      .      ,p_ex(0:3,4),p12sum(0:3), p13sum(0:3), p14sum(0:3)
-     .      , p23sum(0:3), p24sum(0:3),pmass(4)
+     .      , p23sum(0:3), p24sum(0:3),pmass(4),ptilde(0:3,3,2)
+     .         ,p1til(0:3),p2til(0:3),p3til(0:3)
 c      integer i35,i45,is5,itest
       integer k1,k2,k3,ipass,n4,unphy
       parameter (pi=3.14159265358979d0)
@@ -15,7 +17,6 @@ c      integer i35,i45,is5,itest
       common/amass/am1,am2,am3,am4,am5
       common/energy/s
       common/set/set1
-      common/distribution/xq
       common/countc/n4
       common/usedalpha/AL,ge
       common/scales/xinvmass
@@ -27,17 +28,32 @@ c      integer i35,i45,is5,itest
       common/cuts_inPS/icut
       common/checks/ct,pcm,xlam
       COMMON /vegas_rn/ x1, x2, x3, x4
+      common/distribution/rapidity,p_T
       external dipole_type_1_gg_g
 
         xa = xx(1)
         xb = xx(2)
         xc = xx(3)
+        p_T= 100d0
 
       xjac = 2d0
        amH = am3
         sp = xa*xb*s
-        if (sp  .ge. amH**2 ) then
+        if (sp  .ge. amH**2 ) then !...basic condition 
         call kinvar2_type_1(xa,xb,xc,xinvmass,p1,p2,p3,p4)
+        call reduceps(p1,p2,p3,p4,ptilde)
+c_______________________________________________________c
+c...real matrix element contribution
+        call Fjm_plus_one(p1,p2,p3,p4,jet_cut)
+c        if ( jet_cut .eq. 1 ) goto 151 
+c_______________________________________________________c
+c...dipole contribution 
+        call Fjm(ptilde,jet_cut)
+      s12 = 2d0*dot2(ptilde,1,2,1) 
+      s14 = 2d0*dot2(ptilde,1,4,1) 
+      s24 = 2d0*dot2(ptilde,2,4,1) 
+c      print*,"m-body",s14 + s24 - s12
+c        if ( jet_cut .eq. 0 ) goto 151 
 
        s12 = 2d0*dot(p1,p2)
        s13 = 2d0*dot(p1,p3)
@@ -55,17 +71,27 @@ c      integer i35,i45,is5,itest
 c~~~~~~~~~~~~~[ Cuts ]~~~~~~~~~~~~~~~
         icol = 0
         iprint = 0
-        coll = 1d-8
-        soft = 1d-8
-        if (s14 .lt. s12*coll) icol =1
-        if (s24 .lt. s12*coll) icol =1
+        coll = 1d-5
+        soft = 1d-2
+        if (s14/s12 .lt. coll) icol =1
+        if (s24/s12 .lt. coll) icol =1
         e4 =(s12-amH**2)/2d0/rsp
         if (e4 .le. rsp*soft) icol = 1
+        pt_higgs = dsqrt(p3(1)**2 + p3(2)**2)
 
+c        if (pt_higgs .le. 50d0 ) goto 151 
+c        if (pt_higgs .ge. 0.0d0 .and. pt_higgs .le. 100d0 ) then
+c        if (pt_higgs .le. 1d0 ) then
+c          continue
+c        else
+c        goto 151
+c        endif
+c	iprint = 0
 c	if (2d0*s14 .ge. s12 ) icol = 1 
 c	if (2d0*s24 .ge. s12 ) icol = 1 
 c~~~~~~~~~~~~~[ Cuts ]~~~~~~~~~~~~~~~
-        if (icol .eq. 1 ) goto 151
+c        if (icol .eq. 1 ) goto 151
+
 c        print*,s14,s12*coll
 c        print*,s24,s12*coll
 
@@ -76,8 +102,8 @@ c        print*,s24,s12*coll
           AL = alphasPDF(xmur)
         call set_parameter("alpha_s",AL)
 
-       call amp_mat_r(p1,p2,p3,p4,sig)
-c~~~~~~[Openloops mat amp calculated from here ]~~~~~~~~c
+        call amp_mat_r(p1,p2,p3,p4,sig)
+c~~~~~~[ Openloops mat amp calculated from here ]~~~~~~~~c
         call p1d_to_p2d_4(p1,p2,p3,p4,p_ex) 
         call evaluate_tree(id_NLO_1r,p_ex,answer)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
@@ -87,11 +113,18 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 
           SumD2 = dipole_type_1_gg_g(1,p1,p2,p3,p4) 
      .           +dipole_type_1_gg_g(2,p1,p2,p3,p4)
+c	idiff = idiff + 1
+c	if (sig .lt. SumD ) goto 151
+c	idiff = idiff - 1
+c	isame = isame + 1
+c	if (icol .eq. 0 ) iprint = 1
+c	if ( s24/s12 .le. 1d-2 ) goto 151
+c	if ( s14/s12 .le. 1d-2 ) goto 151
 
-c	if (answer .le. 500d0 ) goto 151 
+c	if (answer .le. 5000d0 ) goto 151 
 c	if (2d0*s14 .ge. s12 ) iprint = 1 
 c	if (2d0*s24 .ge. s12 ) iprint = 1 
-c        if (answer .ge. 100d0 ) then !print*,answer,SumD
+c        if (answer .le. 500d0 ) goto 151
 
 c	per = (answer-sig)/answer*100
 c	per1 = (SumD-sig)/sig*100
@@ -122,14 +155,19 @@ c         if (vtildei2 .lt. alphaMin) ips1 = ips + 1
 c	if ( s14/s12 .gt. 0.50d0 .or. s24/s12 .gt. 0.50d0 ) then
 c        fnlo3 =0d0
 c        if ( ips1 .ge. 1 ) goto 151 
-	idiff = idiff + 1
-        if ( dabs(answer-SumD)/answer*100 .gt. 80 ) then
-	idiff = idiff - 1
-        isame = isame + 1 
-c	print*,answer,SumD
-	endif
-	if (sig .ge. 100d0 ) iprint =1
-	if (iprint .eq. 1 ) then
+c	idiff = idiff + 1
+c        if ( dabs(answer-SumD)/answer*100 .gt. 80 ) then
+c        if ( dabs(sig-SumD2)/sig*100 .gt. 80 ) then
+c	idiff = idiff - 1
+c        isame = isame + 1 
+c	endif
+c        if (dabs(sumD - SumD2 )/dabs(SumD) .ge. 1d+7 ) iprint =1
+c        if (dabs(sumD - SumD2 )/dabs(SumD) .ge. 1d+7 ) iprint =1
+c	if (xc .ge. 0.99999d0 ) iprint = 1
+        if (iprint .eq. 1 ) then
+c        print*,dabs(sumD - SumD2 )/dabs(SumD)
+c          SumD = dipole_type_3_gg_g(1,p1,p2,p3,p4) 
+c     .          +dipole_type_3_gg_g(2,p1,p2,p3,p4)
         print*,"sigma_NK  :",sig
 	print*,"SumDip_NK :",SumD2
 	print*,"1real_amp :",answer
@@ -140,10 +178,10 @@ c	print*,"s12       :",s12
 c	print*,"s14       :",s14
 c	print*,"s24       :",s24
 c	print*,"p4(0)     :",p4(0)
-c	print*
+	print*
 
-	print*,"s24       :",s24
-	print*,"s14       :",s14
+c	print*,"s24       :",s24
+c	print*,"s14       :",s14
 	print*,"s24/s12   :",s24/s12
 	print*,"s14/s12   :",s14/s12
 	print*,"xa,xb,xc",xa,xb,xc
@@ -156,7 +194,6 @@ c	endif
 c           sigma =xl(2)*(answer - SumD )
 c        call MATDIP_CHECK(iflip, SIG, SUMD,'flip')
 c         sigma = (answer - SumD )
-c         sigma =xl(2) * (sig - SumD2 )
          sigma = xl(2) * (answer - SumD )
 c         sigma = xl(2) * (answer )
 

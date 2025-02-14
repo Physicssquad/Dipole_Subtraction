@@ -6,10 +6,11 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Mis
       return
       end
 
-      function dot2(p,q)
+      function dot2(p,i,j,l)
       implicit double precision (a-h,o-z)
-      dimension p(0:3),q(0:3)
-      dot2=p(0)*q(0)+p(1)*q(1)+p(2)*q(2)+p(3)*q(3)
+      dimension p(0:3,3,2)
+      dot2= p(0,i,l)*p(0,j,l)-p(1,i,l)*p(1,j,l)
+     .     -p(2,i,l)*p(2,j,l)-p(3,i,l)*p(3,j,l)
       return
       end
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Functions used in PK_Plus PK_Delta and PK_Regular]

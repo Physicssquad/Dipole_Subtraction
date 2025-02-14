@@ -1,0 +1,10 @@
+1. When SumD .ge. Sig result is a stable one. For matrix case.
+     5300516 events  sig .ge. SumD
+    12294099 events  sig .le. SumD  result is negative and greatly stable                         
+
+
+
+
+2. I want to check this for my dipole also, compare with the ref data.
+
+3. pt can be used as the Infrared safe observable, I have to define the maybe kT algorithm or Anti-kT.

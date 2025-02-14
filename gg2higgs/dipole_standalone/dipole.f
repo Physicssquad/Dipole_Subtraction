@@ -146,8 +146,8 @@ c     Initial state dipole for the case of gg --> Higgs [2 ~~> 1+1jet]
 
       Tr = 0.5d0
       CA = 3.0d0
-      symmetry_factor = 0.5d0
-c      symmetry_factor = 1.0d0
+c      symmetry_factor = 0.5d0
+      symmetry_factor = 1.0d0
 
         do i=0,3
          p_a(i) = p1(i)
@@ -161,10 +161,13 @@ c      symmetry_factor = 1.0d0
 
       if ( k .eq. 1 ) then ! Dipole leg 1 
         call reducemomenta_type_1(1,p1,p2,p3,p4,p1til,p2til,p3til) 
+c        pt_higgs = dsqrt(p3til(1)**2 + p3til(2)**2)
       endif
       if ( k .eq. 2 ) then ! Dipole leg 1 
         call reducemomenta_type_1(2,p1,p2,p3,p4,p1til,p2til,p3til) 
+c        pt_higgs = dsqrt(p3til(1)**2 + p3til(2)**2)
       endif
+c	print*,"tilde:",pt_higgs
 c	print*,"p1p2-p2p4:",2d0*dot(p1,p2),2d0*dot(p3,p4),dot(p3til,p3til)
 c	print*,"p1p2_tild:",2d0*dot(p1til,p2til),dot(p3til,p3til)
 c	print*
@@ -189,7 +192,13 @@ c        if ( k.eq. 2 ) RA_ME2_cc = amp2cc(1)
 
         x_i_ab = 1d0 - dot(p_i,p_a_plus_p_b) / dot(p_a,p_b)
 
+        if (k .eq. 1 ) then 
         factor = -1d0/(2d0*x_i_ab*dot(p_a,p_i))*16d0*CA*Pi*AL
+      endif
+       if (k .eq. 2 ) then 
+        factor = -1d0/(2d0*x_i_ab*dot(p_b,p_i))*16d0*CA*Pi*AL
+      endif
+c       factor = -1d0/(2d0*x_i_ab*dot(p_a,p_i))*16d0*CA*Pi*AL
 
         factor_vector = ((1d0 - x_i_ab) * dot(p_a,p_b)) / (x_i_ab *
      -         dot(p_i,p_b)*dot(p_i,p_a))
@@ -203,15 +212,147 @@ c        if ( k.eq. 2 ) RA_ME2_cc = amp2cc(1)
       return
       end 
 c---------------------------------------------------------------------
+c---------------------------------------------------------------------
+
+c     Initial state dipole for the case of gg --> Higgs [2 ~~> 1+1jet]
+
+      function dipole_type_3_gg_g(k,p1,p2,p3,p4)
+      use openloops
+      implicit double precision (a-h,o-z)
+      parameter(PI=3.141592653589793238D0)
+      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
+     .         ,p1til(0:3),p2til(0:3),p3til(0:3),p_a_plus_p_b(0:3)
+     .         , p_a(0:3), p_i(0:3), p_b(0:3), Vtensor(0:3),p_ex(0:3,3)
+     .         ,amp2cc(3),amp_sc(3)
+      common/usedalpha/AL,ge
+      common/prc_id/id_LO,id_NLO_1r
+
+      s12=2.d0*dot(p1,p2) 
+      s13=2.d0*dot(p1,p3)
+      s14=2.d0*dot(p1,p4)
+      s23=2.d0*dot(p2,p3)
+      s24=2.d0*dot(p2,p4)
+      s34=2.d0*dot(p3,p4)
+
+      Tr = 0.5d0
+      CA = 3.0d0
+      symmetry_factor = 0.5d0
+c      symmetry_factor = 1.0d0
+
+        do i=0,3
+         p_a(i) = p1(i)
+         p_b(i) = p2(i)   ! in my convention p1 p2 -> p3 p4(radiation) 
+         p_i(i) = p4(i)   ! in matrix convention pa pb -> pk pj(radiation) 
+         p_a_plus_p_b(i) = p_a(i) + p_b(i)
+        enddo
+        do i=0,3
+        Vtensor(i) = p_i(i) - p_b(i) * dot(p_i , p_a)/dot(p_b , p_a) 
+        enddo
+
+      if ( k .eq. 1 ) then ! Dipole leg 1 
+        call reducemomenta_type_1(1,p1,p2,p3,p4,p1til,p2til,p3til) 
+      endif
+      if ( k .eq. 2 ) then ! Dipole leg 1 
+        call reducemomenta_type_1(2,p1,p2,p3,p4,p1til,p2til,p3til) 
+      endif
+
+        call p1d_to_p2d_3(p1til,p2til,p3til,p_ex)
+        call evaluate_cc(id_LO,p_ex,amp_210,amp2cc,amp2ewcc)
+        call evaluate_sc(id_LO,p_ex,k,Vtensor,amp_sc)
+c        if ( k.eq. 1 ) call evaluate_sc(id_LO,p_ex,2,Vtensor,amp_sc)
+c        if ( k.eq. 2 ) call evaluate_sc(id_LO,p_ex,1,Vtensor,amp_sc)
+        RA_ME2_cc = amp2cc(1)
+        RA_ME2_sc = amp_sc(k)
+c        if ( k.eq. 1 ) RA_ME2_sc = amp_sc(2)
+c        if ( k.eq. 2 ) RA_ME2_sc = amp_sc(1)
+
+c        if ( k.eq. 1 ) RA_ME2_cc = amp2cc(2)
+c        if ( k.eq. 2 ) RA_ME2_cc = amp2cc(1)
+         print*,"vtensor:",dot(Vtensor,Vtensor)
+        x_i_ab = 1d0 - dot(p_i,p_a_plus_p_b) / dot(p_a,p_b)
+       if (k .eq. 1 ) then 
+        factor = -1d0/(2d0*x_i_ab*dot(p_a,p_i))*16d0*CA*Pi*AL
+      endif
+       if (k .eq. 2 ) then 
+        factor = -1d0/(2d0*x_i_ab*dot(p_b,p_i))*16d0*CA*Pi*AL
+      endif
+        factor_vector = ((1d0 - x_i_ab) * dot(p_a,p_b)) / (x_i_ab *
+     -         dot(p_i,p_b)*dot(p_i,p_a))
+
+        factor_metric = x_i_ab / (1d0 - x_i_ab) + x_i_ab * (1d0-x_i_ab)
+         
+        dipole_type_3_gg_g=
+     &  factor*(factor_metric * RA_ME2_cc - dot(Vtensor,Vtensor) 
+     &  * factor_vector * RA_ME2_sc) / CA *symmetry_factor
+c        print*,"a:",factor_metric * RA_ME2_cc
+c        print*,"b:",dot(Vtensor,Vtensor)*factor_vector*RA_ME2_sc
+      return
+      end 
+c---------------------------------------------------------------------
+
+
+
+       subroutine reduceps(p1,p2,p3,p4,ptilde)
+       implicit double precision (a-h,o-z)
+       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),
+     .   p1til(0:3),p2til(0:3),p3til(0:3),ak(0:3),aktil(0:3)
+     .   ,akadd(0:3),diff(0:3),ptilde(0:3,1:3,1:2)
+
+      s12= 2.d0*dot(p1,p2)
+      s13= 2.d0*dot(p1,p3)
+      s14= 2.d0*dot(p1,p4)
+      s23= 2.d0*dot(p2,p3)
+      s24= 2.d0*dot(p2,p4)
+      s34= 2.d0*dot(p3,p4)
+ 
+        iemitter = 2    ! max number of legs
+
+        x412=(s12-s14-s24)/s12
+        do k=1,iemitter 
+        if (k .eq. 1) then   ! this choice is for leg1
+          do i=0,3
+           ptilde(i,1,k) = x412*p1(i)
+           ptilde(i,2,k) = p2(i)
+
+           ak(i)    = p1(i)+p2(i)-p4(i)
+           aktil(i) =  ptilde(i,1,k) +p2(i)
+           akadd(i) = ak(i)+aktil(i)
+          enddo
+
+          do i=0,3
+        ptilde(i,3,k)= p3(i)-2d0*dot(p3,akadd)*akadd(i)/dot(akadd,akadd)
+     .              + 2d0*dot(p3,ak)*aktil(i)/dot(ak,ak)
+          enddo
+        else if (k .eq. 2) then  ! this choice is for leg2
+          do i=0,3
+           ptilde(i,1,k) = p1(i)
+           ptilde(i,2,k) = x412*p2(i)
+
+           ak(i)    = p1(i)+p2(i)-p4(i)
+           aktil(i) = ptilde(i,2,k) +p1(i)
+           akadd(i) = ak(i)+aktil(i)
+          enddo
+
+           do i=0,3
+        ptilde(i,3,k)=p3(i)-2d0*dot(p3,akadd)*akadd(i)/dot(akadd,akadd)
+     .              + 2d0*dot(p3,ak)*aktil(i)/dot(ak,ak)
+          enddo     
+          endif
+          enddo      !emitter loop
+
+        end
+c---------------------------------------------------------------------
+
 
 
 c---------------------------------------------------------------------c
-c       Initial State splitting with initial spectator                c
-c            REDUCED MOMENTA                                          c
+c....... ptilde(4-momenta,particle number, leg information )..........c
+c....... Initial State splitting with initial spectator  .............c
+c...................  REDUCED MOMENTA  ...............................c
 c---------------------------------------------------------------------c
+
        subroutine reducemomenta_type_1(k,p1,p2,p3,p4,p1til,p2til,p3til)
        implicit double precision (a-h,o-z)
-
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),
      .   p1til(0:3),p2til(0:3),p3til(0:3),ak(0:3),aktil(0:3)
      .   ,akadd(0:3),diff(0:3)

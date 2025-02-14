@@ -32,7 +32,7 @@ c... jet function for m+1 (real radiation)
       end
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 c... jet function for dipoles
-      function Fjm(p1,p2,p3,p4,jet_cut)
+      subroutine Fjm(p1,p2,p3,p4,jet_cut)
       implicit double precision(a-h,o-z)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       common/distribution/xq

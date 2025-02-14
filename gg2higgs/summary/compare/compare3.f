@@ -85,8 +85,8 @@ c	firstfile = 'virtual_all.dat'
 c	secondfile = 'virtual_ref.dat'
 	firstfile = 'PK_all.dat'
 	secondfile = 'PK_ref.dat'
-c	firstfile = 'real_all.dat'
-c	secondfile = 'real_ref.dat'
+	firstfile = 'real_all.dat'
+	secondfile = 'real_ref.dat'
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
 
