@@ -1,4 +1,3 @@
-
 C ------------------------------------------------------------------ C 
 c                        Our vegas specific
 C -------------------------------------------------------------------- C      
@@ -44,14 +43,14 @@ c      integer i35,i45,is5,itest
         call reduceps(p1,p2,p3,p4,ptilde)
 c_______________________________________________________c
 c...real matrix element contribution
-        call Fjm_plus_one(p1,p2,p3,p4,jet_cut)
+c        call Fjm_plus_one(p1,p2,p3,p4,jet_cut)
 c        if ( jet_cut .eq. 1 ) goto 151 
 c_______________________________________________________c
 c...dipole contribution 
-        call Fjm(ptilde,jet_cut)
-      s12 = 2d0*dot2(ptilde,1,2,1) 
-      s14 = 2d0*dot2(ptilde,1,4,1) 
-      s24 = 2d0*dot2(ptilde,2,4,1) 
+c        call Fjm(ptilde,jet_cut)
+c      s12 = 2d0*dot2(ptilde,1,2,1) 
+c      s14 = 2d0*dot2(ptilde,1,4,1) 
+c      s24 = 2d0*dot2(ptilde,2,4,1) 
 c      print*,"m-body",s14 + s24 - s12
 c        if ( jet_cut .eq. 0 ) goto 151 
 
@@ -62,7 +61,7 @@ c        if ( jet_cut .eq. 0 ) goto 151
        s24 = 2d0*dot(p2,p4)
        s34 = 2d0*dot(p3,p4)
 
-           rsp = dsqrt(sp)
+         rsp = dsqrt(sp)
          fnlo3 = 0d0
           amH = am3
           xmuf = amH/2d0
@@ -165,7 +164,7 @@ c        if (dabs(sumD - SumD2 )/dabs(SumD) .ge. 1d+7 ) iprint =1
 c        if (dabs(sumD - SumD2 )/dabs(SumD) .ge. 1d+7 ) iprint =1
 c	if (xc .ge. 0.99999d0 ) iprint = 1
         if (iprint .eq. 1 ) then
-c        print*,dabs(sumD - SumD2 )/dabs(SumD)
+c          print*,dabs(sumD - SumD2 )/dabs(SumD)
 c          SumD = dipole_type_3_gg_g(1,p1,p2,p3,p4) 
 c     .          +dipole_type_3_gg_g(2,p1,p2,p3,p4)
         print*,"sigma_NK  :",sig
@@ -194,9 +193,9 @@ c	endif
 c           sigma =xl(2)*(answer - SumD )
 c        call MATDIP_CHECK(iflip, SIG, SUMD,'flip')
 c         sigma = (answer - SumD )
-         sigma = xl(2) * (answer - SumD )
-c         sigma = xl(2) * (answer )
-
+c         sigma = xl(2) * (answer - SumD )
+c         sigma = xl(2) * (answer - SumD )
+         sigma = xl(2) * (sig - SumD )
           ! ref
 c         xnorm = 2d0*dsqrt(xlam)/32d0/PI**2/sp
 c~~~~~~~~~~~~~[Form Calc ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c

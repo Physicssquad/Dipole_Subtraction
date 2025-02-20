@@ -87,7 +87,7 @@ cc---------------------------------------------------------------------
 
 c     Initial state dipole for the case of gg --> Higgs [2 ~~> 1+1jet]
 
-       function dipole_type_1_gg_g(k,p1,p2,p3,p4)
+      function dipole_type_1_gg_g(k,p1,p2,p3,p4)
       implicit double precision (a-h,o-z)
       parameter(PI=3.141592653589793238D0)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
@@ -155,6 +155,7 @@ c      symmetry_factor = 0.5d0
          p_i(i) = p4(i)   ! in matrix convention pa pb -> pk pj(radiation) 
          p_a_plus_p_b(i) = p_a(i) + p_b(i)
         enddo
+
         do i=0,3
         Vtensor(i) = p_i(i) - p_b(i) * dot(p_i , p_a)/dot(p_b , p_a) 
         enddo

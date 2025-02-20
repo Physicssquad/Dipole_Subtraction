@@ -24,21 +24,7 @@ c     common blocks used in couplings.f
       common/chfile/fname8
       common/isub/io,is
       common/max_order/iorder
-c      common/param/aem,xmur,lambda
-c     use openloops
-c      integer :: id, error, k
-c      real(8) :: m2_tree, m2_loop(0:2), acc
-c      real(8) :: p_ex(0:3,4)
-c      real(8) :: mH = 125.0
-c      real(8) :: mu = 100, alpha_s =0.12513948609039191, energy=13000
-c      call set_parameter("mass(25)", mH)
-c      call set_parameter("verbose", 1)
-c      call set_parameter("model","heft")
-c      id = register_process("21 21 -> 25 21", 1)
-c
-c       call start()
-c       call evaluate_tree(id, p_ex, m2_tree) 
-c--------------------------------------------
+      common/prc_id/id_LO,id_NLO_1r
 
 
       character*50 pdf_name,mode
@@ -71,22 +57,22 @@ c--------------------------------------------
       read (15,*) iprint            !save data in output file ../summary
       close(15)
 
-c ~~~~~~~~~~~~~~~~[files needed by couplings.f]~~~~~~~~~~~~~~~~~~~c        
-
-      open(unit=20,file='../slicing_files/run.param.dat',
-     .    status='unknown')
-      read (20,*) nf            ! No. of flavours
-      read (20,*) ipdfs1        ! LO pdf set
-      read (20,*) xlqcd1        ! LO L_QCD5
-      read (20,*) ipdfs2        ! NLO pdf set
-      read (20,*) xlqcd2        ! NLO L_QCD5
-      close(20)
-
-      open(unit=30,file='../slicing_files/run.add.dat',status='unknown')
-      read (30,*) xms            ! M_s Fundamental Planck scale
-      read (30,*) nd             ! number of extra dimensions, 2<d<6
-      read (30,*) acut           ! \Lambda = acut*M_s
-      close (30)
+cc ~~~~~~~~~~~~~~~~[files needed by couplings.f]~~~~~~~~~~~~~~~~~~~c        
+c
+c      open(unit=20,file='../slicing_files/run.param.dat',
+c     .    status='unknown')
+c      read (20,*) nf            ! No. of flavours
+c      read (20,*) ipdfs1        ! LO pdf set
+c      read (20,*) xlqcd1        ! LO L_QCD5
+c      read (20,*) ipdfs2        ! NLO pdf set
+c      read (20,*) xlqcd2        ! NLO L_QCD5
+c      close(20)
+c
+c      open(unit=30,file='../slicing_files/run.add.dat',status='unknown')
+c      read (30,*) xms            ! M_s Fundamental Planck scale
+c      read (30,*) nd             ! number of extra dimensions, 2<d<6
+c      read (30,*) acut           ! \Lambda = acut*M_s
+c      close (30)
 
       aem=1.0D0/128.0D0
       lambda = xlqcd1
@@ -103,7 +89,8 @@ c ~~~~~~~~~~~~~~~~[--------------------------]~~~~~~~~~~~~~~~~~~~c
 
         call initpdfsetbyname(pdf_name)
         Call initPDF(0)
-        icall = 0
+        call ol_LO_init(id_LO)
+c        icall = 0
       
 c      am1 = 0.51099895000d-3
       am1=0.0d0
@@ -126,7 +113,7 @@ c      amh = 125.0d0
         print*," "
 
       call printframe1(pt1,its1)   ! vegas points print 
-	xmur = 125d0
+	xmur = 125d0/2d0
       call printframe6(ecm,xmur,xmur,pdf_name,am3)
       call system("sleep 1")
 

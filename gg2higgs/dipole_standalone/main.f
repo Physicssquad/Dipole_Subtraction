@@ -1,4 +1,4 @@
-      program gg2aa_dipoleSubtraction 
+      program gg2h_dipoleSubtraction 
       use openloops
       implicit double precision (a-h,o-z)
       integer leg
@@ -106,18 +106,18 @@ c        i=2
           do j = 1,it_max
             
 c          call printframe2(xq)
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if (I .eq. 1 ) then
             call brm48i(40,0,0) 
             call vsup(3,npt1,its1,fnlo3,ans,sd,chi2)
 	print*,idiff
 	print*,isame
         
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         elseif(I .eq. 2) THEN
                 CALL cubacheck(ans,sd)
         endif
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             ai_nlo3(j) = ans
                xerr(j) = sd
 

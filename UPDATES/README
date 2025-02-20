@@ -1,3 +1,20 @@
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 20 : 02 : 2025 ]
+     Tiny Eureka moment again
+1. PK_ implementation is now working for gg2Higgs case.
+
+2. DrellYan_mod is now working for invariant mass distribution only.
+   this has greatly reduc3d the run time, however we lost the generality of the implementation.
+
+
+
+
+
+
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 14 : 02 : 2025 ]
+
+
+
+
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 14 : 02 : 2025 ]
 	EUREKA MOMENT recorded
 1. gg2Higgs has started to work. I have used Openloops to make it work.
@@ -5,8 +22,7 @@
 2. Without making anymore modifications I am giving it a commit.
 
 3
-
-~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 14 : 02 : 2025 ]
+~~~~~~~[     *****      ]~~~~~~~[ 14 : 02 : 2025 ]
 
 
 

@@ -81,12 +81,14 @@ c       read*,firstfile
        print*,"Enter the second file name"
 c       read*,secondfile
 
+c      firstfile = 'LO_all.dat'
+c      secondfile = 'LO_ref.dat'
 c	firstfile = 'virtual_all.dat'
 c	secondfile = 'virtual_ref.dat'
 	firstfile = 'PK_all.dat'
 	secondfile = 'PK_ref.dat'
-	firstfile = 'real_all.dat'
-	secondfile = 'real_ref.dat'
+c	firstfile = 'real_all.dat'
+c	secondfile = 'real_ref.dat'
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
 
@@ -153,9 +155,7 @@ c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),
 c     .          dabs(xintLO(i)-xintLO_ch(i))
 c     .     /xintLO_ch(i)*100d0
         enddo
-	print*," "
         print*,"/"//trim(secondfile)//" and  /"//trim(firstfile)
-	print*," "
        write(*,*)achar(27)//'[1;32m'//"Ecm/mH        first / second",
 c       write(*,*)achar(27)//'[1;32m'//"   xq
 c     . [first-second]/first*100",

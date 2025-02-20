@@ -12,6 +12,7 @@
       common/amass/am1,am2,amH,am4,am5
       common/scales/xmuf,xmur
       common/prc_id/id_LO,id_NLO_1r
+      common/cuts_delta/delta
 
       dimension PKPlus(1:50),err_Plus(1:50)
       dimension PKReg(1:50),err_Reg(1:50)
@@ -54,15 +55,14 @@
       am5=0d0
  
 c Parameters:
-      xmuf = amH/2d0
-      xmur = xmuf   !...being used in all common blocks.
-
+       xmuf = amH
+       xmur = xmuf   !...being used in all common blocks.
+      delta = 1d-5
 
       iselect_plus=1
       iselect_Regu=1
       iselect_Delt=1
-
-c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
+c~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
       open(unit=20,file='../output_files.dat',status='unknown')
       do i=1,2   
@@ -71,10 +71,8 @@ c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c
       read (20,*) filename
       close(20)
       if (iprint .eq. 1) call output(run_tag,filename)            
-c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c        
-
-
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P and K terms from Here ] 
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c        
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[P and K terms from Here ] 
         xq_initial = xq
       call initpdfsetbyname(name)
       Call initPDF(0)
@@ -89,7 +87,6 @@ c        call ol_NLO_real_init(id_NLO_1r)
       call printframe0(headline)
       call printframe6(ecm,xmur,xmuf,name,amH)
 
-
         ! HERE RESET ALL THE VALUES TO INITIALISE
         do l = 1,it_max
           PKReg(l)    = 0d0
@@ -99,7 +96,7 @@ c        call ol_NLO_real_init(id_NLO_1r)
           PKPlus(l)   = 0d0
           err_plus(l) = 0d0 
         enddo
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
       if (iselect_Plus .eq. 1) then
 
       headline1 = "[+] distribution"
@@ -110,11 +107,10 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
       its2 = its1
 
       call printframe0(headline1)
+      print*,"PlusA - PlusB"
       call printframe1(pt2,its2)   ! Prints Vegas points
 
         do j=1,it_max
-
-
 
 c      -------------------------------------------------
          call printframe0(headline2)
@@ -125,7 +121,13 @@ c      -------------------------------------------------
          call brm48i(40,0,0) 
          call vsup(2,npt2,its2,flo2_PlusB,ai_lo2B,sdB,chi2)
 c      -------------------------------------------------
-         ai_lo2 = ai_lo2A - ai_lo2B
+         ai_lo2 = (ai_lo2A - ai_lo2B)
+
+c...     ai_lo2 =-(ai_lo2A - ai_lo2B)
+c... this overall negative sign is a problem with the code I
+c... am runing, for the comparison I am doing it remove soon.
+c... surprisingly with negative sign values are matching
+c... this is wrong by the way.
 
          PKPlus(j)   = ai_lo2
          err_plus(j) = sdA + sdB
@@ -137,17 +139,15 @@ c      -------------------------------------------------
         enddo
 
         xq = xq_initial
-      call printframe4(headline)
+      call printframe4a(headline)
 
         do j=1,it_max
-          write(*,'(i7,3e27.15,3e27.15)')
-     .             int(xq),PKPlus(j),err_plus(j)
-          xq = xq + xincr
+          write(*,'(i7,3e27.15)')int(ecm),PKPlus(j),err_plus(j)
+c         xq = xq + xincr
         enddo
 
-
 	endif
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
 	if (iselect_Regu .eq. 1) then
 
       !input data card for vegas on regular and delta functions
@@ -182,16 +182,14 @@ c     -------------------------------------------------
            xq=xq + xincr
         enddo
         xq = xq_initial
-      call printframe4(headline)
+      call printframe4a(headline)
 
         do j=1,it_max
-          write(*,'(i7,3e27.15,3e27.15)')
-     .             int(xq),PKReg(j),err_Reg(j)
-          xq = xq + xincr
+          write(*,'(i7,3e27.15)')int(ecm),PKReg(j),err_Reg(j)
         enddo
 
 	endif
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ delta functions ]
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ delta functions ]
 	if (iselect_Delt .eq. 1 ) then
 
         xq = xq_initial
@@ -219,11 +217,9 @@ c     -------------------------------------------------
         enddo
         xq = xq_initial
 
-       call printframe4(headline)
+       call printframe4a(headline)
         do j=1,it_max
-          write(*,'(i7,3e27.15,3e27.15)')
-     .             int(xq),PKDel(j),err_Del(j)
-          xq = xq + xincr
+          write(*,'(i7,3e27.15)')int(ecm),PKDel(j),err_Del(j)
         enddo
 
 	endif

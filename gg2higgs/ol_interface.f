@@ -7,7 +7,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         real(8) :: p_ex(0:3,3),p1(0:3),p2(0:3),p3(0:3)
         real(8) :: mH = 125.0
         real(8) :: mu, alpha_s, energy,ge,am1,am2,amH,am4,am5
-c      common/usedalpha/alpha_s,ge
+      common/usedalpha/alpha_s,ge
       common/energy/energy
       common/amass/am1,am2,mH,am4,am5
       common/caller/icall

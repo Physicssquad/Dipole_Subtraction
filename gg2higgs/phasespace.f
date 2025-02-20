@@ -50,6 +50,11 @@ c      p3(1) = px_total
 c      p3(2) = py_total
 c      p3(3) = gama * (pz_total + beta * e_higgs)
 
+c       Q2 = dot(p3,p3)
+c       Q = dsqrt(Q2)
+
+c       write(*,*)'Q =', Q
+
       return
       end
 
@@ -237,6 +242,10 @@ c  ---------------------------------------------
       px3 = pf*st
       py3 = 0d0
       pz3 = pf*ct
+
+c---------------------------------------------------
+c     e4cm = (sp - am3**2.0d0)/2.0d0/rsp
+c---------------------------------------------------
 
       beta=(xb-xa)/(xa+xb)
       gamma=1d0/dsqrt(1d0-beta*beta)
