@@ -16,7 +16,7 @@ c      Our vegas specific
       implicit double precision(a-h,o-z) 
       dimension  xx(10),p1(0:3),p2(0:3),p3(0:3),p4(0:3),p5(0:3),q(0:3)
      .             ,p(0:3,1:5),dip(2),B1(1:2),xl(15),f1(-6:6),f2(-6:6)
-     .             , sig(1:5),SumD(1:2)
+     .             , sig(1:5),SumD(1:2),yy(10)
       integer i35,i45,is5,itest
       integer k1,k2,k3,ipass,n4,unphy
       parameter (pi=3.14159265358979d0)
@@ -31,9 +31,22 @@ c      Our vegas specific
       common/invariants/s12_til,s34_til
       external dipole_gq_q
 
+c... We will use the constraint to check the implementation of PK in
+c... reduced kinematics.       
+      tau  = xq**2/S
       xa = xx(1)
-      xb = xx(2)
-      rsp = dsqrt(xa*xb*s)
+      xb = tau / xa
+
+      sp =dsqrt( xa*xb*S)
+      rs  = dsqrt(s)
+      rsp  = dsqrt(sp)
+
+      yy(1) = xa
+      yy(2) = xb
+      yy(3) = xx(2)
+      yy(4) = xx(3)
+      yy(5) = xx(4)
+      yy(6) = xx(5)
 
       xmz = 91.1876d0
 
@@ -45,7 +58,7 @@ c      Our vegas specific
 
       xcut = xq - 10.0d0
 
-       call kinvar3(xx,xxjac,xinvmass,p1,p2,p3,p4,p5,unphy)
+       call kinvar3_mod(yy,xxjac,xinvmass,p1,p2,p3,p4,p5,unphy)
        if (unphy .ne. 0) goto 151 ! with zero unphysical PS points proceed
 
       s12=2.d0*dot(p1,p2)
@@ -58,6 +71,17 @@ c      Our vegas specific
       s34=2.d0*dot(p3,p4)
       s35=2.d0*dot(p3,p5)
       s45=2.d0*dot(p4,p5)
+	if (s34 .le. 0d0 ) goto 151
+c	print*,"s12",s12
+c	print*,"s13",s13
+c	print*,"s14",s14
+c	print*,"s15",s15
+c	print*,"s23",s23
+c	print*,"s24",s24
+c	print*,"s25",s25
+c	print*,"s34",s34
+c	print*,"s35",s35
+c	stop
     
         scale = xinvmass
 
@@ -65,7 +89,7 @@ c      Our vegas specific
         fnlo3 = 0
 
           xmuf=scale
-          xmur=scale
+          xmur= 1000d0
 
           call pdf(xa,xmuf,f1)
           call pdf(xb,xmuf,f2)
@@ -75,7 +99,9 @@ c      Our vegas specific
           call p1dtop2d_5(p1,p2,p3,p4,p5,p)
 
 c....jet function is defined as an infrared safe observable
-          call  Fjm_plus_one(p1,p2,p3,p4,p5,jet_cut_mpo)
+c          call  Fjm_plus_one(p1,p2,p3,p4,p5,jet_cut_mpo)
+          jet_cut_mpo = 1d0
+          jet_cut_m = 1d0
 
           call  uu2ee_r(p,sig)
           SumD(1) = dipole_uU_g(1,p) + dipole_uU_g(2,p)
@@ -113,7 +139,8 @@ c... Jet functions are called from the dipole.F Checking is done.
           flux = 4d0*pi_1*rsp
           xnorm=hbarc2/8d0/(2d0*Pi)**4/flux
           wgt=xxjac*xnorm*sigma*weight
-          fnlo3=wgt/weight/2d0/eps
+c          fnlo3=wgt/weight/2d0/eps
+          fnlo3=wgt/weight*rsp/xq
 151   return
       end
 c---------------------------------------------------------------------

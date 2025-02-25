@@ -73,7 +73,7 @@ c       writes data in output file
         call printframe2(xq)
 
          call brm48i(40,0,0) ! initialize random number generator
-         call vsup(3,npt1,its1,flo2_Vir,ans,sd,chi2)
+         call vsup(2,npt1,its1,flo2_Vir,ans,sd,chi2)
            ai_lo2(j) = ans
               err(j) = sd
 

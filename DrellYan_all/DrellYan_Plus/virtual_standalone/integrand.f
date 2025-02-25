@@ -28,13 +28,26 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       common/renor_scale/scale
       common/usedalpha/AL,ge
       external Born_uU2eE
-       
+c... We will use the constraint to check the implementation of PK in
+c... reduced kinematics.       
+      tau  = xq**2/S
+      xamin = 0d0 
+      xamax = 1d0 
+      xajac = xamax - xamin
+      xa = xamin + xajac*yy(1)
+      xb = tau / xa
+      sp = xa*xb*S
       rs  = dsqrt(s)
-      xa     = yy(1)
-      xb     = yy(2)
-
+      rsp  = dsqrt(sp)
+      rs  = dsqrt(s)
       rsp = dsqrt(xa*xb*s)
-        
+
+
+
+
+      yy(1) = xa  
+      yy(3) = yy(2)  
+      yy(2) = xb  
       ipass = 0
       eps = 0.5d0
       xlow = xq - eps
@@ -172,7 +185,8 @@ c              sig= xl(1)*Vir
 
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
               wgt=xnorm*sig*vwgt
-              flo2_Vir=wgt/vwgt/2d0/eps
+c              flo2_Vir=wgt/vwgt/2d0/eps
+              flo2_Vir=xajac*wgt/vwgt * 2d0*xq/xa/S
 
             return
        else                  
@@ -186,29 +200,29 @@ c       endif
 
 c---------------------------------------------------------------------
 
-c---------------------------------------------------------------------
-c     [u U -> e E]  Born 
-c--------------------------------------------------------------------o
-       function Born_uU2eE(k,p1,p2,p3,p4)
-       implicit double precision (a-h,o-z)
-       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
-       parameter(PI=3.141592653589793238D0)
-       common/usedalpha/AL,ge
-       e= DSQRT(ge*4.d0*PI)
-       gs=DSQRT(Al*4.d0*PI)
-      IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0 
-      IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
-      IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2    
-      s13 =  2.0d0*dot(p1,p3) ! t
-      s23 =  2.0d0*dot(p2,p3) ! u
-      s12 =  2.0d0*dot(p1,p2) ! s
-      XNC = 1/4d0
-      xnorm =1d0
-      qu2 = 1d0!4d0/9d0
-
-      Born_uU2eE=CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
-     .            s23)))/(3d0*s12**2)
-       return
-       end
-c---------------------------------------------------------------------
-
+!c---------------------------------------------------------------------
+!c     [u U -> e E]  Born 
+!c--------------------------------------------------------------------o
+!       function Born_uU2eE(k,p1,p2,p3,p4)
+!       implicit double precision (a-h,o-z)
+!       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
+!       parameter(PI=3.141592653589793238D0)
+!       common/usedalpha/AL,ge
+!       e= DSQRT(ge*4.d0*PI)
+!       gs=DSQRT(Al*4.d0*PI)
+!      IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0 
+!      IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
+!      IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2    
+!      s13 =  2.0d0*dot(p1,p3) ! t
+!      s23 =  2.0d0*dot(p2,p3) ! u
+!      s12 =  2.0d0*dot(p1,p2) ! s
+!      XNC = 1/4d0
+!      xnorm =1d0
+!      qu2 = 1d0!4d0/9d0
+!
+!      Born_uU2eE=CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+!     .            s23)))/(3d0*s12**2)
+!       return
+!       end
+!c---------------------------------------------------------------------
+!

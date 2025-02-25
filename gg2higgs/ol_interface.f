@@ -1,4 +1,4 @@
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        subroutine ol_LO_init(id_LO)
         use openloops
         implicit none
@@ -26,7 +26,7 @@ c        call set_parameter("alpha_s", alpha_s) !  AL will be set at the integra
         id_LO = register_process("21 21 -> 25", 1)
         endif
       end
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        subroutine ol_NLO_real_init(id_NLO_1r)
         use openloops
         implicit none
@@ -52,45 +52,29 @@ c	endif
       
       end
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-       subroutine ol_get_NLO_1loop(p_ex,alpha_s,energy,mu,m2_tree)
-        use openloops
-        implicit none
-        integer :: id, error, k
-        real(8) :: m2_tree, m2_loop(0:2), acc
-        real(8) :: p_ex(0:3,3)
-        real(8) :: mH = 125.0
-        real(8) :: mu, alpha_s, energy
-      
+c     subroutine ol_get_NLO_1loop(p_ex,alpha_s,energy,mu,m2_tree)
+      subroutine ol_NLO_1loop_init(id_NLO_1loop)
+      use openloops
+      implicit none
+      integer :: id_NLO_1loop, error, k
+      real(8) :: m2_tree, m2_loop(0:2), acc
+      real(8) :: p_ex(0:3,3)
+      real(8) :: mH = 125.0
+      real(8) :: mu, alpha_s, energy,ge,am1,am2,amH,am4,am5
+      common/amass/am1,am2,mH,am4,am5
       
       ! Set QCD and EW orders
       !  call set_parameter("order_ew", 1)
       !  call set_parameter("order_qcd", 2)
-      
-        call set_parameter("mass(25)", mH)
+
+      mu = mH/2d0 
       
         ! Increase verbosity level to list loaded libraries
-        call set_parameter("verbose",-1)
-        call set_parameter("model","heft") 
+      call set_parameter("mass(25)", mH)
+      call set_parameter("verbose",-1)
+      call set_parameter("model","heft") 
+      call set_parameter("mu", mu)
 
-        ! second argument of register_process:
-        ! 1 for tree-like matrix elements (tree, color and spin correlations),
-        ! 11 for loop, 12 for loop^2
-        !id = register_process("1 -1 -> 23 2 -2", 1)
-        id = register_process("21 21 -> 25", 11)
-      
-        ! start
-        call start()
-      
-        if (id > 0) then
-          ! set strong coupling
-          call set_parameter("alpha_s", alpha_s)
-          ! set renormalisation scale
-          call set_parameter("mu", mu)
-
-          ! evaluate tree matrix element
-          call evaluate_tree(id, p_ex, m2_tree)
-        end if
-      
-        call finish()
-      
+      id_NLO_1loop = register_process("21 21 -> 25", 11)
+      return
       end

@@ -1,7 +1,0 @@
-1				! machine id Tevatron:0 LHC:1	
-13000.0				! ecm
-MMHT2014nlo68cl 		! lhapdf set name common for all
-5				! it_max of distribution increment stepsize from xq 
-100d0				! initialise xq value for the first time 
-100				! step size
-run_03				! run_tag is the directory for call output(run_tag) store data

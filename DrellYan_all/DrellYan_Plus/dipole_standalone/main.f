@@ -79,7 +79,7 @@ c        read*,i
           call printframe2(xq)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             call brm48i(40,0,0) 
-            call vsup(6,npt1,its1,fnlo3,ans,sd,chi2)
+            call vsup(5,npt1,its1,fnlo3,ans,sd,chi2)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             ai_nlo3(j) = ans
                xerr(j) = sd

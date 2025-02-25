@@ -8,14 +8,6 @@ cd ../../
 # Define the commands to run in parallel, and add a unique identifier to each command
 commands=(
     "(./shell/runPK.sh)"
-    "(./shell/runPK.sh)"
-    "(./shell/runPK.sh)"
-    "(./shell/runPK.sh)"
-    "(./shell/runPK.sh)"
-    "(./shell/runPK.sh)"
-    "(./shell/runPK.sh)"
-    "(./shell/runPK.sh)"
-    "(./shell/runPK.sh)"
 )
 
 # Define the new values for the "max # of distribution increment step_size from xq"
@@ -77,7 +69,6 @@ temp_file="temp_summary.dat"
 > $temp_file
 
 # Define the Q values
-distribution_steps=(100 400 700 1000 1300 1600 1900 2200 2500)
 
 # Iterate over the distribution steps and process the corresponding output files
 for i in ${!distribution_steps[@]}; do

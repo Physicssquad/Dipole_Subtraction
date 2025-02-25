@@ -338,18 +338,18 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c       write(*,*)achar(27)//'[1;32m'//"   xq  ",
 c     ."     sigma slicing code", 
 c     . achar(27)//'[0m'
-c       write(*,*)achar(27)//'[1;32m'//"ECM/amH",
-c     ."     sigma matrix code", 
-c     . achar(27)//'[0m'
        write(*,*)achar(27)//'[1;32m'//"ECM/amH",
-     ."     sigma iHiXs code", 
+     ."     sigma matrix code", 
      . achar(27)//'[0m'
+c       write(*,*)achar(27)//'[1;32m'//"ECM/amH",
+c     ."     sigma iHiXs code", 
+c     . achar(27)//'[0m'
 
         do i=1,it_max
         ! iHixs few conversion taken here
 c         xintch(i) = xintch(i)*1e+3/1.062739-xintLOref(i)
-         xintch(i) = xintch(i)-xintLOref(i)
-c         xintch(i) = xintch(i)
+c         xintch(i) = xintch(i)-xintLOref(i)
+         xintch(i) = xintch(i)
 c         xintch(i) = xintch(i)*1e+3
 	                      
          write(*,'(i7,3e27.15)')int(xqch(i)),xintch(i)
@@ -363,8 +363,8 @@ c        write(*,*)achar(27)//'[1;32m'//"   xq  ",
 c     .  "  slicing/dipole sigma_NLO, and dipole/slicing",
 c     . achar(27)//'[0m'
         write(*,*)achar(27)//'[1;32m'//" ECM/amH",
-c     .  "     matrix /dipole                   dipole/matrix",
-     .  "     iHiXs /dipole                   dipole/iHiXs",
+     .  "     matrix /dipole                   dipole/matrix",
+c     .  "     iHiXs /dipole                   dipole/iHiXs",
      . achar(27)//'[0m'
 
         xq = xq_initial

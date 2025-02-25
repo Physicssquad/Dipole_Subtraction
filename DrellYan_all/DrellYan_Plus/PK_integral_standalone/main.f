@@ -52,8 +52,8 @@ c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c
 c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c        
 
         iplus   =1
-        idelta  =0
-        iregular=0
+        idelta  =1
+        iregular=1
 
        do l = 1,it_max
           PKReg(l)    = 0d0

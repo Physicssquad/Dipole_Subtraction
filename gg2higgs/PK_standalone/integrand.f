@@ -22,21 +22,22 @@ c      common/usedalpha/AL,ge
       common/cuts_delta/delta
 
       tau = amH**2/S
-c      delta = 1d-5 
+!      delta = 1d-5 
 c... delta defined in main 
 
 c~~~~~[ Exponential MAPPINNG ]~~~~~C
-c      almin = delta
-c      almax = 1.0d0
-c      al = almin*(almax/almin)**yy(1)
-c      xjac4 = al*dlog(almax/almin)
-c      x = 1.0d0 - al
+!      almin = delta
+!      almax = 1.0d0
+!      al = almin*(almax/almin)**yy(1)
+!      xjac4 = al*dlog(almax/almin)
+!      x = 1.0d0 - al
 c~~~~~[ _______________ ]~~~~~C
 
 c~~~~~[ LINEAR MAPPINNG ]~~~~~C
 c      xmin = tau ! to avoid xa hitting inf x min is to be tau. 
 c... even with xmin = 0d0. Result is same as tau
       xmin =0d0 ! technically xmin should run from 0 to 1. 
+!      xmin = tau
       xmax = 1.0d0 - delta
       xjac4 = (xmax - xmin)
       x = xjac4*yy(1) + xmin
@@ -44,7 +45,7 @@ c... for the fixed value of x. I will generate the xa and xa using the
 c... constraint relation.
 c... x will always be there as an overall factor.
 c~~~~~[ _______________ ]~~~~~C
-c      xamin = tau/x
+!      xamin = tau/x
       xamin = 0d0 
       xamax = 1d0
       xajac =  (xamax - xamin)
@@ -64,15 +65,15 @@ c... is the reduced one.[?]
         if ( k .eq. 2) call kinvar1(xa,xb*x,p1,p2,p3)
         
 c... so due to the doubt in sp, I will use s12 as the partonic, sp
-c           sp  = 2d0*dot(p1,p2)
-c           rsp = dsqrt(sp)
+!           sp  = 2d0*dot(p1,p2)
+!           rsp = dsqrt(sp)
 
             xmuf2 = xmuf*xmuf 
                AL = alphasPDF(xmur) 
               ALP = AL/2d0/Pi
 
 c This born used x kinematics as 1-x fraction of momenta is taken by gluon radiation
-c        coef = Born_gg2h(0,p1,p2,p3)
+!        coef = Born_gg2h(0,p1,p2,p3)
         coef = Born_gg2h_(0,AL,p1,p2,p3)
 
             call pdf(xa,xmuf,f1)
@@ -89,9 +90,6 @@ c        coef = Born_gg2h(0,p1,p2,p3)
           xnorm = hbarc2*pi_1/flux
 
           PKplus_x = xnorm*xajac*xjac4*sig*2d0*amH/xa/x/S
-
-c.....[?]  x in the denomonator ?
-c          PKplus_x = xnorm*xajac*xjac4*sig*2d0*amH/xa/S
 
           PK(k) = PKplus_x
             enddo
@@ -117,8 +115,6 @@ c... plusb
       character*50 name
       common/energy/s
       common/pdfname/name
-c      common/factscale/xmuf
-c      common/usedalpha/AL,ge
       common/distribution/xq
       common/bin_size/eps
       common/amass/am1,am2,amH,am4,am5
@@ -127,10 +123,12 @@ c      common/usedalpha/AL,ge
 
       tau = amH**2/S
 
-c      delta = 1.0d-5
+!      delta = 1.0d-5
 c~~~~~[ LINEAR MAPPINNG ]~~~~~C
-c      xmin = tau  
-      xmin = 0d0 
+c... minimum should not be 0d0 as xamin will be infinity, 
+c... but numerically i am taking as random numbers wonn't hit 0.
+      xmin = tau  
+!      xmin = 0d0 
       xmax = 1.0d0 - delta
       xjac4 = (xmax - xmin)
       x = xjac4*yy(1) + xmin
@@ -145,13 +143,8 @@ c      xamin = tau/x
       xamin = 0d0 
       xamax = 1d0
       xajac =  (xamax - xamin)
-c      xa = tau + xajac*yy(2)
       xa = xamin + xajac*yy(2)
       xb = tau/xa    
-
-      sp = xa*xb*S
-      rsp = dsqrt(sp)
-
 
 
         flo2_PlusB  = 0.0d0
@@ -168,11 +161,11 @@ c... Only difference here from fnlo_A is that coef i.e
 c... born has pure born kinematics earlier it was reduced.
 c... But the kinematics is to be defined in terms of x 
 c... kinematics as in 59 above.
-c          sp = xa*xb*S 
-c         rsp = dsqrt(sp)
+          sp = xa*xb*S 
+         rsp = dsqrt(sp)
 c... refer to the reasoning in plusA for sp
-           sp  = 2d0*dot(p1,p2)
-           rsp = dsqrt(sp)
+!           sp  = 2d0*dot(p1,p2)
+!           rsp = dsqrt(sp)
 
 c... muf is also defined in the main.
        xmuf2 = xmuf*xmuf 
@@ -234,7 +227,6 @@ c      x  = yy(2)
 
 c... for regular terms I don't need to use the upper cut as it is a flat integral.
       delta = 0d0  
-!      xmin = tau 
       xmin = 0d0 
 
       xmax = 1.0d0 - delta
@@ -248,19 +240,19 @@ c... for regular terms I don't need to use the upper cut as it is a flat integra
       xa = xamin + xajac*yy(2)
       xb = tau/x/xa
 c... till here linear mapping is added
-
+!
       AllReg(1) = 0d0
       AllReg(2) = 0d0
       PKReg = 0.0d0
-c      sp = xa*xb*S
-c      rsp = dsqrt(sp)
+      sp = xa*xb*S
+      rsp = dsqrt(sp)
 
       do k=1,2
 
         if ( k .eq. 1) call kinvar1(xa*x,xb,p1,p2,p3)
         if ( k .eq. 2) call kinvar1(xa,xb*x,p1,p2,p3)
-      sp = 2d0*dot(p1,p2)
-      rsp = dsqrt(sp)
+!      sp = 2d0*dot(p1,p2)
+!      rsp = dsqrt(sp)
 c... same reasoning as plusA. refer there.
 
             AL = alphasPDF(xmur)
@@ -317,8 +309,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta terms]
         rsp = dsqrt(sp)
 
         call kinvar1(xa,xb,p1,p2,p3)
-c        xmuf= amH/2d0   !.....already defined in main through common 
-c        xmur= xmuf
+!        xmuf= amH/2d0   !.....already defined in main through common 
+!        xmur= xmuf
         xmu2=xmuf**2
 
          AL = alphasPDF(xmur)

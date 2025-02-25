@@ -1,9 +1,23 @@
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 25 : 02 : 2025 ]
+
+1. there is an overall factor of 1/3 in the virtual contribution. 
+
+  loop contribution comming from opnloops.
+  only epsm2 is matching with eikonal
+  epsm1 is also not matching with the eikonal
+
+ even after I take the 1loop_finite + eikonal_finite
+ there is a overall exta factor of 1/3 comming into our contribution.
+
+
+
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 20 : 02 : 2025 ]
      Tiny Eureka moment again
 1. PK_ implementation is now working for gg2Higgs case.
 
 2. DrellYan_mod is now working for invariant mass distribution only.
    this has greatly reduc3d the run time, however we lost the generality of the implementation.
+   not in dipole, 
 
 
 

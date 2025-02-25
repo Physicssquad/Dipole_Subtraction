@@ -7,7 +7,7 @@
       common/amass/am1,am2,amH,am4,am5
       common/usedalpha/AL,ge
       common/distribution/xq
-      common/prc_id/id_LO,id_NLO_1r
+      common/prc_id/id_LO,id_NLO_1r,id_NLO_1loop
 
 
       character*50 name,mode
@@ -56,6 +56,7 @@
 c ... Openloops initialization
         call ol_LO_init(id_LO)
         call ol_NLO_real_init(id_NLO_1r)
+        call ol_NLO_1loop_init(id_NLO_1loop)
       
 c      am1 = 0.51099895000d-3
       am1=0.0d0
