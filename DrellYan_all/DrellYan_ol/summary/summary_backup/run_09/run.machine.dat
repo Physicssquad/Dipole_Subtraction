@@ -1,0 +1,9 @@
+1				! machine id Tevatron:0 LHC:1	
+13000.0				! ecm
+MMHT2014nlo68cl			! lhapdf set name common for all
+10				! max # of distribution increment step_size from xq
+100d0				! initialise xq value for the first time 
+100				! step size
+run_09				! name of dir to save data for analysis
+1				! 1 to write data in file or 0 just to run
+For different eps values this run is performed check the result

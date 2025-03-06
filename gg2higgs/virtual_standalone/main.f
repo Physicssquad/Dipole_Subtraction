@@ -93,7 +93,7 @@ c       writes data in output file
         call printframe4a(mode)
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
-     .             int(xq),ai_lo2(j),err(j)
+     .             int(ECM),ai_lo2(j),err(j)
         enddo
 
 
@@ -101,10 +101,8 @@ c       writes data in output file
         open(unit=20,file='../summary/'//trim(run_tag)//'/'
      .  //trim(filename),status='unknown')
 c     .  //trim(filename),status='unknown', access='append')
-         xq = xq_initial
          do i=1,it_max
-          write(20,*)amH/ECM,ai_lo2(i),err(i)
-          xq = xq + xstep
+          write(20,*)ECM,ai_lo2(i),err(i)
          enddo
          close(20)
 

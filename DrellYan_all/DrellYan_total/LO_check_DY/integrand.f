@@ -65,9 +65,9 @@ c              xmur=xq
 cooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 c~~~~~~[ Openloops mat amp calculated from here ]~~~~~~~~c
 cooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-c        call p1d_to_p2d_4(p1,p2,p3,p4,p_ex) 
-c        call evaluate_tree(id_LO,p_ex,answer)
-!	print*,answer
+        call p1d_to_p2d_4(p1,p2,p3,p4,p_ex) 
+        call evaluate_tree(id_LO,p_ex,answer)
+	print*,answer
 !	print*,Born_uU2eE(0,p1,p2,p3,p4)
 !	print*,answer/Born_uU2eE(0,p1,p2,p3,p4)
 !	print*

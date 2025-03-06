@@ -1,0 +1,1 @@
+Note : The issue for the discrepency in the value of distribution was by missing a factor if Cf in K bar regular. However i have made a run in Plus distribution anf getting different values without modifying plus part. I can use old plus and modify the regular part only. 

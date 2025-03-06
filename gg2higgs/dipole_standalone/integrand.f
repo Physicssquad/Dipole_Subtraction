@@ -78,27 +78,11 @@ c~~~~~~~~~~~~~[ Cuts ]~~~~~~~~~~~~~~~
         if (e4 .le. rsp*soft) icol = 1
         pt_higgs = dsqrt(p3(1)**2 + p3(2)**2)
 
-c        if (pt_higgs .le. 50d0 ) goto 151 
-c        if (pt_higgs .ge. 0.0d0 .and. pt_higgs .le. 100d0 ) then
-c        if (pt_higgs .le. 1d0 ) then
-c          continue
-c        else
-c        goto 151
-c        endif
-c	iprint = 0
-c	if (2d0*s14 .ge. s12 ) icol = 1 
-c	if (2d0*s24 .ge. s12 ) icol = 1 
-c~~~~~~~~~~~~~[ Cuts ]~~~~~~~~~~~~~~~
-c        if (icol .eq. 1 ) goto 151
+        call pdf(xa,xmuf,f1)
+        call pdf(xb,xmuf,f2)
+        call setlum(f1,f2,xl)
 
-c        print*,s14,s12*coll
-c        print*,s24,s12*coll
-
-          call pdf(xa,xmuf,f1)
-          call pdf(xb,xmuf,f2)
-          call setlum(f1,f2,xl)
-
-          AL = alphasPDF(xmur)
+        AL = alphasPDF(xmur)
         call set_parameter("alpha_s",AL)
 
         call amp_mat_r(p1,p2,p3,p4,sig)
@@ -107,97 +91,14 @@ c~~~~~~[ Openloops mat amp calculated from here ]~~~~~~~~c
         call evaluate_tree(id_NLO_1r,p_ex,answer)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 
-          SumD = dipole_type_2_gg_g(1,p1,p2,p3,p4) 
+        SumD = dipole_type_2_gg_g(1,p1,p2,p3,p4) 
      .          +dipole_type_2_gg_g(2,p1,p2,p3,p4)
 
-          SumD2 = dipole_type_1_gg_g(1,p1,p2,p3,p4) 
+        SumD2 = dipole_type_1_gg_g(1,p1,p2,p3,p4) 
      .           +dipole_type_1_gg_g(2,p1,p2,p3,p4)
-c	idiff = idiff + 1
-c	if (sig .lt. SumD ) goto 151
-c	idiff = idiff - 1
-c	isame = isame + 1
-c	if (icol .eq. 0 ) iprint = 1
-c	if ( s24/s12 .le. 1d-2 ) goto 151
-c	if ( s14/s12 .le. 1d-2 ) goto 151
 
-c	if (answer .le. 5000d0 ) goto 151 
-c	if (2d0*s14 .ge. s12 ) iprint = 1 
-c	if (2d0*s24 .ge. s12 ) iprint = 1 
-c        if (answer .le. 500d0 ) goto 151
-
-c	per = (answer-sig)/answer*100
-c	per1 = (SumD-sig)/sig*100
-c	if (dabs(per) .gt. 0.01d0) then 
-c     .    .and. 
-cc         if ( dabs(per) .gt. 0.01d0) then
-c	if (dabs(answer-SumD)/answer .le. 1d-4) then
-c	if (icol .eq. 0 ) then
-c	if (dabs(answer-SumD)/answer*100 .ge. 99.9d0) then   !...check max diff between dipole of matrix
-c        idiff = idiff + 1 
-c	if (dabs(answer-SumD)/answer*100 .le. 1d-4) then
-c	if (dabs(sig-SumD2)/sig*100 .ge. 250d0) then
-c          print*,"MT",answer,SumD
-c          print*,"NK",sig,SumD2
-c	  print*
-c	endif
-c        print*,dabs(answer-SumD)/answer*100
-c	if (dabs(sig-SumD2)/SumD2 .ge. 1d+4) then
-c	print*,"~~~~~ Event ~~~~~~~"
-c         alphaMin = 0.8d0
-c         vtildei1=dot(p1,p4)/dot(p1,p2)
-c         vtildei2=dot(p2,p4)/dot(p1,p2)
-c          ips1 = 0
-c          ips2 = 0
-c         if (vtildei1 .lt. alphaMin) ips1 = 1 
-c         if (vtildei2 .lt. alphaMin) ips1 = ips + 1 
-
-c	if ( s14/s12 .gt. 0.50d0 .or. s24/s12 .gt. 0.50d0 ) then
-c        fnlo3 =0d0
-c        if ( ips1 .ge. 1 ) goto 151 
-c	idiff = idiff + 1
-c        if ( dabs(answer-SumD)/answer*100 .gt. 80 ) then
-c        if ( dabs(sig-SumD2)/sig*100 .gt. 80 ) then
-c	idiff = idiff - 1
-c        isame = isame + 1 
-c	endif
-c        if (dabs(sumD - SumD2 )/dabs(SumD) .ge. 1d+7 ) iprint =1
-c        if (dabs(sumD - SumD2 )/dabs(SumD) .ge. 1d+7 ) iprint =1
-c	if (xc .ge. 0.99999d0 ) iprint = 1
-        if (iprint .eq. 1 ) then
-c          print*,dabs(sumD - SumD2 )/dabs(SumD)
-c          SumD = dipole_type_3_gg_g(1,p1,p2,p3,p4) 
-c     .          +dipole_type_3_gg_g(2,p1,p2,p3,p4)
-        print*,"sigma_NK  :",sig
-	print*,"SumDip_NK :",SumD2
-	print*,"1real_amp :",answer
-	print*,"SumDipole :",SumD
-
-c	print*,"ratio     :",answer/SumD
-c	print*,"s12       :",s12
-c	print*,"s14       :",s14
-c	print*,"s24       :",s24
-c	print*,"p4(0)     :",p4(0)
-	print*
-
-c	print*,"s24       :",s24
-c	print*,"s14       :",s14
-	print*,"s24/s12   :",s24/s12
-	print*,"s14/s12   :",s14/s12
-	print*,"xa,xb,xc",xa,xb,xc
-	print*
-	endif ! iprint
-c	print*,"~~~~~Event~~~~~~~"
-c	print*," SumD/SumD2 ratio     :",SumD/SumD2
-c	stop
-c	endif
-c           sigma =xl(2)*(answer - SumD )
-c        call MATDIP_CHECK(iflip, SIG, SUMD,'flip')
-c         sigma = (answer - SumD )
-c         sigma = xl(2) * (answer - SumD )
-c         sigma = xl(2) * (answer - SumD )
          sigma = xl(2) * (sig - SumD )
-          ! ref
-c         xnorm = 2d0*dsqrt(xlam)/32d0/PI**2/sp
+
 c~~~~~~~~~~~~~[Form Calc ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 c          pout2 = (sp + am4**2 - am3**2)**2/4d0/sp - am4**2
 c           pout = dsqrt(pout2)
@@ -205,22 +106,19 @@ c           pin2 = (sp + am2**2 - am1**2)**2/4d0/sp - am2**2
 c           pin  = dsqrt(pin2)
 c          flux  = 4d0*pin*rsp
 c          xnorm = xjac* hbarc2*pout/16d0/PI**2/flux/rsp
-c	print*,xnorm
-
 c~~~~~~~~~~~~~~~~[ Original Normalization ]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
           xmd = (am3**2 - am4**2)
            e3 = 0.5d0*(rsp + xmd/rsp)
              pf = dsqrt(e3**2 - am3**2)
             pfpi = 2d0*pf/dsqrt(s*xa*xb)
           xnorm = hbarc2*pfpi/16d0/pi/(s*xa*xb)
-c          print*,"ratio:",xnorm1/xnorm
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 
 c          wgt=xajac*xnorm*sigma*weight*2d0* amh/xa/S
 c          wgt=xajac*xnorm*sigma*weight
 
-            wgt = xnorm*sigma*weight
-          fnlo3 = wgt/weight
+      wgt = xnorm*sigma*weight
+      fnlo3 = wgt/weight
 c	if (fnlo3 .ne. fnlo3 ) goto 151
         else
            fnlo3  = 0d0

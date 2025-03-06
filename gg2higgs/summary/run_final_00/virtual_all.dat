@@ -1,10 +1,10 @@
-     13000     7.593568614394223e+03     2.524189484514473e-02
-     12000     6.711485589956324e+03     2.073258314825108e-02
-     11000     5.854784489104086e+03     1.716382600710073e-02
-     10000     5.026630769180881e+03     1.432516225243149e-02
-      9000     4.230840594738057e+03     1.162438224261511e-02
-      8000     3.472107442308711e+03     8.960940126077640e-03
-      7000     2.756281562262426e+03     6.824311207093646e-03
+     13000     7.591508571544299e+03     2.523504702611993e-02
+     12000     6.709664845507533e+03     2.072695865022774e-02
+     11000     5.853196157249651e+03     1.715916966750333e-02
+     10000     5.025267105362187e+03     1.432127601034793e-02
+      9000     4.229692819119241e+03     1.162122868939524e-02
+      8000     3.471165501770183e+03     8.958509132036833e-03
+      7000     2.755533816582841e+03     6.822459854068056e-03
 LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
 NNPDF30_nlo_as_0118 PDF set, member #0, version 2; LHAPDF ID = 260000
  #####################################################################
@@ -85,27 +85,27 @@ using vegas points:                   1.E+03
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=        990.
                               IT=    0  ITMX=    2
                               MDS= -1   ND=  45
-   1       7527.360      276.1       7527.360      276.1      0.000    
-   2       7581.865      8.806       7581.810      8.770     0.3865E-01
+   1       7525.318      276.0       7525.318      276.0      0.000    
+   2       7579.808      8.803       7579.753      8.767     0.3865E-01
 
 
 
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
                               IT=    0  ITMX=    4
                               MDS= -1   ND=  49
-   1       7593.546     0.4949E-01   7593.546     0.4949E-01  0.000    
-   2       7593.592     0.5067E-01   7593.568     0.3541E-01 0.4320    
-   3       7593.580     0.5069E-01   7593.572     0.2903E-01 0.2325    
-   4       7593.558     0.5113E-01   7593.569     0.2524E-01 0.1733    
+   1       7591.486     0.4948E-01   7591.486     0.4948E-01  0.000    
+   2       7591.532     0.5065E-01   7591.508     0.3540E-01 0.4320    
+   3       7591.519     0.5067E-01   7591.512     0.2902E-01 0.2325    
+   4       7591.498     0.5112E-01   7591.509     0.2524E-01 0.1733    
    
    
- Integral virtual contribrtion:   7593.5686143942230      +-   2.5241894845144726E-002
- with chisq    =  0.17334511883499912     
+ Integral virtual contribrtion:   7591.5085715442992      +-   2.5235047026119926E-002
+ with chisq    =  0.17334561082430400     
   
   
   
   ecm/amH     Integral virtual contribrtion                 error
-    100      0.759356861439422E+04      0.252418948451447E-01
+  13000      0.759150857154430E+04      0.252350470261199E-01
 Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
   Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
 LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
@@ -188,27 +188,27 @@ using vegas points:                   1.E+03
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=        990.
                               IT=    0  ITMX=    2
                               MDS= -1   ND=  45
-   1       6609.367      277.0       6609.367      277.0      0.000    
-   2       6701.864      6.322       6701.817      6.277     0.1099    
+   1       6607.574      277.0       6607.574      277.0      0.000    
+   2       6700.046      6.321       6699.999      6.276     0.1099    
 
 
 
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
                               IT=    0  ITMX=    4
                               MDS= -1   ND=  49
-   1       6711.476     0.4048E-01   6711.476     0.4048E-01  0.000    
-   2       6711.515     0.4162E-01   6711.495     0.2902E-01 0.4602    
-   3       6711.480     0.4170E-01   6711.490     0.2382E-01 0.2750    
-   4       6711.471     0.4212E-01   6711.486     0.2073E-01 0.2333    
+   1       6709.655     0.4046E-01   6709.655     0.4046E-01  0.000    
+   2       6709.695     0.4161E-01   6709.674     0.2901E-01 0.4602    
+   3       6709.659     0.4169E-01   6709.669     0.2381E-01 0.2750    
+   4       6709.651     0.4211E-01   6709.665     0.2073E-01 0.2333    
    
    
- Integral virtual contribrtion:   6711.4855899563236      +-   2.0732583148251080E-002
- with chisq    =  0.23326108711805496     
+ Integral virtual contribrtion:   6709.6648455075328      +-   2.0726958650227743E-002
+ with chisq    =  0.23326051998195652     
   
   
   
   ecm/amH     Integral virtual contribrtion                 error
-    100      0.671148558995632E+04      0.207325831482511E-01
+  12000      0.670966484550753E+04      0.207269586502277E-01
 Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
   Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
 LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
@@ -291,27 +291,27 @@ using vegas points:                   1.E+03
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=        990.
                               IT=    0  ITMX=    2
                               MDS= -1   ND=  45
-   1       5734.822      255.7       5734.822      255.7      0.000    
-   2       5847.635      4.661       5847.599      4.615     0.1909    
+   1       5733.266      255.6       5733.266      255.6      0.000    
+   2       5846.048      4.660       5846.012      4.614     0.1909    
 
 
 
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
                               IT=    0  ITMX=    4
                               MDS= -1   ND=  49
-   1       5854.783     0.3355E-01   5854.783     0.3355E-01  0.000    
-   2       5854.805     0.3444E-01   5854.794     0.2403E-01 0.2065    
-   3       5854.778     0.3446E-01   5854.789     0.1971E-01 0.1713    
-   4       5854.772     0.3490E-01   5854.784     0.1716E-01 0.1745    
+   1       5853.195     0.3354E-01   5853.195     0.3354E-01  0.000    
+   2       5853.217     0.3443E-01   5853.205     0.2402E-01 0.2065    
+   3       5853.190     0.3445E-01   5853.200     0.1971E-01 0.1713    
+   4       5853.183     0.3489E-01   5853.196     0.1716E-01 0.1745    
    
    
- Integral virtual contribrtion:   5854.7844891040859      +-   1.7163826007100733E-002
- with chisq    =  0.17445567455005540     
+ Integral virtual contribrtion:   5853.1961572496512      +-   1.7159169667503332E-002
+ with chisq    =  0.17446602023729038     
   
   
   
   ecm/amH     Integral virtual contribrtion                 error
-    100      0.585478448910409E+04      0.171638260071007E-01
+  11000      0.585319615724965E+04      0.171591696675033E-01
 Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
   Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
 LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
@@ -394,27 +394,27 @@ using vegas points:                   1.E+03
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=        990.
                               IT=    0  ITMX=    2
                               MDS= -1   ND=  45
-   1       4905.481      219.0       4905.481      219.0      0.000    
-   2       5021.900      3.562       5021.871      3.520     0.2758    
+   1       4904.150      219.0       4904.150      219.0      0.000    
+   2       5020.538      3.561       5020.508      3.519     0.2758    
 
 
 
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
                               IT=    0  ITMX=    4
                               MDS= -1   ND=  49
-   1       5026.617     0.2804E-01   5026.617     0.2804E-01  0.000    
-   2       5026.643     0.2875E-01   5026.630     0.2007E-01 0.4064    
-   3       5026.640     0.2871E-01   5026.633     0.1645E-01 0.2492    
-   4       5026.624     0.2914E-01   5026.631     0.1433E-01 0.1920    
+   1       5025.253     0.2803E-01   5025.253     0.2803E-01  0.000    
+   2       5025.279     0.2874E-01   5025.266     0.2007E-01 0.4064    
+   3       5025.276     0.2870E-01   5025.269     0.1645E-01 0.2492    
+   4       5025.260     0.2913E-01   5025.267     0.1432E-01 0.1920    
    
    
- Integral virtual contribrtion:   5026.6307691808806      +-   1.4325162252431493E-002
- with chisq    =  0.19203406270656931     
+ Integral virtual contribrtion:   5025.2671053621871      +-   1.4321276010347928E-002
+ with chisq    =  0.19202931784134447     
   
   
   
   ecm/amH     Integral virtual contribrtion                 error
-    100      0.502663076918088E+04      0.143251622524315E-01
+  10000      0.502526710536219E+04      0.143212760103479E-01
 Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
   Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
 LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
@@ -497,27 +497,27 @@ using vegas points:                   1.E+03
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=        990.
                               IT=    0  ITMX=    2
                               MDS= -1   ND=  45
-   1       4122.644      173.5       4122.644      173.5      0.000    
-   2       4228.210      2.753       4228.185      2.719     0.3609    
+   1       4121.525      173.4       4121.525      173.4      0.000    
+   2       4227.063      2.753       4227.038      2.718     0.3609    
 
 
 
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
                               IT=    0  ITMX=    4
                               MDS= -1   ND=  49
-   1       4230.829     0.2286E-01   4230.829     0.2286E-01  0.000    
-   2       4230.853     0.2320E-01   4230.841     0.1628E-01 0.5374    
-   3       4230.839     0.2332E-01   4230.840     0.1335E-01 0.2711    
-   4       4230.843     0.2363E-01   4230.841     0.1162E-01 0.1844    
+   1       4229.681     0.2285E-01   4229.681     0.2285E-01  0.000    
+   2       4229.705     0.2320E-01   4229.693     0.1628E-01 0.5374    
+   3       4229.691     0.2331E-01   4229.692     0.1335E-01 0.2711    
+   4       4229.695     0.2363E-01   4229.693     0.1162E-01 0.1845    
    
    
- Integral virtual contribrtion:   4230.8405947380570      +-   1.1624382242615106E-002
- with chisq    =  0.18444552076622975     
+ Integral virtual contribrtion:   4229.6928191192410      +-   1.1621228689395243E-002
+ with chisq    =  0.18446288538035635     
   
   
   
   ecm/amH     Integral virtual contribrtion                 error
-    100      0.423084059473806E+04      0.116243822426151E-01
+   9000      0.422969281911924E+04      0.116212286893952E-01
 Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
   Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
 LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
@@ -600,27 +600,27 @@ using vegas points:                   1.E+03
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=        990.
                               IT=    0  ITMX=    2
                               MDS= -1   ND=  45
-   1       3387.145      125.0       3387.145      125.0      0.000    
-   2       3470.909      2.006       3470.889      1.982     0.4383    
+   1       3386.226      124.9       3386.226      124.9      0.000    
+   2       3469.967      2.005       3469.947      1.981     0.4383    
 
 
 
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
                               IT=    0  ITMX=    4
                               MDS= -1   ND=  49
-   1       3472.101     0.1763E-01   3472.101     0.1763E-01  0.000    
-   2       3472.115     0.1795E-01   3472.108     0.1258E-01 0.3208    
-   3       3472.108     0.1795E-01   3472.108     0.1030E-01 0.1605    
-   4       3472.107     0.1818E-01   3472.107     0.8961E-02 0.1074    
+   1       3471.159     0.1762E-01   3471.159     0.1762E-01  0.000    
+   2       3471.173     0.1794E-01   3471.166     0.1257E-01 0.3208    
+   3       3471.166     0.1794E-01   3471.166     0.1030E-01 0.1605    
+   4       3471.165     0.1817E-01   3471.166     0.8959E-02 0.1074    
    
    
- Integral virtual contribrtion:   3472.1074423087107      +-   8.9609401260776402E-003
- with chisq    =  0.10736126106025044     
+ Integral virtual contribrtion:   3471.1655017701828      +-   8.9585091320368328E-003
+ with chisq    =  0.10738085451725589     
   
   
   
   ecm/amH     Integral virtual contribrtion                 error
-    100      0.347210744230871E+04      0.896094012607764E-02
+   8000      0.347116550177018E+04      0.895850913203683E-02
 Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
   Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
 LHAPDF 6.5.4 loading /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/LHAPDF-6.5.4/install/share/LHAPDF/NNPDF30_nlo_as_0118/NNPDF30_nlo_as_0118_0000.dat
@@ -703,26 +703,26 @@ using vegas points:                   1.E+03
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=        990.
                               IT=    0  ITMX=    2
                               MDS= -1   ND=  45
-   1       2697.449      79.42       2697.449      79.42      0.000    
-   2       2755.741      1.411       2755.724      1.396     0.5271    
+   1       2696.717      79.40       2696.717      79.40      0.000    
+   2       2754.994      1.410       2754.976      1.395     0.5271    
 
 
 
  INPUT PARAMETERS FOR VEGAS:  NDIM=  1  NCALL=       9898.
                               IT=    0  ITMX=    4
                               MDS= -1   ND=  49
-   1       2756.276     0.1343E-01   2756.276     0.1343E-01  0.000    
-   2       2756.290     0.1374E-01   2756.282     0.9605E-02 0.5180    
-   3       2756.283     0.1364E-01   2756.282     0.7854E-02 0.2590    
-   4       2756.279     0.1379E-01   2756.282     0.6824E-02 0.1917    
+   1       2755.528     0.1343E-01   2755.528     0.1343E-01  0.000    
+   2       2755.542     0.1373E-01   2755.535     0.9603E-02 0.5180    
+   3       2755.535     0.1364E-01   2755.535     0.7852E-02 0.2590    
+   4       2755.531     0.1378E-01   2755.534     0.6822E-02 0.1917    
    
    
- Integral virtual contribrtion:   2756.2815622624262      +-   6.8243112070936465E-003
- with chisq    =  0.19171235841213599     
+ Integral virtual contribrtion:   2755.5338165828412      +-   6.8224598540680562E-003
+ with chisq    =  0.19171637590629850     
   
   
   
   ecm/amH     Integral virtual contribrtion                 error
-    100      0.275628156226243E+04      0.682431120709365E-02
+   7000      0.275553381658284E+04      0.682245985406806E-02
 Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
   Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

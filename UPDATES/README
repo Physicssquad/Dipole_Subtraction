@@ -1,3 +1,30 @@
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 06 : 03 : 2025 ]
+1. Virtual contribution:
+
+   Virtual part of our code is matching with that of Matrix. 
+   Openloops has by default some additional parameters turned on which effects the finite piece of 1loop
+   
+   with the parameter setup in this update @virtual contribution one can see iop_on=1 will give 
+   IR subtracted result. 
+
+   Minor update is done in MAKEFILE as the machine dependent part can be modified on config.mk file
+   located in the parent directory which has access for all individual contribution. 
+   dipole PK virtual and LO.
+
+   At present, the eikonal understanding or 1loop understanding is not there with me. 
+   Taking output of Openlooops as BLACKBOX the virtual part is concluded. We have to reproduce the 
+   1loop as well as Eikonal or I-term so to match the finite piece they are using.
+
+2. pp2VH Directory Created:
+
+   Here, the pp2VH is just  copied from DY process.
+   Working on the dipole_standalone part.
+
+  before this I need to use the LO for matching to begin with.
+
+
+
+
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 25 : 02 : 2025 ]
 
 1. there is an overall factor of 1/3 in the virtual contribution. 

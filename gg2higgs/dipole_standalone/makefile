@@ -1,19 +1,4 @@
-# Compiler and flags
-FC = gfortran
-FFLAGS = -O -w
-LDFLAGS = -lc -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/Cuba-4.2.2 -lcuba 
-export LHFLAGS = $(shell lhapdf-config --ldflags)
-
-# Directories
-OBJDIR = objects
-SRCDIR = ..
-LOCALSRCDIR = .
-
-# OpenLoops paths
-OPENLOOPS_DIR = /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/OpenLoops
-OPENLOOPS_INCLUDE = $(OPENLOOPS_DIR)/lib_src/openloops/mod
-OPENLOOPS_LIB = $(OPENLOOPS_DIR)/lib
-
+include ../config.mk
 
 # Program and object files
 PROG = runDipole
@@ -21,8 +6,6 @@ PROG = runDipole
 OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/cuba.o       \
           $(OBJDIR)/mat.amp.o    \
-          $(OBJDIR)/cuts.nlo3.o   \
-          $(OBJDIR)/cone.o       \
           $(OBJDIR)/printframe.o \
           $(OBJDIR)/misc.o       \
           $(OBJDIR)/lum.o        \
@@ -30,9 +13,7 @@ OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/vsup.o       \
           $(OBJDIR)/integrand.o  \
           $(OBJDIR)/phasespace.o \
-          $(OBJDIR)/couplings.o  \
           $(OBJDIR)/ol_interface.o  \
-          $(OBJDIR)/rambo_tmp.o  \
           $(OBJDIR)/jetfunction.o \
           $(OBJDIR)/dipole.o
 
@@ -53,10 +34,6 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.f $(LOCALSRCDIR)/%.f| $(OBJDIR)
 
 # Pattern rule for all Fortran files in $(SRCDIR) and $(SRCDIR)/slicing_files
 $(OBJDIR)/%.o: $(SRCDIR)/%.f | $(OBJDIR)
-	$(FC) $(FFLAGS) -I$(OPENLOOPS_INCLUDE) -c $< -o $@
-
-# For the specific files in $(SRCDIR)/slicing_files
-$(OBJDIR)/%.o: $(SRCDIR)/slicing_files/%.f | $(OBJDIR)
 	$(FC) $(FFLAGS) -I$(OPENLOOPS_INCLUDE) -c $< -o $@
 
 # For files in the current directory 

@@ -1,19 +1,4 @@
-# Compiler and flags
-FC = gfortran
-FFLAGS = -O -w 
-LDFLAGS = -lc
-export LHFLAGS = $(shell lhapdf-config --ldflags)
-
-# Directories
-OBJDIR = objects
-SRCDIR = ../
-LOCALSRCDIR = .
-
-# OpenLoops paths
-OPENLOOPS_DIR = /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/OpenLoops
-#OPENLOOPS_DIR =/home/niraj/1TB-Disc/Workspace-IITG/Packages/OpenLoops-2.1.2
-OPENLOOPS_INCLUDE = $(OPENLOOPS_DIR)/lib_src/openloops/mod/
-OPENLOOPS_LIB = $(OPENLOOPS_DIR)/lib
+include ../config.mk
 
 # Program and object files
 PROG = runVir
@@ -27,8 +12,6 @@ OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/pdf_lha.o    \
           $(OBJDIR)/vsup.o       \
           $(OBJDIR)/integrand.o  \
-          $(OBJDIR)/ol_test.o  \
-          $(OBJDIR)/Iterm_ad.o  \
           $(OBJDIR)/phasespace.o 
 
 # Add OpenLoops library to the linking process

@@ -21,13 +21,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ For qq initiated process with q
       data PI/3.141592653589793238462643D0/
 
       CF = 4.0d0/3.0d0
-c      PqqP = CF*(1.0d0+x*x)/(1.0d0-x)
+      PqqP = CF*(1.0d0+x*x)/(1.0d0-x)
 
-      XM=1.0D0-X
-      DLOGXM= DLOG(XM)
-      XD1=DLOGXM/XM
-      CQQB1PLUS=16.0D0*XD1
-      PqqP=CF*CQQB1PLUS
+!      XM=1.0D0-X
+!      DLOGXM= DLOG(XM)
+!      XD1=DLOGXM/XM
+!      CQQB1PLUS=16.0D0*XD1
+!      PqqP=CF*CQQB1PLUS
       return
       end
 c________________________________________________________________________c 

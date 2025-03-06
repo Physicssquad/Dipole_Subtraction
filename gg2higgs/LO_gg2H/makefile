@@ -1,18 +1,4 @@
-# Compiler and flags
-FC = gfortran
-FFLAGS = -O -w
-LDFLAGS = -lc -L/home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/Cuba-4.2.2 -lcuba
-export LHFLAGS = $(shell lhapdf-config --ldflags)
-
-# OpenLoops paths
-OPENLOOPS_DIR = /home/niraj/1TB-Disc/Workspace-IITG/Packages/Install/OpenLoops
-OPENLOOPS_INCLUDE = $(OPENLOOPS_DIR)/examples/../lib_src/openloops/mod
-OPENLOOPS_LIB = $(OPENLOOPS_DIR)/examples/../lib
-
-# Directories
-OBJDIR = objects
-SRCDIR = ..
-LOCALSRCDIR = .
+include ../config.mk
 
 # Program and object files
 PROG = runLO
@@ -22,7 +8,6 @@ OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/printframe.o \
           $(OBJDIR)/misc.o       \
           $(OBJDIR)/lum.o        \
-          $(OBJDIR)/cone.o       \
           $(OBJDIR)/pdf_lha.o    \
           $(OBJDIR)/vsup.o       \
           $(OBJDIR)/integrand.o  \

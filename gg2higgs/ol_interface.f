@@ -21,7 +21,7 @@ c	alpha_s = 125d0/2d0
         call set_parameter("verbose",-1)
         call set_parameter("model","heft") 
 c        call set_parameter("alpha_s", alpha_s) !  AL will be set at the integral.f
-        call set_parameter("mu", mu)
+c        call set_parameter("mu", mu)
 
         id_LO = register_process("21 21 -> 25", 1)
         endif
@@ -45,7 +45,7 @@ c	if ( icall .eq. 0d0 ) then
         call set_parameter("verbose",-1)
         call set_parameter("model","heft") 
 c        call set_parameter("alpha_s", mu)
-        call set_parameter("mu", mu)
+!        call set_parameter("mu", mu)
 
         id_NLO_1r = register_process("21 21 -> 25 21", 1)
 c	endif
@@ -68,13 +68,12 @@ c     subroutine ol_get_NLO_1loop(p_ex,alpha_s,energy,mu,m2_tree)
       !  call set_parameter("order_qcd", 2)
 
       mu = mH/2d0 
-      
-        ! Increase verbosity level to list loaded libraries
+      ! Increase verbosity level to list loaded libraries
       call set_parameter("mass(25)", mH)
       call set_parameter("verbose",-1)
       call set_parameter("model","heft") 
-      call set_parameter("mu", mu)
 
+      call set_parameter("mu", mu)
       id_NLO_1loop = register_process("21 21 -> 25", 11)
       return
       end
