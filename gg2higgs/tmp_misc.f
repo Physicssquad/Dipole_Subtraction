@@ -1,3 +1,175 @@
+      double precision function PK(PKtype,Partontype,fxntype,x)
+      implicit none
+
+      character*10 PKtype,Partontype,fxntype
+      double precision one_minus_x,x,temp,log1mxbyx,log1mx
+      double precision  CA,CF,NF,TR,PI
+
+      parameter(PI=3.141592653589793238462643D0)
+      parameter(CA=3d0)
+      parameter(CF = 4.0d0/3.0d0)
+      parameter(NF = 5d0)
+      parameter(TR = 0.5d0)
+
+      one_minus_x = (1.0d0-x)
+      log1mxbyx = dLog((1d0-x)/x)
+      log1mx = dLog(1d0 - x)
+
+c********************************************
+      if (trim(Partontype) .eq. 'gg') then
+c********************************************
+
+c...........................................c
+      if (trim(PKtype) .eq. 'P') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+         PK = 2d0*CA*1d0/one_minus_x
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = 2d0*CA*(one_minus_x/x -1d0 + x*one_minus_x)
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = 11d0/6d0*CA - 2d0/3d0*NF*TR 
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Pab ends here
+
+c...........................................c
+        elseif (trim(PKtype) .eq. 'Kb') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+         PK = 2d0*CA*1d0/one_minus_x*log1mxbyx
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = 2d0*CA*(one_minus_x/x -1d0 + x*one_minus_x)*log1mxbyx
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = -( (50d0/9d0-Pi**2)*CA - 16d0/9d0*TR*NF)
+
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Kbar_ab ends here
+
+c...........................................c
+        elseif (trim(PKtype) .eq. 'Kt') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+         PK = CA*2d0/one_minus_x*log1mx
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = 2d0*CA*(one_minus_x/x -1d0 + x*one_minus_x)*log1mx 
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = -CA*PI*PI/3d0
+
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Ktilda_ab ends here
+
+        else 
+      Print*,"Invalid PKtype P,Kbar or Ktilde"
+      stop
+      endif  !Here PKtype ends
+
+c**********************************************
+      elseif (trim(Partontype) .eq. 'qq') then
+c**********************************************
+c...........................................c
+      if (trim(PKtype) .eq. 'P') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+         PK = CF*(1.0d0+x*x)/(1.0d0-x)
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = -CF*(1.0d0+x)
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = 0d0 
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Pab ends here
+
+c...........................................c
+        elseif (trim(PKtype) .eq. 'Kb') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+        PK= CF*2.0d0/one_minus_x*log1mxbyx
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = CF(-(1.0d0+x)*log1mxbyx + one_minus_x)
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = -CF*(5.0d0-pi*pi)
+
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Kbar_ab ends here
+
+c...........................................c
+        elseif (trim(PKtype) .eq. 'Kt') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+         PK = CF*2.0d0/one_minus_x*log1mx
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = -CF*(1.0d0+x)*log1mx
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK =  -CF*pi*pi/3.0d0
+
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Ktilda_ab ends here
+
+        else 
+      Print*,"Invalid PKtype P,Kbar or Ktilde"
+      stop
+      endif  !Here PKtype ends
+
+c********************************************
+      elseif (trim(Partontype) .eq. 'qg' .or. 
+     &         trim(Partontype) .eq. 'gq' ) then
+c********************************************
+      print*,"Data not inserted for qg/gq channel"
+      stop
+      else
+      print*,"Invalid Partontype gg/qq/qg/gq"
+      stop
+      endif ! main channel condition ends here
+
+      return
+      end
+
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Misc functions]
       function dot(p,q)
       implicit double precision (a-h,o-z)
@@ -205,8 +377,7 @@ c________________________________________________________________________c
       NF = 5d0  !...[?] is this no of quark flavours?
 c...for checking I am taking 5 flavour as in the matrix.[11 feb]
 
-      AKbarD_gg = (50d0/9d0-Pi**2)*CA - 16d0/9d0*TR*NF
-      AKbarD_gg = - AKbarD_gg
+      AKbarD_gg =-((50d0/9d0-Pi**2)*CA - 16d0/9d0*TR*NF)
 c... I am just adding everything altogether. negative sign is taken here only 
 
       return

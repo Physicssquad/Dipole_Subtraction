@@ -33,10 +33,10 @@ c CF is the colour factor in comes up in reduced born.
 
 c...  Openloops has already been initialised in main.
 cooooooooooooooooooooooooooooooooooooooooooooooo
-!        call SET_PARAMETER('alpha_s',AL)
-!        call p1d_to_p2d_3(p1,p2,p3,p_ex) 
-!        call evaluate_tree(id_LO,p_ex,answer)
-!        Born_gg2H_ = CF*answer
+c        call SET_PARAMETER('alpha_s',AL)
+c        call p1d_to_p2d_3(p1,p2,p3,p_ex) 
+c        call evaluate_tree(id_LO,p_ex,answer)
+c        Born_gg2H_ = CF*answer
 cooooooooooooooooooooooooooooooooooooooooooooooo
        return
        end

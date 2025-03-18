@@ -76,8 +76,8 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 
       mode = "P and K terms"
       call printframe0(mode)
-      iselect_integrand = 0
-      iselect_modified  = 1
+      iselect_integrand = 1
+      iselect_modified  = 0
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
       if (iselect_integrand .ne. 1 ) goto 150
       mode1 = "[+] distribution performed at integrand level"

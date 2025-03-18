@@ -21,7 +21,7 @@ c... Here s = ecm*ecm
 
        tau = amH**2/S
 
-      delta = 1d-5
+      delta = 1d-9
       xmin =0d0 ! technically xmin should run from 0 to 1. 
 !      xmin = tau
       xmax = 1.0d0 - delta
@@ -61,14 +61,16 @@ c... xb is generated for every case with Higgs mass constraint.
          sp = xa*xb*S
          call kinvar1(xa,xb,p1,p2,p3)
          s12 = 2d0*dot(p1,p2)
+
+!         sp = 2d0*dot(p1,p2)
+!         rsp = dsqrt(sp)
 !        rsp = dsqrt(sp)
 c... indipendently into the [+] functions.
         endif
 !#####################################
 
-         sp = xa*xb*S
-        rsp = dsqrt(sp)
-!	if (xb .ge. 1 ) goto 151
+!         sp = xa*xb*S
+!        rsp = dsqrt(sp)
             xmuf2 = xmuf*xmuf 
                AL = alphasPDF(xmur) 
          coef = Born_gg2h_(0,AL,p1,p2,p3)
@@ -78,10 +80,10 @@ c... indipendently into the [+] functions.
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
 
-!            call getPKPlus(1,x,xmuf,p1,p2,p3,SumPlus)
-
             Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)
           SumPlus = Pplus + AKtilP_gg(x) + AKbarP_gg(x)
+c... Ktilde comes with the overall negative but due to colour charge one 
+c... more negative comes making it positive in this case only.
              
             if (iplus .eq. 1) sig1 = xl(2)*SumPlus*coef
             if (iplus .eq. 0) sig3 = xl(2)*SumPlus*coef 
@@ -173,10 +175,12 @@ c... coefficients always comes with the x kinematics
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
             
+      Tb_dot_Ta_by_Ta2 = -1d0
       xmuf2 = xmuf**2
       s12 = 2d0*dot(p1,p2)
-      Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)
-      SumPlus = Pplus + AKtilP_gg(x) + AKbarP_gg(x)
+      Pplus = PggP(x)*Tb_dot_Ta_by_Ta2*dlog(xmuf2/s12)
+
+      SumPlus = Pplus -Tb_dot_Ta_by_Ta2 * AKtilP_gg(x) + AKbarP_gg(x)
       sig1 = xl(2)* SumPlus 
 
       sig = Alp*sig1*coef
@@ -264,7 +268,7 @@ c	print*,xint_h(0d0,Pgg_)
 c	print*,xint_h(1d0-delta,Pgg_)
 c	stop
 
-      SumPlus = Pplus +xKbar_h +xKt_h
+      SumPlus = Pplus + xKbar_h + xKt_h
 
          sig = 2d0*xl(2)*SumPlus*coef
 

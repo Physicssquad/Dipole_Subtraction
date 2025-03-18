@@ -1,4 +1,18 @@
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 18 : 03 : 2025 ]
+1. PK problem is now resolved. Problem carefully taken care. 
+  
+  misc.f new function constructed which is more redable. We can use PK(PKtype,Partontype,fxntype,x) in the computation without confision.
+  all the negative signs are taken in the function itself. So we can just add all. 
+  Care must be taken while summing Ktilde as there is a negative sign woth Ktilde that is not considered inside each function.
+  For such case, 
+  Kterm = Kbar - Ktilde 
+  Pterm = P
+  PK = Pterm + Kterm
+  this will be more redable. I have used the equation numbers also into the code.
+
+2. Output Display is used for compare3 and compare8 simultaneously. 
+
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 17 : 03 : 2025 ]
 
    !!!!!!!~~~~~~ ISSUE in PK trerm ~~~~~~!!!!!!!!!!
 
