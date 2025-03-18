@@ -59,7 +59,7 @@ c Parameters:
        xmur = xmuf   !...being used in all common blocks.
       delta = 1d-5
 
-      iselect_plus=1
+      iselect_plus=0
       iselect_Regu=1
       iselect_Delt=1
 c~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        

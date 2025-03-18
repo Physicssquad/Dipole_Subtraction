@@ -1,3 +1,23 @@
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 18 : 03 : 2025 ]
+
+   !!!!!!!~~~~~~ ISSUE in PK trerm ~~~~~~!!!!!!!!!!
+
+1. Found 4 glitch/ error in PK part. 
+   misc.f: delta part of Kbar has an overall negative sign. I have taken care of that, however the final result of delta part is giving large negative, which is not supposed to come.
+   in the delta part there was two different PK_new.f files, however the file corresponding to our code is being taken by makefile. 
+   I have removed that part.
+   
+2. There is some modifications on the DrellYan_all, I have removed some dir, as well summary data to the trash_. They are not required to be saved in the remote repository. With this UPDATE gg2Higgs is not matching PK part has to be cracked. 
+
+3. Compare8.f combination issue resolved.
+   there was problem with the file read as delta was also readinf same firstfile. corrected✅
+ 
+THIS UPDATE IS MORE FICUSED IN PK_ISOLATED PART
+
+4. Started working on the extraction of simultaneous distribution from the inclusive cross-section calculation 
+   DrellYan_inv_tot is the working directory, where one can see that the distribution is somehow, double counted.
+
+
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 06 : 03 : 2025 ]
 1. Virtual contribution:
 

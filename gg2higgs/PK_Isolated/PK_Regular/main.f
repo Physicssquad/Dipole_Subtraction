@@ -1,35 +1,20 @@
       program intPK_Regular
+      use openloops
       implicit double precision (a-h,o-z)
       dimension c(1:2)
       character*50 name,mode,mode1
       character*100 command,run_tag,dir_path,filename,filename1
-      common/energy/s
-      external flo2_Plus,flo2_PKDel,flo2_PKReg
-      common/usedalpha/AL,ge   
-      common/distribution/xq
-
-c--------------------------------------------
-c     common blocks used in couplings.f  
-      common/add_par/xms,nd
-      common/add_par1/acut
-      common/rs_par/aam1,c0,aamh
-      common/unpar/xl3,xdu,xlamu
-      common/xmcoeff/xc1,xc2
-      common/cone/et_iso,r0,rgg
-      common/nviso/niso
-      common/chfile/fname8
-      common/isub/io,is
-      common/max_order/iorder
-      common/param/aem,xmur,lambda
-      common/bin_size/eps
-c--------------------------------------------
-
-
       dimension PKPlus(1:50),err_Plus(1:50)
       dimension PKReg(1:50),err_Reg(1:50)
       dimension PKDel(1:50),err_Del(1:50)
       dimension PK(1:50),err(1:50)
-      
+      common/amass/am1,am2,amH,am4,am5
+      common/energy/s
+      external flo2_Plus,flo2_PKDel,flo2_PKReg
+      common/usedalpha/AL,ge   
+      common/distribution/xq
+      common/scales/xmuf,xmur 
+      common/prc_id/id_LO,id_NLO_1r
 
       !input data card
       open(unit=10,file='../../run.vegas.dat',status='unknown')
@@ -44,6 +29,8 @@ c--------------------------------------------
 
       open(unit=10,file='../../param_card.dat',status='unknown')    
       read (10,*) ge          ! [ 1/Alpha_ew ]
+      read (10,*) xmuf
+      read (10,*) xmur
       close(10)
 
       open(unit=15,file='../../run.machine.dat',status='unknown')
@@ -58,37 +45,17 @@ c--------------------------------------------
       close(15)
 
 
-c ~~~~~~~~~~~~~~~~[files needed by couplings.f]~~~~~~~~~~~~~~~~~~~c        
-
-      open(unit=20,file='../../slicing_files/run.param.dat',
-     .    status='unknown')
-      read (20,*) nf            ! No. of flavours
-      read (20,*) ipdfs1        ! LO pdf set
-      read (20,*) xlqcd1        ! LO L_QCD5
-      read (20,*) ipdfs2        ! NLO pdf set
-      read (20,*) xlqcd2        ! NLO L_QCD5
-      close(20)
-
-      open(unit=30,file='../../slicing_files/run.add.dat',
-     .  status='unknown')
-      read (30,*) xms            ! M_s Fundamental Planck scale
-      read (30,*) nd             ! number of extra dimensions, 2<d<6
-      read (30,*) acut           ! \Lambda = acut*M_s
-      close (30)
 
       aem=1.0D0/128.0D0
-      lambda = xlqcd1
-
-
-c      write (*,*) 'ADD model'
-c      write (*,*) 'M_s = ',xms,'GeV'
-c      write (*,*) 'ND=',nd
-c      write (*,*) 'acut=',acut
-
-c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c        
-
-
-
+      am1=0.0d0
+      am2=0.0d0
+      amH=125d0
+      am4=0d0
+      am5=0d0
+c Parameters:
+!       xmuf = amH
+!       xmur = xmuf   !...being used in all common blocks.
+      delta = 1d-5
 
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
@@ -102,9 +69,10 @@ c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c
       if (iprint .eq. 1) call output(run_tag,filename)            
 c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c        
 
-        xq_initial = xq
+        xq_initial = ecm
       call initpdfsetbyname(name)
       Call initPDF(0)
+      call ol_LO_init(id_LO)
        s=ecm*ecm
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
@@ -119,7 +87,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ r
       call printframe2(xq)
 c     -------------------------------------------------
       call brm48i(40,0,0) 
-      call vsup(4,npt1,its1,flo2_PKReg,ai_lo2,sd,chi2)
+      call vsup(2,npt1,its1,flo2_PKReg,ai_lo2,sd,chi2)
 c     -------------------------------------------------
 
           PKReg(j) = ai_lo2

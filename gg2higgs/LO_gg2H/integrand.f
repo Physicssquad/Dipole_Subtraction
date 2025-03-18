@@ -16,6 +16,7 @@ c      parameter (hbarc2=389.3856741D+9)
       common/usedalpha/AL,ge
       common/amass/am1,am2,amH,am4,am5
       common/caller/icall,id
+      common/scales/xmuf,xmur
       external Born_gg2H
        
 c... this is for the integration variable reduction
@@ -33,8 +34,6 @@ coooooooooooooooooooooooooooooooooooooooooooooooooo
         call kinvar1(xa,xb,p1,p2,p3)
         s12 = 2d0*dot(p1,p2)
 
-        xmuf= amH/2d0
-        xmur= xmuf
         xmu2=xmuf**2
 
         AL = alphasPDF(xmur)

@@ -39,13 +39,13 @@ c      common/usedalpha/alpha_s,ge
       common/energy/energy
       common/amass/am1,am2,mH,am4,am5
       
-      mu = mH/2d0
+       mu = mH
 c	if ( icall .eq. 0d0 ) then
         call set_parameter("mass(25)", mH)
         call set_parameter("verbose",-1)
         call set_parameter("model","heft") 
 c        call set_parameter("alpha_s", mu)
-!        call set_parameter("mu", mu)
+        call set_parameter("mu", mu)
 
         id_NLO_1r = register_process("21 21 -> 25 21", 1)
 c	endif
@@ -73,7 +73,7 @@ c     subroutine ol_get_NLO_1loop(p_ex,alpha_s,energy,mu,m2_tree)
       call set_parameter("verbose",-1)
       call set_parameter("model","heft") 
 
-      call set_parameter("mu", mu)
+!      call set_parameter("mu", mu)
       id_NLO_1loop = register_process("21 21 -> 25", 11)
       return
       end

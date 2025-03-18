@@ -1,5 +1,5 @@
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Plus Terms]
-      subroutine getPKPlus(iplus,x,xmuf,p1,p2,p3,p4,SumPlus)
+      subroutine getPKPlus(iplus,x,xmuf,p1,p2,p3,SumPlus)
       implicit double precision (a-h,o-z)
       parameter (pi=3.14159265358979d0)
       dimension  p1(0:3),p2(0:3),p3(0:3),p4(0:3)
@@ -19,17 +19,17 @@ c      external aKbar_gq,aKtil_gq,Pgq_reg
          SumReg = 0.0d0
          SumDel = 0.0d0
 
-        if ( iplus .eq. 1 ) then
+!        if ( iplus .eq. 1 ) then
 
           Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)
         SumPlus = Pplus + AKtilP_gg(x) + AKbarP_gg(x)
 
-        elseif( iplus .eq. 0 ) then
+!        elseif( iplus .eq. 0 ) then
+!
+!          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
+!        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
 
-          Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)    ! here x=1
-        SumPlus = Pplus + AKbarP_gg(x) + AKtilP_gg(x)
-
-        endif
+!        endif
 
       return
       end

@@ -1,5 +1,5 @@
 1				! machine id Tevatron:0 LHC:1	
-13000
+13000				! ecm
 NNPDF30_nlo_as_0118		! lhapdf set name common for all
 1				! max # of distribution increment step_size from xq
 100				! value of xq to begin with

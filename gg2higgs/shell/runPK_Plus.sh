@@ -22,9 +22,9 @@ gfortran tee_the_data.f -o "tee_the_data_${timestamp}_PK.Plus.o"
 
 #Everything is ready now start the Executable
 cd $home_path
-cd ../PK_Plus
+cd ../PK_Isolated/PK_Plus
 make
-./runPK | tee "../trash/broken/output_${timestamp}.PK.Plus"
+./runPK_Plus | tee "../../trash/broken/output_${timestamp}.PK.Plus"
 
 # Results are now ready we can combine the data of tee to the output files.
 cd $home_path

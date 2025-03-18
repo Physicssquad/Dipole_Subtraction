@@ -9,8 +9,9 @@
       common/usedalpha/AL,ge   
       common/distribution/xq
       common/mass/amh
-      common/param2/xmur
+c      common/param2/xmur
       common/caller/icall
+      common/scales/xmuf,xmur
 
 c--------------------------------------------
 c     common blocks used in couplings.f  
@@ -43,6 +44,8 @@ c     common blocks used in couplings.f
 
       open(unit=10,file='../param_card.dat',status='unknown')    
       read (10,*) ge       ! [ 1/Alpha_ew ]
+      read (10,*) xmuf     ! Higgs mass  
+      read (10,*) xmur     ! Higgs mass  
       read (10,*) amh      ! Higgs mass  
       close(10)
 
@@ -113,8 +116,7 @@ c      amh = 125.0d0
         print*," "
 
       call printframe1(pt1,its1)   ! vegas points print 
-	xmur = 125d0/2d0
-      call printframe6(ecm,xmur,xmur,pdf_name,am3)
+      call printframe6(ecm,xmur,xmuf,pdf_name,am3)
       call system("sleep 1")
 
 c      print*,'  '

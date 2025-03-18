@@ -8,7 +8,7 @@
         character*100 run_tag
         character*50 name,yes
         character*100 message
-        character*100 real_dipole,virtual,PK,ref,LO
+        character*100 real_dipole,virtual,PK,ref,LO,ref_NLO
 
         
 c       Leading Order
@@ -24,12 +24,27 @@ c       Leading Order
 
 c      open(unit=20,file='../../output_files2.dat',status='unknown')
       open(unit=20,file='../../output_files.dat',status='unknown')
+      read (20,*) 
+      read (20,*)
+      read (20,*)
+      read (20,*)
+      read (20,*)
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
       read (20,*) real_dipole
       read (20,*) virtual 
       read (20,*) PK
       read (20,*) LO
       read (20,*) ref
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
+      read (20,*) ref_NLO 
       close(20)
+
+
 
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -263,7 +278,7 @@ c       "Sigma_Chinmoy" and Ratio with Dipole
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         inloch = 0
-       call system("test -f ../"// trim(run_tag) //"/"//trim(ref)//
+       call system("test -f ../"// trim(run_tag) //"/"//trim(ref_NLO)//
      . " && echo 1 > command.txt || echo 0  > command.txt")
        open(unit=13,file="command.txt",status="unknown")
        read(13,*)ierr
@@ -271,7 +286,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        call system("rm command.txt")
        if(ierr .eq. 1) then
                inloch = 1
-        open(unit=17,file='../'//trim(run_tag)//'/'//trim(ref)
+        open(unit=17,file='../'//trim(run_tag)//'/'//trim(ref_NLO)
      .     ,status='unknown')
         do i=1,it_max
         read(17,*) xqch(i),xintch(i)
@@ -280,7 +295,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        print*," "
        print*,"For comparison with other data "
        print*," "
-       print*,"/"//trim(ref)
+       print*,"/"//trim(ref_NLO)
        write(*,*)achar(27)//'[1;32m'//"   xq  ",
      ."     sigma slicing code", 
      . achar(27)//'[0m'
@@ -322,7 +337,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         character*100 run_tag,location,fpath
         character*50 name,firstfile,secondfile,thirdfile,fourthfile
      .               ,decision
-     . ,real_dipole,virtual,PK,LO,ref
+     . ,real_dipole,virtual,PK,LO,ref,ref_NLO
 
         
       open(unit=15,file='../../run.machine.dat',status='unknown')
@@ -336,14 +351,24 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       close(15)
 
       open(unit=20,file='../../output_files.dat',status='unknown')
+      read (20,*) 
+      read (20,*)
+      read (20,*)
+      read (20,*)
+      read (20,*)
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
       read (20,*) real_dipole
       read (20,*) virtual 
       read (20,*) PK
       read (20,*) LO
       read (20,*) ref
-      read (20,*) firstfile
+      read (20,*) firstfile 
       read (20,*) secondfile
       read (20,*) thirdfile
+      read (20,*) ref_NLO 
       close(20)
       fourthfile = PK
 
@@ -494,7 +519,7 @@ c~~~~~~~~~~~~~~~~~[ third file ]
        close(13)
        call system("rm command.txt")
        if(ierr3 .eq. 1) then
-      fpath=  trim(location)//'/'//trim(run_tag)//'/'//trim(firstfile)
+      fpath=  trim(location)//'/'//trim(run_tag)//'/'//trim(thirdfile)
         open(unit=17,file=fpath,status='unknown')
         do i=1,it_max
         read(17,*) xqLO_ch2(i),xintLO_ch2(i),err3(i)
@@ -570,12 +595,21 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       close(15)
 
       open(unit=20,file='../../output_files.dat',status='unknown')
+      read (20,*) 
+      read (20,*)
+      read (20,*)
+      read (20,*)
+      read (20,*)
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
+      read (20,*) 
       read (20,*) real_dipole
       read (20,*) virtual 
       read (20,*) PK
       read (20,*) LO
       read (20,*) ref
-      read (20,*) firstfile
+      read (20,*) firstfile 
       read (20,*) secondfile
       read (20,*) thirdfile
       close(20)
@@ -731,7 +765,7 @@ c      call system("test -f ../"//trim(run_tag)//"/"//trim(thirdfile)//
        close(13)
        call system("rm command.txt")
        if(ierr3 .eq. 1) then
-      fpath=  trim(location)//'/'//trim(run_tag)//'/'//trim(firstfile)
+      fpath=  trim(location)//'/'//trim(run_tag)//'/'//trim(thirdfile)
         open(unit=17,file=fpath,status='unknown')
 c        open(unit=17,file='../'//trim(run_tag)//'/'//trim(thirdfile)
 c        open(unit=17,file=//trim(location)//'/'//trim(run_tag)//'/'

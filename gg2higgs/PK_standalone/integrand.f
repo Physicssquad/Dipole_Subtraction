@@ -51,6 +51,7 @@ c~~~~~[ _______________ ]~~~~~C
       xajac =  (xamax - xamin)
       xa = xamin + xajac*yy(2)
       xb = tau/x/xa    
+!      if(xb .ge. 1) print*,xb,yy(1),yy(2)
 c... here x* xa*xb*s = amH**2 is the kinametics.
 c... xb is generated for every case with Higgs mass constraint.
 
@@ -99,7 +100,7 @@ c This born used x kinematics as 1-x fraction of momenta is taken by gluon radia
 c... ALP overall factor taken here
 c... is symmetry factor required here as there are symmetry in 
 c... the initial state. 
-      return
+151      return
       end
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusB term]
@@ -127,8 +128,8 @@ c... plusb
 c~~~~~[ LINEAR MAPPINNG ]~~~~~C
 c... minimum should not be 0d0 as xamin will be infinity, 
 c... but numerically i am taking as random numbers wonn't hit 0.
-      xmin = tau  
-!      xmin = 0d0 
+!      xmin = tau  
+      xmin = 0d0 
       xmax = 1.0d0 - delta
       xjac4 = (xmax - xmin)
       x = xjac4*yy(1) + xmin
@@ -197,7 +198,7 @@ c        PKplus_x = xnorm*xajac*xjac4*sig* 2d0*amH/xa/S
             enddo
 
         flo2_PlusB = ALP * (PK(1) + PK(2))
-      return
+151      return
       end
 
 c... regular
@@ -279,7 +280,7 @@ c... same reasoning as plusA. refer there.
 
          enddo
          flo2_PKReg = AllReg(1) + AllReg(2)
-      return
+151      return
       end
 
 c... deltaa

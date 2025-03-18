@@ -1,5 +1,4 @@
-include ../config.mk
-
+ include ../config.mk
 # Program and object files
 PROG = runPK
 

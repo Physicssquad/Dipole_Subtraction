@@ -83,10 +83,10 @@ c       read*,secondfile
 
 c      firstfile = 'LO_all.dat'
 c      secondfile = 'LO_ref.dat'
-	firstfile = 'virtual_all.dat'
-	secondfile = 'virtual_ref.dat'
-c	firstfile = 'PK_all.dat'
-c	secondfile = 'PK_ref.dat'
+c	firstfile = 'virtual_all.dat'
+c	secondfile = 'virtual_ref.dat'
+	firstfile = 'PK_all.dat'
+	secondfile = 'PK_ref.dat'
 c	firstfile = 'real_all.dat'
 c	secondfile = 'real_ref.dat'
 

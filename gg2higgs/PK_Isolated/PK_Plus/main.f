@@ -4,26 +4,12 @@
       character*50 name,mode,mode1
       character*100 command,run_tag,dir_path,filename,filename1
       common/energy/s
-      external flo2_Plus,flo2_PKDel,flo2_PKReg
+      external flo2_Plus,flo2_PKDel,flo2_PKReg,xint_PlusA,xint_Plus_h
       common/usedalpha/AL,ge   
       common/distribution/xq
-
-c--------------------------------------------
-c     common blocks used in couplings.f  
-      common/add_par/xms,nd
-      common/add_par1/acut
-      common/rs_par/aam1,c0,aamh
-      common/unpar/xl3,xdu,xlamu
-      common/xmcoeff/xc1,xc2
-      common/cone/ET_iso,r0,rgg
-      common/nviso/niso
-      common/chfile/fname8
-      common/isub/io,is
-      common/max_order/iorder
-      common/param/aem,xmur,lambda
-
-c--------------------------------------------
-
+      common/amass/am1,am2,amH,am4,am5
+      common/prc_id/id_LO,id_NLO_1r
+      common/scales/xmuf,xmur
 
 
       dimension PKPlus(1:50),err_Plus(1:50)
@@ -45,6 +31,8 @@ c--------------------------------------------
 
       open(unit=10,file='../../param_card.dat',status='unknown')    
       read (10,*) ge          ! [ 1/Alpha_ew ]
+      read (10,*) xmuf
+      read (10,*) xmur
       close(10)
 
       open(unit=15,file='../../run.machine.dat',status='unknown')
@@ -58,39 +46,16 @@ c--------------------------------------------
       read (15,*) iprint        ! to print data in file
       close(15)
 
-
-c ~~~~~~~~~~~~~~~~[files needed by couplings.f]~~~~~~~~~~~~~~~~~~~c        
-
-      open(unit=20,file='../../slicing_files/run.param.dat',
-     .    status='unknown')
-      read (20,*) nf            ! No. of flavours
-      read (20,*) ipdfs1        ! LO pdf set
-      read (20,*) xlqcd1        ! LO L_QCD5
-      read (20,*) ipdfs2        ! NLO pdf set
-      read (20,*) xlqcd2        ! NLO L_QCD5
-      close(20)
-
-      open(unit=30,file='../../slicing_files/run.add.dat',
-     & status='unknown')
-      read (30,*) xms            ! M_s Fundamental Planck scale
-      read (30,*) nd             ! number of extra dimensions, 2<d<6
-      read (30,*) acut           ! \Lambda = acut*M_s
-      close (30)
-
       aem=1.0D0/128.0D0
-      lambda = xlqcd1
+      am1=0.0d0
+      am2=0.0d0
+      amH=125d0
+      am4=0d0
+      am5=0d0
+!      xmuf = amH
+!      xmur = xmuf
 
-
-c      write (*,*) 'ADD model'
-c      write (*,*) 'M_s = ',xms,'GeV'
-c      write (*,*) 'ND=',nd
-c      write (*,*) 'acut=',acut
-
-c ~~~~~~~~~~~~~~~~~--------------------------~~~~~~~~~~~~~~~~~~~~c        
-
-
-
-
+      call ol_LO_init(id_LO)
 
 c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c        
 
@@ -104,15 +69,18 @@ c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c
 c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c        
 
 
-        xq_initial = xq
+        xq_initial = ecm
       call initpdfsetbyname(name)
       Call initPDF(0)
        s=ecm*ecm
 
       mode = "P and K terms"
       call printframe0(mode)
+      iselect_integrand = 0
+      iselect_modified  = 1
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
-      mode1 = "[+] distribution with delta 1d-5"
+      if (iselect_integrand .ne. 1 ) goto 150
+      mode1 = "[+] distribution performed at integrand level"
 
       call printframe0(mode1)
       call printframe1(pt1,its1)   ! Prints Vegas points
@@ -123,9 +91,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 
 c      -------------------------------------------------
          call brm48i(40,0,0) 
-         call vsup(4,npt1,its1,flo2_Plus,ai_lo2,sd,chi2)
+         call vsup(2,npt1,its1,flo2_Plus,ai_lo2,sd,chi2)
 c      -------------------------------------------------
-
          PKPlus(j)   = ai_lo2
          err_plus(j) = sd
 
@@ -147,6 +114,40 @@ c      -------------------------------------------------
         xq = xq_initial
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[  * END * ]      
+c... From here we will be implementing the [+] with 
+c... different priscription.
+150    continue
+      if (iselect_modified .ne. 1 ) goto 151
+      mode1 = "[+] distribution performed with intXh(x) "
+
+
+      call printframe0(mode1)
+      call printframe1(pt1,its1)   ! Prints Vegas points
+
+!        do j=1,it_max
+
+      call printframe2(xq)
+
+c      -------------------------------------------------
+         call brm48i(40,0,0) 
+         call vsup(2,npt1*5,its1,xint_PlusA,ai_lo2,sd,chi2)
+c      -------------------------------------------------
+         Answer = ai_lo2
+c      -------------------------------------------------
+         call brm48i(40,0,0) 
+         call vsup(1,npt1/10,its1,xint_Plus_h,ai_lo2,sd,chi2)
+c      -------------------------------------------------
+         xinth = ai_lo2
+
+         PKPlus(1)   = Answer + xinth 
+         err_plus(1) = sd
+
+      mode = "Plus modified"
+      call printframe3(mode,PKPlus(1),sd,chi2)   
+151     continue
+c... Output is not yet feeding into the file, I just want to 
+c... check the numerical result from the vegas output.
+
 
 
 c ~~~~~~~~~~~Writing in a file to compare~~~~~~~~~~~~c        
