@@ -5,6 +5,8 @@
       double precision intres,intav,sigav,SWGT,WGT,bin2m,bin2w
       dimension dfun(100,10),dfus(100,10),dfsq(100,10),dsdi(100,10)
       common/distfun/dfun,dfsq
+      common/final_data_common/dfun1,dfsq1
+c... dfun is assigned fron the integrand itsef when vegas actually calls the function
       common/distfus/dfus,dsdi
       common/callnu/CALLS
       common/vbin/binc,binw,nbin
@@ -13,7 +15,12 @@
       common/isub/io,is
 c... here the function is having multiple binnings whuch are being computed inside
 c... a do loop.
+       dfun(1,1) = dfun1
+       dfsq(1,1) = dfsq1
+c... for single bin I am taking common block values from "final_data_common"
 
+       nbin  = 1
+         is  = 1
       do j=1,nbin
       do k=is,is
        dfsq(j,k) = dfsq(j,k) - dfun(j,k)**2*(CALLS)**(-1)

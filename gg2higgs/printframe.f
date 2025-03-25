@@ -117,3 +117,12 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	print*
       
       end
+c ~~~~~~~~~~~----------------------------~~~~~~~~~~~~c        
+        subroutine printframe9(ecm)
+        implicit double precision(a-h,o-z)
+          print*," "
+      write(*,*) achar(27)//'[1;32m' // "For the collider energy[GeV]:",
+     .int(ecm) ,achar(27) //'[0m'
+          print*," "
+        end
+

@@ -28,7 +28,7 @@ c      parameter (hbarc2=0.3894d9)  ! in pb
       common/distribution/xq
       common/renor_scale/scale
       common/usedalpha/AL,ge
-      common/final_data_common/final_data
+      common/final_data_common/dfun,dfsq
       external Born_uU2eE
        
       rs  = dsqrt(s)
@@ -63,25 +63,41 @@ c      if (rsp .gt. xcut) then
 
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
               wgt=xnorm*sig*vwgt
-              flo2_LO=wgt/vwgt/2d0/eps
-!              call histogram(xnorm*sig,scale,vwgt,final_data)
+              flo2_LO=wgt/vwgt
+              call histogram(flo2_LO*sig,scale,vwgt,dfun,dfsq)
       return
       end
 
 c---------------------------------------------------------------------
-      subroutine histogram(delI,scale,vwgt,send_to_main)
+      subroutine histogram(delI,scale,vwgt,dfun,dfsq)
       implicit none
       double precision delI,scale,eps,xlow,xhigh,xq,send_to_main,vwgt
+      double precision  :: dfun, dfsq
       integer condition
-      double precision, save :: final_data = 0.0
 
       xq = 500d0
       eps = 0.5d0
       xlow = xq - eps
       xhigh = xq + eps
       if ( scale .ge. xlow .and. scale .le. xhigh) then 
-      final_data = final_data + delI*vwgt
-      send_to_main = final_data/2d0/eps
+      dfun = dfun + delI*vwgt
+      dfsq = dfsq + delI**2*vwgt
       endif
+      return
       end
 
+      subroutine distclean
+      implicit double precision (a-h,o-z)
+      common/vbin/binc,binw,nbin
+      common/distfun/dfun,dfsq
+      common/isub/io,is
+      dimension dfun(100,10),dfsq(100,10)
+
+       do j=1,nbin
+       do k=is,is
+        dfun(j,k) = 0.d0
+        dfsq(j,k) = 0.d0
+       enddo
+       enddo
+      return
+      end

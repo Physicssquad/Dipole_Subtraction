@@ -1,9 +1,12 @@
 #!/bin/bash
 
-home_path=$(dirname "$0")
+#home_path=$(dirname "$0")
+home_path=$(dirname "$(readlink -f "$0")")
 cd $home_path
 home_path=$(pwd)
 cd ../../
+echo $home_path
+stop
 
 # Define the commands to run in parallel, and add a unique identifier to each command
 commands=(

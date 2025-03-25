@@ -1,13 +1,16 @@
       program uU2eE_LO 
       implicit double precision (a-h,o-z)
       dimension x(10),y(10),ai_lo2(1:50),err(0:50)
+      dimension dfus(100,10),dsdi(100,10)
       parameter (pi=3.14159265358979d0)
 
       common/energy/s
       common/amass/am1,am2,am3,am4,am5
       common/usedalpha/AL,ge   
       common/distribution/xq
-      common/final_data_common/final_data
+      common/distfus/dfus,dsdi
+      common/vegparam/npt1,its1
+      common/callnu/CALLS
       character*50 name,mode
       character*100 run_tag,filename
       external flo2_LO
@@ -92,8 +95,14 @@ c        read*,i
         call printframe2(xq)
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         call distclean
          call brm48i(40,0,0) ! initialize random number generator
          call vsup(3,npt1,its1,flo2_LO,ans,sd,chi2)
+        eps = 0.5d0
+	print*,dfus(1,1),dsdi(1,1) 
+        d_ai = dfus(1,1)/2d0/eps
+        d_ai_sd = dsqrt(1d0/dsdi(1,1))/2d0/eps
+        print*,d_ai,d_ai_sd
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             ai_lo2(j) = ans
               err(j)  = sd

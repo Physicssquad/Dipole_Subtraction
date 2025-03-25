@@ -1,29 +1,12 @@
 #!/bin/bash
 
-home_path=$(dirname "$0")
+home_path=$(dirname "$(readlink -f "$0")")
 cd $home_path
 home_path=$(pwd)
 cd ../../
 
 # Define the commands to run in parallel, and add a unique identifier to each command
-commands=(
-    "(./shell/runPK_Plus.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./shell/runPK_standalone.sh)"
-#    "(./.shell/runPK_standalone.sh)"
-#    "(./.shell/runPK_standalone.sh)"
-)
+commands=( "(./shell/runPK_Plus.sh)" )
 
 # Define the new values for the "max # of distribution increment step_size from xq"
 #distribution_steps=(100 400 700 1000 1300 1600 1900 2200 2500)
