@@ -76,8 +76,8 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
 
       mode = "P and K terms"
       call printframe0(mode)
-      iselect_integrand = 1
-      iselect_modified  = 0
+      iselect_integrand = 0
+      iselect_modified  = 1
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ Plus  functions ]
       if (iselect_integrand .ne. 1 ) goto 150
       mode1 = "[+] distribution performed at integrand level"
@@ -87,7 +87,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ P
 
         do j=1,it_max
 
-      call printframe2(xq)
+      call printframe2(ecm)
 
 c      -------------------------------------------------
          call brm48i(40,0,0) 
@@ -107,7 +107,7 @@ c      -------------------------------------------------
 
         do j=1,it_max
           write(*,'(i7,3e27.15,3e27.15)')
-     .             int(xq),PKPlus(j),err_plus(j)
+     .             int(ecm),PKPlus(j),err_plus(j)
           xq = xq + xincr
         enddo
 
@@ -126,7 +126,7 @@ c... different priscription.
 
 !        do j=1,it_max
 
-      call printframe2(xq)
+      call printframe2(ecm)
 
 c      -------------------------------------------------
          call brm48i(40,0,0) 
@@ -158,7 +158,7 @@ c       open(unit=21,file='../../summary/'//trim(run_tag)//
 c     .   '/'//trim(filename),status='unknown', access='append')
          xq = xq_initial
          do i=1,it_max
-          write(21,*)xq,PKPlus(i),err_Plus(i)
+          write(21,*)ecm,PKPlus(i),err_Plus(i)
           xq = xq + xincr
          enddo
          close(21)

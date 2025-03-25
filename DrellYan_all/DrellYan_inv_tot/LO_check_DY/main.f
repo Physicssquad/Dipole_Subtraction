@@ -68,7 +68,6 @@ c      am1 = 0.51099895000d-3
       leg=0
       ! energy
       s=ecm*ecm
-      print*,s
 
 c      print*,'  '
 c      print*,"Press 1 to initialise VEGAS:"
@@ -95,8 +94,6 @@ c        read*,i
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          call brm48i(40,0,0) ! initialize random number generator
          call vsup(3,npt1,its1,flo2_LO,ans,sd,chi2)
-	print*,final_data
-        print*,"this is the data finally"
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             ai_lo2(j) = ans
               err(j)  = sd

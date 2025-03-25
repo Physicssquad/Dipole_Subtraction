@@ -21,5 +21,3 @@ OBJDIR = objects
 SRCDIR = ..
 LOCALSRCDIR = .
 INCLUDEDIR = ../include/ 
-
-

@@ -139,8 +139,8 @@ OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/vsup.o       \
           $(OBJDIR)/integrand.o  \
           $(OBJDIR)/phasespace.o \
-          $(OBJDIR)/ol_interface.o \
-          $(OBJDIR)/PK_new.o 
+          $(OBJDIR)/ol_interface.o 
+#          $(OBJDIR)/PK_new.o 
 
 # Add OpenLoops library to the linking process
 OPENLOOPS_FLAGS = -Wl,-rpath=$(OPENLOOPS_LIB) -I$(OPENLOOPS_INCLUDE) -L$(OPENLOOPS_LIB) -lopenloops

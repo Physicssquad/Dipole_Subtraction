@@ -1,6 +1,7 @@
       function flo2_Plus(yy,vwgt)
       implicit double precision (a-h,o-z)
-      dimension yy(10),PK(1:2)
+      double precision Pterm, Kterm
+      dimension yy(10),PKt(1:2)
       dimension f1(-6:6),f2(-6:6),xl(15)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
       dimension xp1(0:3),xp2(0:3)
@@ -8,12 +9,26 @@
       parameter (hbarc2=389.3856741D+9)
       integer k,iplus
       character*50 name
+
+      character*10 P_,Kb_,Kt_
+      character*10 gg_ 
+      character*10 Plus_,Regular_,Delta_ 
+
       common/energy/s
       common/pdfname/name
       common/usedalpha/AL,ge
       common/distribution/xq
       common/amass/am1,am2,amH,am4,am5
       common/scales/xmuf,xmur
+      external PK
+
+      P_       ='P'
+      Kb_      ='Kb'
+      Kt_      ='Kt'
+      gg_      ='gg'
+      Plus_    ='Plus'
+      Regular_ ='Regular'
+      Delta_   ='Delta'
 
 c... I am going to convert this code for the gg2higgs case
 c... there will be huge modifications that will be don.
@@ -80,13 +95,23 @@ c... indipendently into the [+] functions.
             call pdf(xb,xmuf,f2)
             call setlum(f1,f2,xl)
 
-            Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)
-          SumPlus = Pplus + AKtilP_gg(x) + AKbarP_gg(x)
+!            Pplus = PggP(x)*(-1.0d0)*dlog(xmuf2/s12)
+!          SumPlus = Pplus + AKtilP_gg(x) + AKbarP_gg(x)
+
+      Tb_dot_Ta_by_Ta2 = -1d0
+      Tfactors = Tb_dot_Ta_by_Ta2
+      Pterm =ALP*PK(P_,gg_,Plus_,x)*Tfactors*dlog(xmuf2/s12)
+      Kterm =ALP*PK(Kb_,gg_,Plus_,x) -
+     &  ALP*Tfactors*PK(Kt_,gg_,Plus_,x)
+
+      SumPlus =coef*(Pterm + Kterm)
+
+
 c... Ktilde comes with the overall negative but due to colour charge one 
 c... more negative comes making it positive in this case only.
              
-            if (iplus .eq. 1) sig1 = xl(2)*SumPlus*coef
-            if (iplus .eq. 0) sig3 = xl(2)*SumPlus*coef 
+            if (iplus .eq. 1) sig1 = xl(2)*SumPlus
+            if (iplus .eq. 0) sig3 = xl(2)*SumPlus
 
            pi_1 = PI/amH
            flux = 2d0*sp
@@ -100,11 +125,11 @@ c... reset before proceding
 
           enddo
 
-            PK(k) = PKplus_x - PKplus_1
+            PKt(k) = PKplus_x - PKplus_1
 
         enddo
 
-        flo2_Plus = ALP * ( PK(1) + PK(2) )
+        flo2_Plus = ( PKt(1) + PKt(2) )
 151      return
       end
 c---------------------------------------------------------------------
@@ -114,30 +139,44 @@ c---------------------------------------------------------------------
       dimension yy(10)
      &  ,f1(-6:6),f2(-6:6),xl(15)
      &  ,p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3),xp1(0:3),xp2(0:3)
-     &  ,p(0:3,1:4),Born(1:2),AllReg(1:2)
+     &  ,p(0:3,1:4),Born(1:2),PK_leg(1:2)
      &  ,SumP(1:2),SumK(1:2)
+      double precision Pterm, Kterm
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+9)
+
+      character*10 P_,Kb_,Kt_
+      character*10 gg_ 
+      character*10 Plus_,Regular_,Delta_ 
+
       common/energy/s
-c      common/factscale/xmuf
       common/usedalpha/AL,ge
       common/distribution/xq
       common/bin_size/eps
       common/amass/am1,am2,amH,am4,am5
       common/scales/xmuf,xmur
+      external PK
 
-       tau = amH**2/S
+      P_       ='P'
+      Kb_      ='Kb'
+      Kt_      ='Kt'
+      gg_      ='gg'
+      Plus_    ='Plus'
+      Regular_ ='Regular'
+      Delta_   ='Delta'
+
+      tau = amH**2/S
 
 c... Integration is singular at 1, so we are performing integration 
 c... from 0 to 1-δ
-      delta = 1d-5 
+      delta = 1d-2 
       xmin = 0d0 
       xmax = 1.0d0 - delta
       xjac4 = (xmax - xmin)
       x = xjac4*yy(1) + xmin
 
-!      xamin = tau/x
-      xamin = 0d0 
+      xamin = tau/x
+!      xamin = 0d0 
       xamax = 1d0
       xajac =  (xamax - xamin)
       xa = xamin + xajac*yy(2)
@@ -178,23 +217,23 @@ c... coefficients always comes with the x kinematics
       Tb_dot_Ta_by_Ta2 = -1d0
       xmuf2 = xmuf**2
       s12 = 2d0*dot(p1,p2)
-      Pplus = PggP(x)*Tb_dot_Ta_by_Ta2*dlog(xmuf2/s12)
+      Tfactors = Tb_dot_Ta_by_Ta2
 
-      SumPlus = Pplus -Tb_dot_Ta_by_Ta2 * AKtilP_gg(x) + AKbarP_gg(x)
-      sig1 = xl(2)* SumPlus 
+      Pterm =ALP*PK(P_,gg_,Plus_,x)*Tfactors*dlog(xmuf2/s12)
 
-      sig = Alp*sig1*coef
+      Kterm =    ALP*PK(Kb_,gg_,Plus_,x) 
+     & - ALP*Tfactors*PK(Kt_,gg_,Plus_,x)
+
+      sig =xl(2)*coef*(Pterm + Kterm)
 
            pi_1 = PI/amH 
            flux = 2d0*sp
           xnorm = hbarc2*pi_1/flux
 
-         PKReg = xnorm*xajac*xjac4*sig* 2d0*amH/xa/x/S
-
-           AllReg(k) = PKReg  
+      PK_leg(k) = xnorm*xajac*xjac4*sig* 2d0*amH/xa/x/S
 
          enddo
-         xint_PlusA  = AllReg(1) + AllReg(2)
+         xint_PlusA  = PK_leg(1) + PK_leg(2)
 c... this is the first part which will be countered by the finite 
 c... pieces comming from the next routine.
 c...      Integrate[ A,{x,0,1-δ}] + 𝝳(1-x) g(1) [h(0) -h(1-δ)]
@@ -226,7 +265,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta terms]
       Ktgg_= 'Ktgg'
       Kbargg_='Kbargg'
 
-        delta = 1d-5 
+        delta = 1d-2
         tau = amH**2/S
          xajac = 1d0 - tau
          xa = tau + xajac*yy(1)

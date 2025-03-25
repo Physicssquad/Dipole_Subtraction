@@ -3,6 +3,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         use openloops
         implicit none
         integer :: id_LO, error, k,icall
+        integer :: i,j !temp veriable
         real(8) :: m2_tree, m2_loop(0:2), acc
         real(8) :: p_ex(0:3,3),p1(0:3),p2(0:3),p3(0:3)
         real(8) :: mH = 125.0
@@ -18,12 +19,15 @@ c	alpha_s = 125d0/2d0
       !  call set_parameter("order_qcd", 2)
         if ( icall .eq. 0d0 ) then
         call set_parameter("mass(25)", mH)
-        call set_parameter("verbose",-1)
+        call set_parameter("verbose",1)
         call set_parameter("model","heft") 
+       call set_parameter("order_ew",1)
+       call set_parameter("order_qcd",2)
 c        call set_parameter("alpha_s", alpha_s) !  AL will be set at the integral.f
 c        call set_parameter("mu", mu)
 
         id_LO = register_process("21 21 -> 25", 1)
+
         endif
       end
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

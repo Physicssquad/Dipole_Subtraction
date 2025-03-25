@@ -1,3 +1,23 @@
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 25 : 03 : 2025 ]
+1. PK_Plus under Isolated is now modified by using the new function PK(). 
+
+
+2. pp2VH LO can now be computed for each points in PS points, since this is a loop induced process, |M11|^2 has to be computed.
+   distribution is not matching with the reference data.
+   In a stage to compare LO M^2 at each PS point.
+
+3. there are many important files in the trash_ in the current update, which is not being tracked by git. But is present in the local machine. care must be taken. In order to save or removing these data.
+
+4. Started converting fortran77 to fortran 95.
+   Drell_Yan_f95
+
+
+
+
+
+
+
+
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 18 : 03 : 2025 ]
 1. PK problem is now resolved. Problem carefully taken care. 
   

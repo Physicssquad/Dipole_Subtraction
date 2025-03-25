@@ -1,19 +1,19 @@
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Misc functions]
-      function dot(p,q)
-      implicit double precision (a-h,o-z)
-      dimension p(0:3),q(0:3)
-      dot=p(0)*q(0)-p(1)*q(1)-p(2)*q(2)-p(3)*q(3)
-      return
-      end
-
-      function dot2(p,i,j,l)
-      implicit double precision (a-h,o-z)
-      dimension p(0:3,3,2)
-      dot2= p(0,i,l)*p(0,j,l)-p(1,i,l)*p(1,j,l)
-     .     -p(2,i,l)*p(2,j,l)-p(3,i,l)*p(3,j,l)
-      return
-      end
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Functions used in PK_Plus PK_Delta and PK_Regular]
+!c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Misc functions]
+!      function dot(p,q)
+!      implicit double precision (a-h,o-z)
+!      dimension p(0:3),q(0:3)
+!      dot=p(0)*q(0)-p(1)*q(1)-p(2)*q(2)-p(3)*q(3)
+!      return
+!      end
+!
+!      function dot2(p,i,j,l)
+!      implicit double precision (a-h,o-z)
+!      dimension p(0:3,3,2)
+!      dot2= p(0,i,l)*p(0,j,l)-p(1,i,l)*p(1,j,l)
+!     .     -p(2,i,l)*p(2,j,l)-p(3,i,l)*p(3,j,l)
+!      return
+!      end
+!c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Functions used in PK_Plus PK_Delta and PK_Regular]
 
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ For qq initiated process with qg splliting ]
       double precision function PqqP(x)
@@ -248,105 +248,105 @@ c________________________________________________________________________c
 
       return
       end
-c________________________________________________________________________c 
-      double precision function xint_h(x,PKtype)
-      implicit none
-      double precision x, dilog
-      double precision CA,CF,PI,hbarc2
-      external dilog
-      character*10 PKtype
-!      include 'parameter.h'
-      parameter (PI=3.14159265358979d0)
-      parameter(CA = 3d0)
-      parameter(CF = 4d0/3d0)
-c... here only plus function is taken, the colour factor needs to be 
-c... considered carefully in the integrand.f
-
-c... For quark quark splitting
-      if ( trim(PKtype) .eq. 'Pqq') then
-      xint_h =CF*(3d0-2d0*x-x**2-4d0*dLog(1d0-x))/2
-
-      elseif (trim(PKtype) .eq. 'Kbarqq') then
-      xint_h = -CF*2d0*(-0.5d0*(dLog(-1d0 + x)*(-2d0*dLog(-1d0 + 1d0/x)
-     .       +dLog(-1d0+x)-2d0*dLog(x)))+dilog(1d0-x))
-
-      elseif (trim(PKtype) .eq. 'Ktqq') then
-      xint_h = -CF*dLog(1d0-x)**2
-
-c... For gluon gluon splitting
-      elseif (trim(PKtype) .eq. 'Pgg') then
-      xint_h = -2d0*CA*dLog(1d0 - x) 
-
-      elseif (trim(PKtype) .eq. 'Kbargg') then
-      xint_h = -0.5d0*PI**2 -0.5d0*dLog(1d0-x)**2-dilog(1-x)  
-      xint_h = 2d0*CA*xint_h
-
-      elseif (trim(PKtype) .eq. 'Ktgg') then
-      xint_h = -dLog(1d0-x)**2 
-      xint_h = CA*xint_h
-
-      else
-      print*,'Invalid xintPK type'
-      stop
-      endif      
-      end
+!c________________________________________________________________________c 
+!      double precision function xint_h(x,PKtype)
+!      implicit none
+!      double precision x, dilog
+!      double precision CA,CF,PI,hbarc2
+!      external dilog
+!      character*10 PKtype
+!!      include 'parameter.h'
+!      parameter (PI=3.14159265358979d0)
+!      parameter(CA = 3d0)
+!      parameter(CF = 4d0/3d0)
+!c... here only plus function is taken, the colour factor needs to be 
+!c... considered carefully in the integrand.f
+!
+!c... For quark quark splitting
+!      if ( trim(PKtype) .eq. 'Pqq') then
+!      xint_h =CF*(3d0-2d0*x-x**2-4d0*dLog(1d0-x))/2
+!
+!      elseif (trim(PKtype) .eq. 'Kbarqq') then
+!      xint_h = -CF*2d0*(-0.5d0*(dLog(-1d0 + x)*(-2d0*dLog(-1d0 + 1d0/x)
+!     .       +dLog(-1d0+x)-2d0*dLog(x)))+dilog(1d0-x))
+!
+!      elseif (trim(PKtype) .eq. 'Ktqq') then
+!      xint_h = -CF*dLog(1d0-x)**2
+!
+!c... For gluon gluon splitting
+!      elseif (trim(PKtype) .eq. 'Pgg') then
+!      xint_h = -2d0*CA*dLog(1d0 - x) 
+!
+!      elseif (trim(PKtype) .eq. 'Kbargg') then
+!      xint_h = -0.5d0*PI**2 -0.5d0*dLog(1d0-x)**2-dilog(1-x)  
+!      xint_h = 2d0*CA*xint_h
+!
+!      elseif (trim(PKtype) .eq. 'Ktgg') then
+!      xint_h = -dLog(1d0-x)**2 
+!      xint_h = CA*xint_h
+!
+!      else
+!      print*,'Invalid xintPK type'
+!      stop
+!      endif      
+!      end
 c############################################################# 
-       double precision function dilog(x)
-       implicit double precision (a-z)
-       parameter (pi6=1.644934066848226d+00)
-       parameter (een=1.d+00)
-       parameter (vier=0.25d+00)
-       parameter (b2=+2.7777777777777778D-02)
-       parameter (b3=-2.7777777777777778D-04)
-       parameter (b4=+4.7241118669690098D-06)
-       parameter (b5=-9.1857730746619641D-08)
-       parameter (b6=+1.8978869988971001D-09)
-       parameter (b7=-4.0647616451442256D-11)
-       parameter (b8=+8.9216910204564523D-13)
-1      if(x.lt.0.d0)go to 3
-       if(x.gt.0.5d0)go to 4
-       z=-dlog(1.d0-x)
-7      z2=z*z
-       dilog=z*(z2*(z2*(z2*(z2*(z2*(z2*(z2*b8+b7)+b6)
-     1 +b5)+b4)+b3)+b2)+een)-z2*vier
-       if(x.gt.een)dilog=-dilog-.5d0*u*u+2.d0*pi6
-       return
-3      if(x.gt.-een)go to 5
-       y=een/(een-x)
-       z=-dlog(een-y)
-       z2=z*z
-       u=dlog(y)
-       dilog=z*(z2*(z2*(z2*(z2*(z2*(z2*(z2*b8+b7)+b6)
-     1 +b5)+b4)+b3)+b2)+een)-z2*vier-u*(z+.5d0*u)-pi6
-       return
-4      if(x.ge.een)go to 10
-       y=een-x
-       z=-dlog(x)
-6      u=dlog(y)
-       z2=z*z
-       dilog=-z*(z2*(z2*(z2*(z2*(z2*(z2*(z2*b8+b7)+b6)
-     1 +b5)+b4)+b3)+b2)+een-u)+z2*vier+pi6
-       if(x.gt.een)dilog=-dilog-.5d0*z*z+pi6*2.d0
-       return
-5      y=een/(een-x)
-       z=-dlog(y)
-       z2=z*z
-       dilog=-z*(z2*(z2*(z2*(z2*(z2*(z2*(z2*b8+b7)+b6)
-     1 +b5)+b4)+b3)+b2)+een)-z2*vier
-       return
-10     if(x.eq.een)go to 20
-       xx=1.d0/x
-       if(x.gt.2.d0)go to 11
-       z=dlog(x)
-       y=1.d0-xx
-       go to 6
-11     u=dlog(x)
-       z=-dlog(1.d0-xx)
-       go to 7
-20     dilog=pi6
-       return
-       end
-
+!       double precision function dilog(x)
+!       implicit double precision (a-z)
+!       parameter (pi6=1.644934066848226d+00)
+!       parameter (een=1.d+00)
+!       parameter (vier=0.25d+00)
+!       parameter (b2=+2.7777777777777778D-02)
+!       parameter (b3=-2.7777777777777778D-04)
+!       parameter (b4=+4.7241118669690098D-06)
+!       parameter (b5=-9.1857730746619641D-08)
+!       parameter (b6=+1.8978869988971001D-09)
+!       parameter (b7=-4.0647616451442256D-11)
+!       parameter (b8=+8.9216910204564523D-13)
+!1      if(x.lt.0.d0)go to 3
+!       if(x.gt.0.5d0)go to 4
+!       z=-dlog(1.d0-x)
+!7      z2=z*z
+!       dilog=z*(z2*(z2*(z2*(z2*(z2*(z2*(z2*b8+b7)+b6)
+!     1 +b5)+b4)+b3)+b2)+een)-z2*vier
+!       if(x.gt.een)dilog=-dilog-.5d0*u*u+2.d0*pi6
+!       return
+!3      if(x.gt.-een)go to 5
+!       y=een/(een-x)
+!       z=-dlog(een-y)
+!       z2=z*z
+!       u=dlog(y)
+!       dilog=z*(z2*(z2*(z2*(z2*(z2*(z2*(z2*b8+b7)+b6)
+!     1 +b5)+b4)+b3)+b2)+een)-z2*vier-u*(z+.5d0*u)-pi6
+!       return
+!4      if(x.ge.een)go to 10
+!       y=een-x
+!       z=-dlog(x)
+!6      u=dlog(y)
+!       z2=z*z
+!       dilog=-z*(z2*(z2*(z2*(z2*(z2*(z2*(z2*b8+b7)+b6)
+!     1 +b5)+b4)+b3)+b2)+een-u)+z2*vier+pi6
+!       if(x.gt.een)dilog=-dilog-.5d0*z*z+pi6*2.d0
+!       return
+!5      y=een/(een-x)
+!       z=-dlog(y)
+!       z2=z*z
+!       dilog=-z*(z2*(z2*(z2*(z2*(z2*(z2*(z2*b8+b7)+b6)
+!     1 +b5)+b4)+b3)+b2)+een)-z2*vier
+!       return
+!10     if(x.eq.een)go to 20
+!       xx=1.d0/x
+!       if(x.gt.2.d0)go to 11
+!       z=dlog(x)
+!       y=1.d0-xx
+!       go to 6
+!11     u=dlog(x)
+!       z=-dlog(1.d0-xx)
+!       go to 7
+!20     dilog=pi6
+!       return
+!       end
+!
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[End of PK functions]
       SUBROUTINE MATDIP_CHECK(RESULT, SIG, SUMD, MODE)
       DOUBLE PRECISION SIG, SUMD

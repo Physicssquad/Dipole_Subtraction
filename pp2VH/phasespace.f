@@ -198,8 +198,7 @@ c      xxinvmass= dsqrt(s34)
 c---------------------------------------------------------------o
 
 C          C~~~~~~[ MASSIVE  CASE ]~~~~~~~~C
-
-      subroutine kinvar2_type_1(x1,x2,x4,xinvmass,p1,p2,p3,p4)
+      subroutine kinvar2_type_1(xx,xinvmass,p1,p2,p3,p4)
       implicit double precision (a-h,o-z)
       dimension xx(10)
       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),q(0:3)
@@ -207,41 +206,71 @@ C          C~~~~~~[ MASSIVE  CASE ]~~~~~~~~C
       COMMON/energy/s
       common/amass/am1,am2,am3,am4,am5
       common/checks/ct
+      external sq_lambda
 
-      xa=x1
-      xb=x2
-      v=x4
-      omv=1d0-v     
+      xa=xx(1)
+      xb=xx(2)
+      v1=xx(3)
+      v2=xx(4)
 
 c      s = RS*RS
       sp = xa*xb*s
       rsp = dsqrt(sp)
-
+      rs = dsqrt(s)
       srs2=0.5*dsqrt(s)
 
 c     incoming parton 4-vectors
-      p1(0)=srs2*xa
+      E1 = 0.5d0*(s+am1**2-am2**2)/rs
+      E2 = 0.5d0*(s+am2**2-am1**2)/rs
+      pcmi = 0.5d0*sq_lambda(s,am1,am2)/rs
+
+c     incoming parton 4-vectors
+      p1(0)= xa*E1
       p1(1)=0d0
       p1(2)=0d0
-      p1(3)=p1(0)
+      p1(3)=xa*pcmi
 
-      p2(0)=srs2*xb
+      p2(0)= xb*E2
       p2(1)=0d0
       p2(2)=0d0
-      p2(3)=-p2(0)
+      p2(3)=-xb*pcmi
+c ---------------------------------------------
+c       Parametrization in the c.o.m. frame
+c ---------------------------------------------
+      E3 = 0.5d0*(rsp + (am3**2 -am4**2)/rsp)
+      E4 = 0.5d0*(rsp + (am4**2 -am3**2)/rsp)
+      pf = 0.5d0*sq_lambda(sp,am3,am4)/rsp
 
+      pi = dacos(-1d0)
+      phi = 2d0*pi*v2
+      cos_th = 2*v1 - 1d0
+      sin_th = dsqrt(1d0 - cos_th**2)
+      sin_phi = dsin(phi)
+      cos_phi = dcos(phi)
+
+      px3= pf*sin_th*cos_phi
+      py3= pf*sin_th*sin_phi
+      pz3= pf*cos_th
+
+      px4= -pf*sin_th*cos_phi
+      py4= -pf*sin_th*sin_phi
+      pz4= -pf*cos_th
 c  For massive case where m3 and m4 are non-zero
 c  ---------------------------------------------
 c        Parametrization in the c.o.m. frame
 c  ---------------------------------------------
-      xmd = (am3**2 - am4**2)
-       e3 = 0.5d0*(rsp + xmd/rsp)
-       pf = dsqrt(e3**2 - am3**2)
-       ct = 2d0*v-1
-       st = dsqrt(1d0 - ct**2d0)
-      px3 = pf*st
-      py3 = 0d0
-      pz3 = pf*ct
+!      xmd = (am3**2 - am4**2)
+!       e3 = 0.5d0*(rsp + xmd/rsp)
+!       pf = dsqrt(e3**2 - am3**2)
+!	print*,e3**2,am3**2
+!       ct = 2d0*v-1
+!       st = dsqrt(1d0 - ct**2d0)
+!	print*,pf
+!	stop
+!      px3 = pf*st
+!      py3 = 0d0
+!      pz3 = pf*ct
+!      print*,"Particle3:",e3,px3,py3,pz3
 
 c---------------------------------------------------
 c     e4cm = (sp - am3**2.0d0)/2.0d0/rsp
@@ -259,8 +288,22 @@ c---------------------------------------------------
       p4(1)=p1(1)+p2(1)-p3(1)
       p4(2)=p1(2)+p2(2)-p3(2)
       p4(3)=p1(3)+p2(3)-p3(3)
+ 
+      q(0) = p3(0) + p4(0)
+      q(1) = p3(1) + p4(1)
+      q(2) = p3(2) + p4(2)
+      q(3) = p3(3) + p4(3)
+      
+      s34 = am3**2 + am4**2 + 2d0*dot(p3,p4) 
+      xinvmass = dsqrt(s34) 
 
-      xinvmass = dsqrt(dot(p3,p3))
+      return
+      end
+      function sq_lambda(s,xm1,xm2)
+      double precision s,xm1,xm2,sq_lambda
+
+      sq_lambda = dsqrt( s**2 + xm1**4 + xm2**4 - 2d0 *
+     &            (xm1**2*s+ xm2**2*s+ xm1**2*xm2**2))
 
       return
       end

@@ -1,4 +1,246 @@
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusA term]
+      function xint_PlusA(yy,vwgt)
+      implicit double precision (a-h,o-z)
+      dimension yy(10),SumPK(1:2)
+      dimension f1(-6:6),f2(-6:6),f2a(-6:6),xl(15),xla(15)
+      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
+      dimension xp1(0:3),xp2(0:3)
+      double precision Pterm,Kterm
+      parameter (pi=3.14159265358979d0)
+      parameter (hbarc2=389.3856741D+6)
+      character*50 name
+      character*10 P_,Kb_,Kt_
+      character*10 qq_ 
+      character*10 Plus_,Regular_,Delta_ 
+   
+      common/energy/s
+      common/pdfname/name
+      common/factscale/xmuf
+      common/usedalpha/AL,ge
+      common/distribution/xq
+
+      P_       ='P'
+      Kb_      ='Kb'
+      Kt_      ='Kt'
+      qq_      ='qq'
+      Plus_    ='Plus'
+      Regular_ ='Regular'
+      Delta_   ='Delta'
+
+      xeps = 0.5d0
+      xlow = xq - xeps
+      xhigh = xq + xeps
+
+        x1 = yy(1)
+        x2 = yy(2)
+        xt = yy(3)
+
+      delta = 1.0d-5
+      almin = delta
+      almax = 1.0d0
+      al = almin*(almax/almin)**yy(4)
+      xjac4 = al*dlog(almax/almin)
+      x = 1.0d0 - al
+
+      xtjac = 2.0d0
+      xjac = xtjac*xjac4
+
+      xnorm=hbarc2
+
+        flo2_PlusA  = 0.0d0
+        PKplus_x = 0.0d0
+        SumPK(1) = 0d0
+        SumPK(2) = 0d0
+
+        sig = 0.0d0
+        Qmass = 0.0d0
+
+
+        do k = 1,2
+
+        if ( k .eq. 1) then
+        call kinvar2_PK(x*x1,x2,xt,Qmass,p1,p2,p3,p4)
+        scale = Qmass
+        elseif ( k .eq. 2) then
+        call kinvar2_PK(x1,x*x2,xt,Qmass,p1,p2,p3,p4)
+        scale = Qmass
+        endif
+
+
+        if ( scale .ge. xlow .and. scale .le. xhigh) then
+
+        coef = Born_uU2eE(0,p1,p2,p3,p4)
+
+        sp   =  2.0d0*dot(p1,p2)
+        s12   = sp 
+        rsp  = dsqrt(sp)
+        pin  = 0.5d0*rsp
+        pf   = 0.5d0*rsp
+        flux = 4.0d0*pin*rsp
+         
+             xmuf = scale
+             xmur = xmuf
+            xmuf2 = xmuf*xmuf 
+               AL = alphasPDF(xmur) 
+              ALP = AL/2d0/Pi
+
+            azmth = 2.0d0*pi
+            ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
+
+            call pdf(x1,xmuf,f1)
+            call pdf(x2,xmuf,f2)
+
+            call setlum(f1,f2,xl)
+
+!            call getPKPlus(1,x,xmuf,p1,p2,p3,p4,SumPlus)
+c... Here new function is being used.
+      Tb_dot_Ta_by_Ta2 = -1d0
+      Tfactors = Tb_dot_Ta_by_Ta2
+
+      Pterm =ALP*PK(P_,qq_,Plus_,x)*Tfactors*dlog(xmuf2/s12)
+      Kterm =ALP*PK(Kb_,qq_,Plus_,x) -
+     &  ALP*Tfactors*PK(Kt_,qq_,Plus_,x)
+!
+      SumPlus = coef*(Pterm + Kterm)
+           
+           sig = xl(1)*SumPlus
+  
+            wgt = sig/flux*ps2*xjac*vwgt
+            PKplus_x = xnorm*wgt/vwgt
+
+            SumPK(k) = PKplus_x
+            endif
+            enddo
+
+        xint_PlusA =(SumPK(1) + SumPK(2))
+      return
+      end
+
+      function xint_Plus_h(yy,vwgt)
+      implicit double precision (a-h,o-z)
+      dimension yy(10),PK(1:2)
+      dimension f1(-6:6),f2(-6:6),f2a(-6:6),xl(15),xla(15)
+      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
+      dimension xp1(0:3),xp2(0:3)
+      parameter (pi=3.14159265358979d0)
+      parameter (hbarc2=389.3856741D+6)
+      character*50 name
+      character*10 P_,Kb_,Kt_
+      character*10 qq_ 
+      character*10 Plus_,Regular_,Delta_ 
+      character*10 Pqq_,Kbarqq_,Ktqq_
+
+      common/energy/s
+      common/pdfname/name
+      common/factscale/xmuf
+      common/usedalpha/AL,ge
+      common/distribution/xq
+      external xint_h
+
+      P_       ='P'
+      Kb_      ='Kb'
+      Kt_      ='Kt'
+      qq_      ='qq'
+      Plus_    ='Plus'
+      Regular_ ='Regular'
+      Delta_   ='Delta'
+
+      Pqq_ = 'Pqq'
+      Ktqq_= 'Ktqq'
+      Kbarqq_='Kbarqq'
+
+      xeps = 0.5d0
+      xlow = xq - xeps
+      xhigh = xq + xeps
+
+        x1 = yy(1)
+        x2 = yy(2)
+        xt = yy(3)
+
+c      xmin = 0.0d0
+c      xmax = 1.0d0 -delta
+c      xjac4 = (xmax - xmin)
+c      x = xjac4*yy(4) + xmin
+
+      delta = 1.0d-5
+c      almin = delta
+c      almax = 1.0d0
+c      al = almin*(almax/almin)**yy(4)
+c      xjac4 = al*dlog(almax/almin)
+c      x = 1.0d0 - al
+
+      xtjac = 2.0d0
+      xjac = xtjac!*xjac4
+
+      xnorm=hbarc2
+
+        flo2_PlusB  = 0.0d0
+        PKplus_x = 0.0d0
+
+        sig = 0.0d0
+        PK(1) = 0.0d0
+        PK(2) = 0.0d0
+
+        do k = 1,2
+
+        call kinvar2_PK(x1,x2,xt,Qmass,p1,p2,p3,p4)
+
+        scale = Qmass
+
+        if ( scale .ge. xlow .and. scale .le. xhigh) then
+
+        coef = Born_uU2eE(0,p1,p2,p3,p4)
+
+        sp   =  2.0d0*dot(p1,p2)
+        rsp  = dsqrt(sp)
+        pin  = 0.5d0*rsp
+        pf   = 0.5d0*rsp
+        flux = 4.0d0*pin*rsp
+         
+             xmuf = scale
+             xmur = xmuf
+            xmuf2 = xmuf*xmuf 
+               AL = alphasPDF(xmur) 
+              ALP = AL/2d0/Pi
+c              ALP = 1.0d0
+
+            azmth = 2.0d0*pi
+            ps2 = 1.0d0/(4.d0*pi*pi)*(pf/4.d0/rsp)*azmth
+
+            call pdf(x1,xmuf,f1)
+            call pdf(x2,xmuf,f2)
+
+            call setlum(f1,f2,xl)
+
+!            call getPKPlus(0,x,xmuf,p1,p2,p3,p4,SumPlus)
+      zero = 0d0
+      one  = 1d0
+      one_m_del = one-delta
+
+        s12 = 2d0*dot(p1,p2)
+        Pplus = (-1.0d0)*dlog(xmuf2/s12)
+      Pplus = Pplus*(xint_h(zero,Pqq_)    - xint_h(one_m_del,Pqq_))
+           xKbar_h = xint_h(zero,Kbarqq_) - xint_h(one_m_del,Kbarqq_)
+             xKt_h = xint_h(zero,Ktqq_)   - xint_h(one_m_del,Ktqq_)
+
+      SumPlus = Pplus + xKbar_h + xKt_h
+
+         sig = 2d0*xl(2)*SumPlus*coef
+
+           sig = xl(1)*SumPlus*coef
+  
+            wgt = sig/flux*ps2*xjac*vwgt
+            PKplus_x = xnorm*wgt/vwgt
+
+            PK(k) = PKplus_x
+            endif
+            enddo
+
+        xint_Plus_h  = ALP * (PK(1) + PK(2))
+      return
+      end
+
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[PlusA term]
       function flo2_PlusA(yy,vwgt)
       implicit double precision (a-h,o-z)
       dimension yy(10),PK(1:2)
@@ -87,6 +329,7 @@ c              ALP = 1.0d0
             call getPKPlus(1,x,xmuf,p1,p2,p3,p4,SumPlus)
            
            sig = xl(1)*SumPlus*coef
+!           sig = xl(1)*coef
   
             wgt = sig/flux*ps2*xjac*vwgt
             PKplus_x = xnorm*wgt/vwgt
@@ -342,26 +585,26 @@ c      xb = (1D0-TAUH/xa)*yy(2) + TAUH/xa
 
 c---------------------------------------------------------------------
 
-c---------------------------------------------------------------------
-c     [u U -> e E]  Born 
-c--------------------------------------------------------------------o
-       function Born_uU2eE(k,p1,p2,p3,p4)
-       implicit double precision (a-h,o-z)
-       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
-       parameter(PI=3.141592653589793238D0)
-       common/usedalpha/AL,ge
-c       ge=1d0/128d0
-       e= DSQRT(ge*4.d0*PI)
-      IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
-      IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
-      IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2
-      s13 =  2.0d0*dot(p1,p3) ! t
-      s23 =  2.0d0*dot(p1,p4) ! u
-      s12 =  2.0d0*dot(p1,p2) ! s
-      qu2 = 1d0!4d0/9d0
-
-      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
-     .            s23)))/(3d0*s12**2)
-       return
-       end
-c---------------------------------------------------------------------
+!c---------------------------------------------------------------------
+!c     [u U -> e E]  Born 
+!c--------------------------------------------------------------------o
+!       function Born_uU2eE(k,p1,p2,p3,p4)
+!       implicit double precision (a-h,o-z)
+!       dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
+!       parameter(PI=3.141592653589793238D0)
+!       common/usedalpha/AL,ge
+!c       ge=1d0/128d0
+!       e= DSQRT(ge*4.d0*PI)
+!      IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
+!      IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
+!      IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2
+!      s13 =  2.0d0*dot(p1,p3) ! t
+!      s23 =  2.0d0*dot(p1,p4) ! u
+!      s12 =  2.0d0*dot(p1,p2) ! s
+!      qu2 = 1d0!4d0/9d0
+!
+!      Born_uU2eE= CF*(2*e**4*qu2*(-2*s13*s23 + s12*(s13 +
+!     .            s23)))/(3d0*s12**2)
+!       return
+!       end
+!c---------------------------------------------------------------------

@@ -64,7 +64,7 @@ c      if (rsp .gt. xcut) then
               xnorm=hbarc2/16d0/pi/(xa*xb*s)
               wgt=xnorm*sig*vwgt
               flo2_LO=wgt/vwgt/2d0/eps
-              call histogram(xnorm*sig,scale,vwgt,final_data)
+!              call histogram(xnorm*sig,scale,vwgt,final_data)
       return
       end
 

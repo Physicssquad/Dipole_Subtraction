@@ -6,36 +6,22 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     [g g -> h]  Born Effective field theory
 c--------------------------------------------------------------------o
-       function Born_gg2h_(k,AL,p1,p2,p3)
-       use openloops
-         implicit double precision (a-h,o-z)
-         dimension p1(0:3),p2(0:3),p3(0:3),p_ex(0:3,3)
-         parameter(PI=3.141592653589793238D0)
-         common/amass/am1,am2,amh,am4,am5
-         common/energy/s
-         common/prc_id/id_LO,id_NLO_1r
+      double precision function amp_LO(AL,xmur,p1,p2,p3,p4)
+      use openloops
+      implicit double precision (a-h,o-z)
+      dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3),p_ex(0:3,4)
+      dimension am211(0:2)
+      parameter(PI=3.141592653589793238D0)
+      common/amass/am1,am2,amh,am4,am5
+      common/energy/s
+      common/prc_id/id_LO,id_NLO_1r
 
-         s12 = 2d0*dot(p1,p2)
-         rp34  = dsqrt(s12)
-         
-         IF(k .eq. 0)  CF =  1d0               !Leading Order k=0
-         IF(k .eq. 1)  CF = -1d0              !leg 1 reduced born k=1 
-         IF(k .eq. 2)  CF = -1d0              !Leg 2 reduced born k=2
-c CF is the colour factor in comes up in reduced born.
-           NA = 8
-            v = 246.22d0
-           AS = AL/4d0/PI
-           ch = -4d0*AS/3d0/v 
-          ch2 = ch * ch
-           avg_pol = 4d0
-
-          Born_gg2H_ =  CF*s12**2*ch2/64d0
-
-c...  Openloops has already been initialised in main.
 cooooooooooooooooooooooooooooooooooooooooooooooo
-        call p1d_to_p2d_3(p1,p2,p3,p_ex) 
-        call evaluate_tree(id_LO,p_ex,answer)
-        Born_gg2H_ = CF*answer
+        call set_parameter("alphas",AL)
+        call set_parameter("muren",xmur)
+        call p1d_to_p2d_4(p1,p2,p3,p4,p_ex) 
+        call evaluate_loop2(id_LO,p_ex,am210,acc)
+        amp_LO = am210
 cooooooooooooooooooooooooooooooooooooooooooooooo
        return
        end

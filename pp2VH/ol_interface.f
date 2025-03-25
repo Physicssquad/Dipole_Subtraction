@@ -15,19 +15,23 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       
 !         mu = mH/2d0
 c	alpha_s = 125d0/2d0
-      !  call set_parameter("order_ew", 1)
-      !  call set_parameter("order_qcd", 2)
-        if ( icall .eq. 0d0 ) then
-        call set_parameter("mass(25)", mH)
-        call set_parameter("verbose",-1)
-        call set_parameter("model","heft") 
-!	call set_parameter("order_ew",-1)
-!	call set_parameter("order_qcd",-1)
-c        call set_parameter("alpha_s", alpha_s) !  AL will be set at the integral.f
-c        call set_parameter("mu", mu)
+!        call set_parameter("order_ew",2)
+!        call set_parameter("order_qcd",2)
+c        if ( icall .eq. 0d0 ) then
+!        call set_parameter("mass(25)", mH)
+        call set_parameter("verbose",-5)
+        call set_parameter("model","sm_yuksel") 
 
-        id_LO = register_process("21 21 -> 25", 1)
-        endif
+	call set_parameter("order_ew",2)  
+c... what is the order_ew value, it doesnt matter weather 
+c... i use 0,1,2 |loop_induced|^2 is same 
+
+	call set_parameter("order_qcd",2)
+c        call set_parameter("alpha_s", alpha_s) !  AL will be set at the integral.f
+c        call set_parameter("muren",250d0)
+
+        id_LO = register_process("21 21 -> 23 25",12)
+        return
       end
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       subroutine ol_NLO_real_init(id_NLO_1r)

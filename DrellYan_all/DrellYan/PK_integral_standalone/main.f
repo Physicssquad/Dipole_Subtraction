@@ -12,6 +12,7 @@
       dimension PKReg(1:50),err_Reg(1:50)
       dimension PKDel(1:50),err_Del(1:50)
       dimension PK(1:50),err(1:50)
+      external xint_PlusA,xint_Plus_h
       
 
       !input data card
@@ -50,10 +51,14 @@ c ~~~~~~~~~~~~~~~~[Writing in a file to store]~~~~~~~~~~~~~~~~~~~c
       close(20)
       if (iprint .eq. 1) call output(run_tag,filename)            
 c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c        
+c...............................[selection]
+      iplus   =1
+         iplus_integral=0
+         iplus_modified=1
 
-        iplus   =1
-        idelta  =1
-        iregular=1
+      idelta  =0
+      iregular=0
+c...............................[selection]
 
        do l = 1,it_max
           PKReg(l)    = 0d0
@@ -95,6 +100,7 @@ c                sd = 0d0
 c        else
          call printframe2(xq)
 
+      if (iplus_integral .eq. 1 ) then
 c      -------------------------------------------------
          call printframe0(mode2)
          call brm48i(40,0,0) 
@@ -103,21 +109,36 @@ c      -------------------------------------------------
          call printframe0(mode3)
          call brm48i(40,0,0) 
          call vsup(4,npt2,its2,flo2_PlusB,ai_lo2B,sdB,chi2)
-c      -------------------------------------------------
 
          ai_lo2 = ai_lo2A - ai_lo2B
+
+c      -------------------------------------------------
+       elseif(iplus_modified .eq. 1 ) then
+c      -------------------------------------------------
+      mode = "[+] distribution performed with intXh(x) "
+         call printframe0(mode)
+         call brm48i(40,0,0)
+         call vsup(4,npt2,its2,xint_PlusA,ai_lo2A,sdA,chi2)
+c      -------------------------------------------------
+c      -------------------------------------------------
+         call brm48i(40,0,0)
+         call vsup(3,npt2,its2,xint_Plus_h,ai_lo2B,sdB,chi2)
+c      -------------------------------------------------
+
+         ai_lo2 = ai_lo2A + ai_lo2B
+        endif
 
 c        endif
          PKPlus(j)   = ai_lo2
          err_plus(j) = sdA + sdB
 
-      mode = "Plus"
       call printframe3(mode,ai_lo2,sd,chi2)   
 
         xq=xq + xincr
         enddo
 
         xq = xq_initial
+      mode = 'Plus'
       call printframe4(mode)
 
         do j=1,it_max
@@ -125,9 +146,8 @@ c        endif
      .             int(xq),PKPlus(j),err_plus(j)
           xq = xq + xincr
         enddo
-
         endif
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
+c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ regular functions ]
         if( iregular .eq. 1) then
 
 

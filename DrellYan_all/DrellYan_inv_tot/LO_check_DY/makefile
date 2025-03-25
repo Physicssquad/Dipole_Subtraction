@@ -50,7 +50,8 @@ OBJECTS = $(OBJDIR)/mat.amp.o    \
           $(OBJDIR)/misc.o       \
           $(OBJDIR)/lum.o        \
           $(OBJDIR)/pdf_lha.o    \
-          $(OBJDIR)/vsup.o       \
+          $(OBJDIR)/vsup_mod.o       \
+          $(OBJDIR)/vegcall.o       \
           $(OBJDIR)/integrand.o  \
           $(OBJDIR)/phasespace.o
 
