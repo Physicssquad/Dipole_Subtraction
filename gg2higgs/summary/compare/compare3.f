@@ -74,21 +74,21 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     Ready to start comparing files    
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       print*,"Available files in "//trim(run_tag)//"  are"
-       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
-       print*,"Enter the first file name"
-c       read*,firstfile
-       print*,"Enter the second file name"
+c       print*,"Available files in "//trim(run_tag)//"  are"
+c       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
+c       print*,"Enter the first file name"
+cc       read*,firstfile
+c       print*,"Enter the second file name"
 c       read*,secondfile
 
-c      firstfile = 'LO_all.dat'
-c      secondfile = 'LO_ref.dat'
-c	firstfile = 'virtual_all.dat'
-c	secondfile = 'virtual_ref.dat'
+	firstfile = 'real_all.dat'
+	secondfile = 'real_ref.dat'
+	firstfile = 'virtual_all.dat'
+	secondfile = 'virtual_ref.dat'
 	firstfile = 'PK_all.dat'
 	secondfile = 'PK_ref.dat'
-c	firstfile = 'real_all.dat'
-c	secondfile = 'real_ref.dat'
+      firstfile = 'LO_all.dat'
+      secondfile = 'LO_ref.dat'
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        
 
@@ -149,10 +149,10 @@ c     . [first-second]/first*100",
      . achar(27)//'[0m'
         do i=1,it_max
 c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),xintLO(i)+xintLO_ch(i)
-      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
-c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO_ch(i)/xintLO(i)
-c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),
-c     .          dabs(xintLO(i)-xintLO_ch(i))
+c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
+      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO_ch(i)/xintLO(i)
+c      write(*,'(i7,f20.15)')int(xqLO_ch(i)),
+c     .          (xintLO(i)-xintLO_ch(i))
 c     .     /xintLO_ch(i)*100d0
         enddo
         print*,"/"//trim(secondfile)//" and  /"//trim(firstfile)
@@ -164,10 +164,11 @@ c     . [first-second]/first*100",
 c      write(*,'(i7,3f10.6)')int(xqLO_ch(i)),xintLO(i)+xintLO_ch(i)
 c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO(i)/xintLO_ch(i)
 
-      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),xintLO_ch(i)/xintLO(i)
 c      write(*,'(i7,3e27.15)')int(xqLO_ch(i)),
-c     .          dabs(xintLO(i)-xintLO_ch(i))
-c     .     /xintLO_ch(i)*100d0
+c     .  xintLO_ch(i)/xintLO(i)
+      write(*,'(i7,f20.15)')int(xqLO_ch(i)),
+     .          dabs(xintLO(i)-xintLO_ch(i))
+     .     /xintLO_ch(i)*100d0
         enddo
 
       endif

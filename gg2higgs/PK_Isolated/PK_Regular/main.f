@@ -81,6 +81,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[ r
       mode = "Regular Terms "
       call printframe0(mode)
       call printframe1(pt1,its1)
+      call printframe6(ecm,xmur,xmuf,name,amH)
 
         do j=1,it_max
 

@@ -97,15 +97,15 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       print*," "
       print*,"Reading Data from directory: /summary/"//trim(run_tag)
-      print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
-      call system("cat ../"//trim(run_tag)//"/run.machine.dat")
+c      print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+c      call system("cat ../"//trim(run_tag)//"/run.machine.dat")
 c      print*,"            ecm:", int(ecm),"[GeV]"                   ! ecm
 c      print*,"     LHApdfname:   ", name                  !lhapdf set
 c      print*,"         it_max:" ,int(it_max)                !it_max no of q for distribution
 c      print*,"initial Q value:", int(xq_initial),"[GeV]"            ! initialise xq value
 c      print*,"     step size :", int(step_size)             ! size in the multiplle of loop variable
 c      print*,"Run Description:   ",message
-      print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
+c      print*,"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ "
       print*," "
       call sleep(1)
 
@@ -429,8 +429,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     Ready to start combining files Specific for PK Only   
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       print*,"Available files in "//trim(run_tag)//"  are"
-       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
+c       print*,"Available files in "//trim(run_tag)//"  are"
+c       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
 
        print*," "
        print*," "
@@ -438,6 +438,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        print*,firstfile
        print*,secondfile
        print*,thirdfile
+       print*," "
        print*,"will be combined to the output filename"
        print*,fourthfile
        print*," "
@@ -671,8 +672,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     Ready to start comparing files    
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       print*,"Available files in "//trim(run_tag)//"  are"
-       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
+c       print*,"Available files in "//trim(run_tag)//"  are"
+c       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
 c
        print*," "
        print*," "

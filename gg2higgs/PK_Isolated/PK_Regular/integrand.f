@@ -34,14 +34,15 @@ c      common/factscale/xmuf
        tau = amH**2/S
 c... for regular terms I don't need to use the upper cut as it is a flat integral.
       delta = 0d0 
-      xmin = 0d0 
+c      xmin = 0d0 
+      xmin = tau 
 
       xmax = 1.0d0 - delta
       xjac4 = (xmax - xmin)
       x = xjac4*yy(1) + xmin
 
+c      xamin = 0d0 
       xamin = tau/x
-!      xamin = 0d0 
       xamax = 1d0
       xajac =  (xamax - xamin)
       xa = xamin + xajac*yy(2)

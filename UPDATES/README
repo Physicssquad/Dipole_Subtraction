@@ -1,3 +1,24 @@
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 28 : 03 : 2025 ]
+1. f95 conversion ongoing
+   converted the output display working perfectly now and is automated
+  
+2. Data comparison:
+   Matrix is taking 62.5 as central scale and i was taking mH. there was mismatch with the reference data.
+   Now the data for real, virtual, Lo is perfectly matching with that of matrix.
+
+  there is still problems in the PK type of terms. the data isn't matching with that of matrix results.
+
+
+
+
+
+
+
+
+
+
+
+
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 25 : 03 : 2025 ]
 1. PK_Plus under Isolated is now modified by using the new function PK(). 
 

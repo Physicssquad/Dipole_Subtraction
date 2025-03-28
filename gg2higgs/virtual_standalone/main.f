@@ -8,6 +8,7 @@
       common/usedalpha/AL,ge
       common/distribution/xq
       common/prc_id/id_LO,id_NLO_1r,id_NLO_1loop
+      common/scales/xmuf,xmur
 
 
       character*50 name,mode
@@ -27,6 +28,8 @@
 
       open(unit=10,file='../param_card.dat',status='unknown')    
       read (10,*) ge      ! [ 1/Alpha_ew ]
+      read (10,*) xmuf      ! [ 1/Alpha_ew ]
+      read (10,*) xmur      ! [ 1/Alpha_ew ]
       close(10)
 
       open(unit=15,file='../run.machine.dat',status='unknown')
@@ -45,6 +48,9 @@
       read (20,*)
       read (20,*) filename
       close(20)
+
+!      xmuf = xmuf*0.5d0
+!      xmur = xmur*0.5d0
 
 
 
@@ -79,6 +85,7 @@ c       writes data in output file
 
 
         call printframe1(pt1,its1)
+        call printframe6(ecm,xmur,xmuf,name,amH)
         
         do j=1,it_max
 

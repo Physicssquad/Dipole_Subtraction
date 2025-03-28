@@ -6,7 +6,6 @@ cd $home_path
 home_path=$(pwd)
 cd ../../
 echo $home_path
-stop
 
 # Define the commands to run in parallel, and add a unique identifier to each command
 commands=(
@@ -71,7 +70,7 @@ parallel --line-buffer ::: \
     "(sleep 5; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[5]} 5; ${commands[0]})" \
     "(sleep 6; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[6]} 6; ${commands[0]})" 
 #    "(sleep 7; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[7]} 7; ${commands[0]})" \
-#    "(sleep 8; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[8]} 8; ${commands[0]})" \
+#    "(sleep 8; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[8]} 8; ${commands[0]})" 
 #    "(sleep 9; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[9]} 9; ${commands[0]})" \
 #    "(sleep 10; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[10]} 10; ${commands[0]})" 
 #    "(sleep 11; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[11]} 11; ${commands[0]})" \

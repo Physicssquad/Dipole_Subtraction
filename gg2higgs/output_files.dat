@@ -1,5 +1,5 @@
-real.dat			! real- dipole output file
-virtual.dat 			! virtual contribution output file
+real6.dat			! real- dipole output file
+virtual6.dat 			! virtual contribution output file
 PK.dat				! For PK Plus_Distribution  this will be used to combine last three files.
 LO.dat				! Leading order
 LO_ref.dat			! reference filename

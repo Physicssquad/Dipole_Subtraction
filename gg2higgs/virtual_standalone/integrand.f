@@ -24,6 +24,7 @@
       common/energy/s
       common/distribution/xq
       common/renor_scale/scale
+      common/scales/xmuf,xmur
       common/amass/am1,am2,amH,am4,am5        
       common/prc_id/id_LO,id_NLO_1r,id_NLO_1loop
       external Born_gg2h_
@@ -36,8 +37,6 @@
          sp  = xa*xb*s
          rsp = dsqrt(sp)
         
-              xmuf=amH/2d0
-              xmur=xmuf
               xmu2=xmur**2
 
               call pdf(xa,xmuf,f1)

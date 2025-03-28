@@ -38,7 +38,7 @@ c... Here s = ecm*ecm
 
       delta = 1d-5
       xmin =0d0 ! technically xmin should run from 0 to 1. 
-!      xmin = tau
+      xmin = tau
       xmax = 1.0d0 - delta
       xjac4 = (xmax - xmin)
       x = xjac4*yy(1) + xmin
@@ -46,8 +46,8 @@ c... for the fixed value of x. I will generate the xa and xb using the
 c... constraint relation.
 c... x will always be there as an overall factor.
 c~~~~~[ _______________ ]~~~~~C
-!      xamin = tau/x
       xamin = 0d0
+      xamin = tau/x
       xamax = 1d0
       xajac =  (xamax - xamin)
       xa = xamin + xajac*yy(2)
@@ -84,8 +84,8 @@ c... indipendently into the [+] functions.
         endif
 !#####################################
 
-!         sp = xa*xb*S
-!        rsp = dsqrt(sp)
+c         sp = xa*xb*S
+c        rsp = dsqrt(sp)
             xmuf2 = xmuf*xmuf 
                AL = alphasPDF(xmur) 
          coef = Born_gg2h_(0,AL,p1,p2,p3)
@@ -175,8 +175,8 @@ c... from 0 to 1-δ
       xjac4 = (xmax - xmin)
       x = xjac4*yy(1) + xmin
 
-      xamin = tau/x
-!      xamin = 0d0 
+!      xamin = tau/x
+      xamin = 0d0 
       xamax = 1d0
       xajac =  (xamax - xamin)
       xa = xamin + xajac*yy(2)

@@ -13,6 +13,7 @@ c      integer i35,i45,is5,itest
       integer k1,k2,k3,ipass,n4,unphy
       parameter (pi=3.14159265358979d0)
       parameter (hbarc2=389.3856741D+9)
+      common/scales/xmuf,xmur
       common/amass/am1,am2,am3,am4,am5
       common/energy/s
       common/set/set1
@@ -64,8 +65,6 @@ c        if ( jet_cut .eq. 0 ) goto 151
          rsp = dsqrt(sp)
          fnlo3 = 0d0
           amH = am3
-          xmuf = amH/2d0
-          xmur = xmuf 
 
 c~~~~~~~~~~~~~[ Cuts ]~~~~~~~~~~~~~~~
         icol = 0

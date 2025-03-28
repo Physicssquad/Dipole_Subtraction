@@ -45,13 +45,13 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta terms]
         call pdf(xb,xmuf,f2)
         call setlum(f1,f2,xl)
 
-      Tb_dot_Ta_by_Ta2 = -1d0
-      Tfactors = Tb_dot_Ta_by_Ta2
 
       s12 = 2d0*dot(p1,p2)
       coef = Born_gg2h_(0,AL,p1,p2,p3)
 
 c... page.79(eq:10.24/10.25)
+      Tb_dot_Ta_by_Ta2 = -1d0
+      Tfactors = Tb_dot_Ta_by_Ta2
       Tfactors = Tb_dot_Ta_by_Ta2
       Pterm =ALP*PK(P_,gg_,Delta_,x)*Tfactors*dlog(xmuf2/s12)
       Kterm =ALP*PK(Kb_,gg_,Delta_,x)-ALP*Tfactors*PK(Kt_,gg_,Delta_,x)

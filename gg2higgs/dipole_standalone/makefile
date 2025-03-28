@@ -7,7 +7,7 @@ OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/cuba.o       \
           $(OBJDIR)/mat.amp.o    \
           $(OBJDIR)/printframe.o \
-          $(OBJDIR)/misc.o       \
+          $(OBJDIR)/tmp_misc.o       \
           $(OBJDIR)/lum.o        \
           $(OBJDIR)/pdf_lha.o    \
           $(OBJDIR)/vsup.o       \

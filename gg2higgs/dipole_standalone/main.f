@@ -12,6 +12,7 @@
       common/set/set1
       common/countc/n4
       common/distribution/xq      
+      common/scales/xmuf,xmur
       common/t_cuts/e_cut,t_cut
       common/caller/icall
       common/prc_id/id_LO,id_NLO_1r
@@ -30,10 +31,11 @@
       npt1 = pt1
       close(10)
 
-c      open(unit=10,file='../param_card.dat',status='unknown')    
-c      read (10,*) ge      ! [ 1/Alpha_ew ]
-c      close(10)
-       ge = 7.8125000000000000E-003
+      open(unit=10,file='../param_card.dat',status='unknown')    
+      read (10,*) ge      ! [ 1/Alpha_ew ]
+      read (10,*) xmuf      ! [ 1/Alpha_ew ]
+      read (10,*) xmur      ! [ 1/Alpha_ew ]
+      close(10)
 
 
       open(unit=15,file='../run.machine.dat',status='unknown')
@@ -98,9 +100,7 @@ c        i=2
           print*," "
 
           call printframe1(pt1,its1)
-          call printframe6(ecm,am3/2d0,am3/2d0,name,am3)
-
-
+          call printframe6(ecm,xmur,xmuf,name,am3)
 
           xq = xq_initial
           do j = 1,it_max
@@ -110,8 +110,6 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if (I .eq. 1 ) then
             call brm48i(40,0,0) 
             call vsup(3,npt1,its1,fnlo3,ans,sd,chi2)
-	print*,idiff
-	print*,isame
         
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         elseif(I .eq. 2) THEN

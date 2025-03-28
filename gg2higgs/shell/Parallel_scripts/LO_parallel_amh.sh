@@ -8,12 +8,12 @@ cd ../../
 # Define the commands to run in parallel, and add a unique identifier to each command
 commands=(
     "(./shell/runLO.sh)"
-    "(./shell/runLO.sh)"
-    "(./shell/runLO.sh)"
-    "(./shell/runLO.sh)"
-    "(./shell/runLO.sh)"
-    "(./shell/runLO.sh)"
-    "(./shell/runLO.sh)"
+#    "(./shell/runLO.sh)"
+#    "(./shell/runLO.sh)"
+#    "(./shell/runLO.sh)"
+#    "(./shell/runLO.sh)"
+#    "(./shell/runLO.sh)"
+#    "(./shell/runLO.sh)"
 #    "(./shell/runLO.sh)"
 #    "(./shell/runLO.sh)"
 )
@@ -52,12 +52,12 @@ export -f modify_input_files
 # Run the commands in parallel using GNU Parallel
 parallel --line-buffer ::: \
     "(sleep 0; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[0]} 0; ${commands[0]})" \
-    "(sleep 1; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[1]} 1; ${commands[1]})" \
-    "(sleep 2; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[2]} 2; ${commands[2]})" \
-    "(sleep 3; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[3]} 3; ${commands[3]})" \
-    "(sleep 4; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[4]} 4; ${commands[4]})" \
-    "(sleep 5; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[5]} 5; ${commands[5]})" \
-    "(sleep 6; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[6]} 6; ${commands[6]})" 
+    "(sleep 1; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[1]} 1; ${commands[0]})" \
+    "(sleep 2; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[2]} 2; ${commands[0]})" \
+    "(sleep 3; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[3]} 3; ${commands[0]})" \
+    "(sleep 4; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[4]} 4; ${commands[0]})" \
+    "(sleep 5; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[5]} 5; ${commands[0]})" \
+    "(sleep 6; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat $tmp_dir/param_card.dat .; modify_input_files ${distribution_steps[6]} 6; ${commands[0]})" 
 #    "(sleep 4; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[4]} 4; ${commands[4]})" \
 #    "(sleep 5; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[5]} 5; ${commands[5]})" \
 #    "(sleep 6; cp $tmp_dir/run.machine.dat $tmp_dir/output_files.dat .; modify_input_files ${distribution_steps[6]} 6; ${commands[6]})" 

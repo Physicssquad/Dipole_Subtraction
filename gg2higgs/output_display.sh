@@ -1,28 +1,16 @@
 #!/bin/bash
 
-filename="compare8.f"
+filename="tmp_compare8.f95"
+#filename="compare3.f"
 
+home_path=$(dirname "$(readlink -f "$0")")
 
-home_path=$(dirname "$0")
 cd $home_path
 home_path=$(pwd)
 
 cd summary/compare
-gfortran $filename && ./a.out
+gfortran $filename parameters.f95 && ./a.out
 rm a.out
-
-filename="compare3.f"
-
-
-home_path=$(dirname "$0")
-cd $home_path
-home_path=$(pwd)
-
-cd summary/compare
-gfortran $filename && ./a.out
-rm a.out
-
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                          General Instructions for the compare.f Use                                        #

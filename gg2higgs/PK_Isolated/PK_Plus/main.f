@@ -57,8 +57,6 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
       am4=0d0
       am5=0d0
       delta = 1d-5
-!      xmuf = amH
-!      xmur = xmuf
 
       call ol_LO_init(id_LO)
 
@@ -70,12 +68,16 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
       call printframe0(headline)
 c... ...... Plus implementation type
       iselect_integrand = 0
-      iselect_modified  = 0
-      iselect_integral  = 1
+      iselect_modified  = 1
+      iselect_integral  = 0
 
-      call printframe9(ecm)
+!      call printframe9(ecm)
+      call printframe6(ecm,xmur,xmuf,name,amH)
 
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
       if (iselect_integrand .ne. 1 ) goto 150
       headline1 = "[+] with integrand level subtraction"
       call printframe1(pt1,its1)   ! Prints Vegas points
@@ -86,44 +88,53 @@ c      -------------------------------------------------
 c      -------------------------------------------------
          PKPlus   = ai_lo2
          err_plus = sd
-c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
 150    continue
       if (iselect_modified .ne. 1 ) goto 151
       call printframe1(pt1*10d0,its1)   ! Prints Vegas points
       headline1 = "[+] with intXh(x) "
-      call printframe0(headline1)
-c      -------------------------------------------------
+
+         call printframe0(headline1)
          call brm48i(40,0,0) 
          call vsup(2,npt1*10,its1,xint_PlusA,ai_lo2_a,sd,chi2)
-c      -------------------------------------------------
-c      -------------------------------------------------
-      call printframe1(pt1,its1)   ! Prints Vegas points
+
+         call printframe1(pt1,its1)   ! Prints Vegas points
          call brm48i(40,0,0) 
          call vsup(1,npt1,its1,xint_Plus_h,ai_lo2_h,sd,chi2)
-c      -------------------------------------------------
+
          PKPlus   = ai_lo2_a + ai_lo2_h 
          err_plus = sd
+
+
+
+
+
 
 151    continue
        if (iselect_integral .ne. 1 ) goto 152
       headline1 = "PlusA distribution"
       headline2 = "PlusB distribution"
-      call printframe1(pt1*10d0,its1)   ! Prints Vegas points
-c      -------------------------------------------------
+         call printframe1(pt1*10d0,its1)   ! Prints Vegas points
+
          call printframe0(headline1)
-c      -------------------------------------------------
          call brm48i(40,0,0)
          call vsup(2,npt1*10,its1,flo2_PlusA,ai_lo2A,sdA,chi2)
-c      -------------------------------------------------
 
          call printframe0(headline2)
-c      -------------------------------------------------
          call brm48i(40,0,0)
          call vsup(2,npt1*10,its1,flo2_PlusB,ai_lo2B,sdB,chi2)
-c      -------------------------------------------------
-c      -------------------------------------------------
+
          PKPlus = (ai_lo2A - ai_lo2B)
          err_plus = sdA + sdB
+
+
+
+
+
+
 
 152     continue
       headline = "Plus"
