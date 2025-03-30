@@ -172,13 +172,146 @@ c...........................................c
       stop
       endif  !Here PKtype ends
 
-c**************************************************
-      elseif (trim(Partontype) .eq. 'qg' .or.!*****
-c**************************************************
-     &   trim(Partontype) .eq. 'gq' ) then   !*****
-c**************************************************
-      print*,"Data not inserted for qg/gq channel"
+c****************************************************
+      elseif (trim(Partontype) .eq. 'qg') then !*****
+c****************************************************
+c...........................................c
+      if (trim(PKtype) .eq. 'P') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+         PK = 0d0 
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = CF*(1d0+ one_minus_x**2)/x 
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = 0d0
+      else
+      print*,"Invalid function type P,Kb or Kt"
       stop
+      endif ! function type for Pab ends here
+
+c...........................................c
+        elseif (trim(PKtype) .eq. 'Kb') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+        PK= 0d0 
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = CF*(1d0+ one_minus_x**2)*log1mxbyx/x + CF*x
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = 0d0 
+
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Kbar_ab ends here
+
+c...........................................c
+        elseif (trim(PKtype) .eq. 'Kt') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+         PK = 0d0 
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = CF*(1d0+ one_minus_x**2)*log1mx/x
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = 0d0 
+
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Ktilda_ab ends here
+
+        else 
+      Print*,"Invalid PKtype P,Kbar or Ktilde"
+      stop
+      endif  !Here PKtype ends
+
+c****************************************************
+      elseif (trim(Partontype) .eq. 'gq') then !*****
+c****************************************************
+c...........................................c
+      if (trim(PKtype) .eq. 'P') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+         PK = 0d0 
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = TR*(x**2 + one_minus_x**2) 
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = 0d0
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Pab ends here
+
+c...........................................c
+        elseif (trim(PKtype) .eq. 'Kb') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+        PK= 0d0 
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+        PK = TR*(x**2 + one_minus_x**2)*log1mxbyx + TR*2d0*x*one_minus_x
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = 0d0
+
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Kbar_ab ends here
+
+c...........................................c
+        elseif (trim(PKtype) .eq. 'Kt') then
+c...........................................c
+
+      if (trim(fxntype) .eq. 'Plus') then
+
+         PK = 0d0 
+
+      elseif (trim(fxntype) .eq. 'Regular') then
+
+         PK = TR*(x**2 + one_minus_x**2)*log1mx
+
+      elseif (trim(fxntype) .eq. 'Delta') then
+
+         PK = 0d0 
+
+      else
+      print*,"Invalid function type P,Kb or Kt"
+      stop
+      endif ! function type for Ktilda_ab ends here
+
+        else 
+      Print*,"Invalid PKtype P,Kbar or Ktilde"
+      stop
+      endif  !Here PKtype ends
+
       else
       print*,"Invalid Partontype gg/qq/qg/gq"
       stop

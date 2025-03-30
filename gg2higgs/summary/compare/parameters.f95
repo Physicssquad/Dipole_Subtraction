@@ -27,7 +27,8 @@ module parameters
  double precision :: distr2_delta(max_size),integral2_delta(max_size),error2_delta(max_size)
 
  character(len=100) :: run_tag
- character(len=100) :: real_dipole,virtual,PK,LO,LO_ref,NLO_ref
+ character(len=100) :: real_dipole,virtual,PK,LO,NLO
+ character(len=100) :: real_dipole_ref,virtual_ref,PK_ref,LO_ref,NLO_ref
  character(len=100) :: regular_dat,plus_dat,delta_dat 
 
  integer :: test_LO,test_LO_ref

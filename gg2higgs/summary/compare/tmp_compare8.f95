@@ -19,13 +19,13 @@ program compare_combine_and_display
 !............................................................................................
  ! Real- Dipole
  call check_and_read_file(real_dipole, distr1_real, integral1_real, error1_real, test_real)
- call check_and_read_file('real_ref.dat', distr2_real, integral2_real, error2_real, test_real_ref)
+ call check_and_read_file(real_dipole_ref, distr2_real, integral2_real, error2_real, test_real_ref)
 !............................................................................................
 
 !............................................................................................
  ! Virtual 
  call check_and_read_file(virtual, distr1_virtual, integral1_virtual, error1_virtual,test_virtual)
- call check_and_read_file('virtual_ref.dat', distr2_virtual, integral2_virtual, error2_virtual,test_virtual_ref)
+ call check_and_read_file(virtual_ref, distr2_virtual, integral2_virtual, error2_virtual,test_virtual_ref)
 !............................................................................................
 
 !............................................................................................
@@ -34,7 +34,7 @@ program compare_combine_and_display
  call check_and_read_file(PK, distr1_PK, integral1_PK, error1_PK, test_PK)
  call loading
  if (test_PK == 0 ) goto 100
-call check_and_read_file('PK_ref.dat', distr2_PK, integral2_PK, error2_PK, test_PK_ref)
+call check_and_read_file(PK_ref, distr2_PK, integral2_PK, error2_PK, test_PK_ref)
 !............................................................................................
 
 ! We have stored all the available data, now time to play around with them
@@ -42,9 +42,9 @@ call check_and_read_file('PK_ref.dat', distr2_PK, integral2_PK, error2_PK, test_
 
 
  call play_around_with_data(LO, distr1_LO, integral1_LO, distr2_LO, integral2_LO)
-! call play_around_with_data(virtual, distr1_virtual, integral1_virtual, distr2_virtual, integral2_virtual)
-! call play_around_with_data(real_dipole, distr1_real, integral1_real, distr2_real, integral2_real)
-! call play_around_with_data(PK, distr1_PK, integral1_PK, distr2_PK, integral2_PK)
+ call play_around_with_data(virtual, distr1_virtual, integral1_virtual, distr2_virtual, integral2_virtual)
+ call play_around_with_data(real_dipole, distr1_real, integral1_real, distr2_real, integral2_real)
+ call play_around_with_data(PK, distr1_PK, integral1_PK, distr2_PK, integral2_PK)
 
 end program compare_combine_and_display
 !..........................................................................................................
@@ -72,7 +72,7 @@ integer :: j,tester1,tester2
       PRINT *, "Unknown identifier: ", identifier
     endif
 
-IF (tester1 + tester2 == 2.0) THEN
+IF (tester1 + tester2 == 2) THEN
    PRINT *, " "
    PRINT *, "Finding ratio of ", TRIM(identifier), " with reference"
    PRINT *, " "
@@ -97,8 +97,8 @@ IF (tester1 + tester2 == 2.0) THEN
    ! Perform Comparison and Calculate Ratio
    DO j = 1, it_max
       IF (distr_tmp1(j) == distr_tmp2(j)) THEN
-         PRINT *, INT(distr_tmp1(j)), "        ", integral_tmp1(j) / integral_tmp2(j) 
-!         PRINT *, INT(distr_tmp1(j)), "        ", (integral_tmp1(j) - integral_tmp2(j)) / integral_tmp2(j) * 10000.0d0
+         PRINT *, INT(distr_tmp1(j)), "        ", integral_tmp2(j) / integral_tmp1(j) 
+!         PRINT *, INT(distr_tmp1(j)), "        ", (integral_tmp1(j) - integral_tmp2(j)) / integral_tmp2(j) * 100.0d0
       ENDIF
    ENDDO
 
@@ -124,7 +124,7 @@ if (test_PK == 0 ) then
 print *, "PK data does not exist."
 print *, "Checking for individual data files..."
 do i = 1, 3
-  write(*,'(A1)', advance='no') '.'
+  write(*,'(A6)', advance='no') '......'
  call sleep(1) ! You can adjust the duration or remove it if unavailable
 end do
  call read_combine_PK_data(PK)
@@ -169,7 +169,7 @@ end subroutine read_machine_data_main
 
 !..........................................................................................................
 subroutine read_filenames(filepath)
-  use parameters, only : real_dipole,virtual,PK,LO,LO_ref,NLO_ref,regular_dat,plus_dat,delta_dat 
+  use parameters, only : real_dipole,real_dipole_ref,virtual_ref,virtual,PK,PK_ref,LO,LO_ref,NLO_ref,regular_dat,plus_dat,delta_dat 
   character(len=*) :: filepath
   open(unit=16, file=filepath, status='unknown')
       read (16,*)
@@ -190,6 +190,9 @@ subroutine read_filenames(filepath)
       read (16,*) regular_dat
       read (16,*) delta_dat
       read (16,*) NLO_ref
+      read (16,*) real_dipole_ref
+      read (16,*) virtual_ref
+      read (16,*) PK_ref
       close(16)
 end subroutine read_filenames
 
@@ -244,7 +247,7 @@ subroutine read_combine_PK_data(PK_data_file)
 
  print*," Combining Data into output "
 do i = 1, 3
-  write(*,'(A1)', advance='no') '.'
+  write(*,'(A5)', advance='no') '.....'
   call sleep(1) ! You can adjust the duration or remove it if unavailable
 end do
 print *, " Done! Combined to "

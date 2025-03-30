@@ -20,6 +20,7 @@
       common/distribution/xq
       common/amass/am1,am2,amH,am4,am5
       common/scales/xmuf,xmur
+      common/cuts_delta/delta
       external PK
 
       P_       ='P'
@@ -36,7 +37,7 @@ c... Here s = ecm*ecm
 
        tau = amH**2/S
 
-      delta = 1d-5
+c      delta = 1d-5
       xmin =0d0 ! technically xmin should run from 0 to 1. 
       xmin = tau
       xmax = 1.0d0 - delta
@@ -155,6 +156,7 @@ c---------------------------------------------------------------------
       common/bin_size/eps
       common/amass/am1,am2,amH,am4,am5
       common/scales/xmuf,xmur
+      common/cuts_delta/delta
       external PK
 
       P_       ='P'
@@ -169,14 +171,15 @@ c---------------------------------------------------------------------
 
 c... Integration is singular at 1, so we are performing integration 
 c... from 0 to 1-δ
-      delta = 1d-5 
+c      delta = 1d-5 
       xmin = 0d0 
+      xmin = tau
       xmax = 1.0d0 - delta
       xjac4 = (xmax - xmin)
       x = xjac4*yy(1) + xmin
 
-!      xamin = tau/x
-      xamin = 0d0 
+      xamin = tau/x
+!      xamin = 0d0 
       xamax = 1d0
       xajac =  (xamax - xamin)
       xa = xamin + xajac*yy(2)
@@ -247,6 +250,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta terms]
       common/distribution/xq
       common/bin_size/eps
       common/amass/am1,am2,amH,am4,am5
+      common/cuts_delta/delta
       double precision xint_h
       external xint_h
 
@@ -254,7 +258,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[Delta terms]
       Ktgg_= 'Ktgg'
       Kbargg_='Kbargg'
 
-        delta = 1d-5
+!        delta = 1d-5
         tau = amH**2/S
          xajac = 1d0 - tau
          xa = tau + xajac*yy(1)
