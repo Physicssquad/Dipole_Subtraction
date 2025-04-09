@@ -32,6 +32,7 @@ module parameters
  character(len=100) :: regular_dat,plus_dat,delta_dat 
 
  integer :: test_LO,test_LO_ref
+ integer :: test_NLO,test_NLO_ref
  integer :: test_real,test_real_ref
  integer :: test_PK,test_PK_ref
  integer :: test_virtual,test_virtual_ref
@@ -42,5 +43,3 @@ module parameters
  integer :: it_max,i
 
 end module parameters
-!.................................................
-

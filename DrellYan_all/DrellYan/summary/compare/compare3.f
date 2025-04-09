@@ -74,12 +74,14 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     Ready to start comparing files    
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-       print*,"Available files in "//trim(run_tag)//"  are"
-       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
-       print*,"Enter the first file name"
-       read*,firstfile
-       print*,"Enter the second file name"
-       read*,secondfile
+c       print*,"Available files in "//trim(run_tag)//"  are"
+c       call system ("cd ../"//trim(run_tag)//" && ls -ltr")
+c       print*,"Enter the first file name"
+c       read*,firstfile
+c       print*,"Enter the second file name"
+c       read*,secondfile
+       firstfile = 'LO_all.dat'
+       secondfile = 'LO_ref.dat'
 
 
 c~~~~~~~~~~~~~~~~~[ first  file ]        

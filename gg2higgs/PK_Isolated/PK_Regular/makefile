@@ -31,7 +31,7 @@ OBJECTS = $(OBJDIR)/filehandle.o \
           $(OBJDIR)/lum.o        \
           $(OBJDIR)/pdf_lha.o    \
           $(OBJDIR)/vsup.o       \
-          $(OBJDIR)/integrand.o  \
+          $(OBJDIR)/integrand_tmp.o  \
           $(OBJDIR)/phasespace.o \
           $(OBJDIR)/ol_interface.o 
 #          $(OBJDIR)/PK_new.o 

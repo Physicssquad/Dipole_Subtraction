@@ -1,5 +1,5 @@
 7.8125000000000000E-003			! ge = dsqrt(alpha_e/2d0/Pi)
-62.50 					!xmuf
-62.50 					!xmur
+65.5					!xmuf
+65.5					!xmur
 125.0					!higgs mass
 

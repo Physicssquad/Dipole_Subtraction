@@ -94,12 +94,12 @@ c      -------------------------------------------------
 
 150    continue
       if (iselect_modified .ne. 1 ) goto 151
-      call printframe1(pt1*10d0,its1)   ! Prints Vegas points
+      call printframe1(pt1,its1)   ! Prints Vegas points
       headline1 = "[+] with intXh(x) "
 
          call printframe0(headline1)
          call brm48i(40,0,0) 
-         call vsup(2,npt1*10,its1,xint_PlusA,ai_lo2_a,sd,chi2)
+         call vsup(2,npt1,its1,xint_PlusA,ai_lo2_a,sd,chi2)
 
          call printframe1(pt1,its1)   ! Prints Vegas points
          call brm48i(40,0,0) 

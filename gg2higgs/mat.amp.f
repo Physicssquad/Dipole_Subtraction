@@ -29,7 +29,7 @@ c CF is the colour factor in comes up in reduced born.
           ch2 = ch * ch
            avg_pol = 4d0
 
-          Born_gg2H_ =  CF*s12**2*ch2/64d0
+!          Born_gg2H_ =  CF*s12**2*ch2/64d0
 c           return
 
 c...  Openloops has already been initialised in main.

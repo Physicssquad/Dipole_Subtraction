@@ -1,0 +1,35 @@
+real_all.dat			! real- dipole output file
+virtual_all.dat 			! virtual contribution output file
+PK_all.dat				! For PK Plus_Distribution  this will be used to combine last three files.
+LO_all.dat				! Leading order
+LO_ref.dat				! reference filename
+PK_Plus_all.dat			! Plus data 
+PK_Regular_all.dat			! PK regular file
+PK_Delta_all.dat			! PK delta files
+
+
+
+
+
+
+
+real0.dat			! real- dipole output file
+virtual1.dat 			! virtual contribution output file
+PK1.dat				! For PK Plus_Distribution  this will be used to combine last three files.
+LO.dat				! Leading order
+LO2.dat				! reference filename
+PK_Plus1.dat			! Plus data 
+PK_Regular8.dat			! PK regular file
+PK_Delta.dat			! PK delta files
+
+
+
+
+
+
+
+
+! These file-names are also used in reading files using compare#.f
+
+eikonal_virtual8.dat 			! virtual contribution output file
+PK_Kbar_mod.dat				! For PK Plus_Distribution  this will be used to combine last three files.

@@ -1,3 +1,17 @@
+
+~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 28 : 03 : 2025 ]
+
+ 1. Drell_Yan_ol_f95 : Working Now.✅
+    LO matching with the MATRIX result. upto permillie
+    ol is used to supply mat_amp
+    
+    real - dipole is also working now. Data validation is still pending.
+   
+    MATRIX data for matching LO is now produced. 
+
+    individual distribution comparison is still pending. Only full invmass distribution is discovered yet.
+
+
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 28 : 03 : 2025 ]
 1. f95 conversion ongoing
    converted the output display working perfectly now and is automated
@@ -7,17 +21,6 @@
    Now the data for real, virtual, Lo is perfectly matching with that of matrix.
 
   there is still problems in the PK type of terms. the data isn't matching with that of matrix results.
-
-
-
-
-
-
-
-
-
-
-
 
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 25 : 03 : 2025 ]
 1. PK_Plus under Isolated is now modified by using the new function PK(). 
@@ -31,13 +34,6 @@
 
 4. Started converting fortran77 to fortran 95.
    Drell_Yan_f95
-
-
-
-
-
-
-
 
 ~~~~~~~[ LATEST UPDATES ]~~~~~~~[ 18 : 03 : 2025 ]
 1. PK problem is now resolved. Problem carefully taken care. 

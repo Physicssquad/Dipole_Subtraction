@@ -132,8 +132,8 @@ c--------------------------------------------------------------------o
        dimension p1(0:3),p2(0:3),p3(0:3),p4(0:3)
        parameter(PI=3.141592653589793238D0)
        common/usedalpha/AL,ge
-c       ge=1d0/128d0
-       e= DSQRT(ge*4.d0*PI)
+!       ge=1d0/128d0
+      e= DSQRT(ge*4.d0*PI)
       IF(k .eq. 0)  CF =  1d0                   !Leading Order K=0
       IF(k .eq. 1)  CF = -4d0/3d0               !leg 1
       IF(k .eq. 2)  CF = -4d0/3d0               !Leg 2

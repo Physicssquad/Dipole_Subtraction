@@ -7,7 +7,7 @@
 2E+7    	! vegas points        For [ PK_Regular & PK_Delta terms ] only 
 10	 	! vegas iterations    For [ PK_Regular & PK_Delta terms ] only 
 
-1E+6    	! vegas points        For [ LO  ] only 
+5E+6    	! vegas points        For [ LO  ] only 
 10	 	! vegas iterations    For [ LO  ] only 
 
 1E+7    	! vegas points        For [ PK_Plus terms ] only 

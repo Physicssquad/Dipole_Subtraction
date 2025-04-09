@@ -39,14 +39,63 @@ call check_and_read_file(PK_ref, distr2_PK, integral2_PK, error2_PK, test_PK_ref
 
 ! We have stored all the available data, now time to play around with them
 
+!............................................................................................
+ ! NLO_ref 
+ 
+ call check_and_read_file(NLO_ref, distr2_NLO, integral2_NLO, error2_NLO,test_NLO_ref)
+!............................................................................................
 
 
- call play_around_with_data(LO, distr1_LO, integral1_LO, distr2_LO, integral2_LO)
- call play_around_with_data(virtual, distr1_virtual, integral1_virtual, distr2_virtual, integral2_virtual)
- call play_around_with_data(real_dipole, distr1_real, integral1_real, distr2_real, integral2_real)
+! call play_around_with_data(LO, distr1_LO, integral1_LO, distr2_LO, integral2_LO)
+! call play_around_with_data(virtual, distr1_virtual, integral1_virtual, distr2_virtual, integral2_virtual)
+! call play_around_with_data(real_dipole, distr1_real, integral1_real, distr2_real, integral2_real)
  call play_around_with_data(PK, distr1_PK, integral1_PK, distr2_PK, integral2_PK)
+ call nlo_data_combine('NLO_all.dat')
 
-end program compare_combine_and_display
+! call play_around_with_data(NLO, distr1_NLO, integral1_NLO, distr2_NLO, integral2_NLO)
+
+ end program compare_combine_and_display
+!............................................................................................
+
+
+
+subroutine nlo_data_combine(file_name)
+use parameters
+character(len=*) :: file_name
+integer ::  ios
+
+! Check if all tests pass
+if (test_real + test_virtual + test_PK == 3) then
+
+    ! Combine data
+    do j = 1, it_max
+        integral1_NLO(j) = integral1_real(j) + integral1_virtual(j) + integral1_PK(j)
+        error1_NLO(j)    = error1_real(j)    + error1_virtual(j)    + error1_PK(j)
+        distr1_NLO(j)    = distr1_real(j)
+        distr2_NLO(j)    = distr2_real(j)
+    end do
+
+    ! Check and open the file safely
+    open(unit=17, file='../' // trim(run_tag) // '/' // trim(file_name), status='unknown', iostat=ios)
+    if (ios /= 0) then
+        print *, 'Error opening file: ', file_name
+        return
+    end if
+
+    ! Write the results with proper formatting
+    do i = 1, it_max
+        write(17,'(i7,3e27.15)') int(distr1_NLO(i)), integral1_NLO(i),error1_NLO(i)
+    end do
+    close(17)
+
+    print *, 'Data written to file with  real+virtual+PK   :', file_name
+
+else
+    print *, 'Error: Test condition not satisfied.'
+endif
+
+end subroutine nlo_data_combine
+
 !..........................................................................................................
 
 subroutine play_around_with_data(identifier, distr_tmp1, integral_tmp1,distr_tmp2, integral_tmp2)
@@ -68,10 +117,16 @@ integer :: j,tester1,tester2
     elseif ( trim(identifier) == trim(LO)) then
     tester1  = test_LO
     tester2  = test_LO_ref
+    elseif ( trim(identifier) == trim(NLO)) then
+    tester1 = test_real+test_virtual+test_PK
+    tester2 = test_NLO_ref
+      if (tester1 + tester2 == 4 ) then
+        tester1 = 1
+        tester2 = 1
+      endif
     else
       PRINT *, "Unknown identifier: ", identifier
     endif
-
 IF (tester1 + tester2 == 2) THEN
    PRINT *, " "
    PRINT *, "Finding ratio of ", TRIM(identifier), " with reference"
@@ -104,6 +159,7 @@ IF (tester1 + tester2 == 2) THEN
 
 ELSE
    PRINT *, "Cannot compare - File not present or mismatch in data."
+   PRINT *, TRIM(identifier)
 ENDIF
 end subroutine play_around_with_data
 
@@ -169,7 +225,8 @@ end subroutine read_machine_data_main
 
 !..........................................................................................................
 subroutine read_filenames(filepath)
-  use parameters, only : real_dipole,real_dipole_ref,virtual_ref,virtual,PK,PK_ref,LO,LO_ref,NLO_ref,regular_dat,plus_dat,delta_dat 
+  use parameters, only : real_dipole,real_dipole_ref,virtual_ref,virtual,PK,PK_ref,LO,LO_ref,NLO_ref,regular_dat &
+                         ,plus_dat,delta_dat,NLO
   character(len=*) :: filepath
   open(unit=16, file=filepath, status='unknown')
       read (16,*)
@@ -193,6 +250,7 @@ subroutine read_filenames(filepath)
       read (16,*) real_dipole_ref
       read (16,*) virtual_ref
       read (16,*) PK_ref
+      NLO = 'NLO_all.dat'
       close(16)
 end subroutine read_filenames
 
